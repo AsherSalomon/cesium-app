@@ -14,3 +14,5 @@ viewer.camera.flyTo({
     pitch : Cesium.Math.toRadians(0),
   }
 });
+
+viewer.HomeButton.destory();
