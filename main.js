@@ -64,5 +64,5 @@ function createModel(url, height) {
 
 createModel(
   "1984_Ford_F350.glb",
-  5000.0
+  1916.7
 );
