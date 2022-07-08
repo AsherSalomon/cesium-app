@@ -33,7 +33,7 @@ viewer.camera.flyTo({
 
 
 function createModel(url, height) {
-  viewer.entities.removeAll();
+  // viewer.entities.removeAll();
 
   const position = Cesium.Cartesian3.fromDegrees(
     -71.30325,
