@@ -15,7 +15,11 @@ viewer.camera.flyTo({
   }
 });
 
+viewer.geocoder.destroy();
 viewer.homeButton.destroy();
+// viewer.homeButton.destroy();
+// viewer.homeButton.destroy();
+viewer.navigationHelpButton.destroy();
 
 function createModel(url, height) {
   viewer.entities.removeAll();
