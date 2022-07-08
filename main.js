@@ -17,16 +17,52 @@ Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOi
 //
 // viewer.homeButton.destroy();
 
-const widget = new Cesium.CesiumWidget('cesiumContainer', {
+const viewer = new Cesium.CesiumWidget('cesiumContainer', {
   terrainProvider: Cesium.createWorldTerrain()
 });
 
-const buildingTileset = widget.scene.primitives.add(Cesium.createOsmBuildings());
+const buildingTileset = viewer.scene.primitives.add(Cesium.createOsmBuildings());
 
-widget.camera.flyTo({
+viewer.camera.flyTo({
   destination : Cesium.Cartesian3.fromDegrees(-71.30325 + 0.003, 44.2705, 1916.7),
   orientation : {
     heading : Cesium.Math.toRadians(270),
     pitch : Cesium.Math.toRadians(0),
   }
 });
+
+
+function createModel(url, height) {
+  viewer.entities.removeAll();
+
+  const position = Cesium.Cartesian3.fromDegrees(
+    -123.0744619,
+    44.0503706,
+    height
+  );
+  const heading = Cesium.Math.toRadians(135);
+  const pitch = 0;
+  const roll = 0;
+  const hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll);
+  const orientation = Cesium.Transforms.headingPitchRollQuaternion(
+    position,
+    hpr
+  );
+
+  const entity = viewer.entities.add({
+    name: url,
+    position: position,
+    orientation: orientation,
+    model: {
+      uri: url,
+      minimumPixelSize: 128,
+      maximumScale: 20000,
+    },
+  });
+  viewer.trackedEntity = entity;
+}
+
+createModel(
+  "1984_Ford_F350.glb",
+  5000.0
+);
