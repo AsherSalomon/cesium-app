@@ -7,7 +7,8 @@ const viewer = new Cesium.Viewer('cesiumContainer', {
   geocoder: false,
   homeButton: false,
   navigationHelpButton: false,
-  animation: false
+  animation: false,
+  sceneModePicker: false
 });
 // Add Cesium OSM Buildings, a global 3D buildings layer.
 const buildingTileset = viewer.scene.primitives.add(Cesium.createOsmBuildings());
