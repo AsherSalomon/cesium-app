@@ -15,4 +15,4 @@ viewer.camera.flyTo({
   }
 });
 
-viewer.homeButton.destory();
+viewer.homeButton.destroy();
