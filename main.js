@@ -21,6 +21,8 @@ const widget = new Cesium.CesiumWidget('cesiumContainer', {
   terrainProvider: Cesium.createWorldTerrain()
 });
 
+const buildingTileset = widget.scene.primitives.add(Cesium.createOsmBuildings());
+
 widget.camera.flyTo({
   destination : Cesium.Cartesian3.fromDegrees(-71.30325 + 0.003, 44.2705, 1916.7),
   orientation : {
