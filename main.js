@@ -44,7 +44,7 @@ function createModel(url, height) {
     orientation: orientation,
     model: {
       uri: url,
-      minimumPixelSize: 128,
+      minimumPixelSize: 0,
       maximumScale: 20000,
     },
   });
