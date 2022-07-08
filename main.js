@@ -17,20 +17,6 @@ viewer.camera.flyTo({
 
 viewer.homeButton.destroy();
 
-// const viewer = new Cesium.CesiumWidget('cesiumContainer', {
-//   terrainProvider: Cesium.createWorldTerrain()
-// });
-//
-// const buildingTileset = viewer.scene.primitives.add(Cesium.createOsmBuildings());
-//
-// viewer.camera.flyTo({
-//   destination : Cesium.Cartesian3.fromDegrees(-71.30325 + 0.003, 44.2705, 1916.7),
-//   orientation : {
-//     heading : Cesium.Math.toRadians(270),
-//     pitch : Cesium.Math.toRadians(0),
-//   }
-// });
-
 function createModel(url, height) {
   viewer.entities.removeAll();
 
