@@ -33,7 +33,7 @@ viewer.camera.flyTo({
 
 
 function createModel(url, height) {
-  // viewer.entities.removeAll();
+  viewer.entities.removeAll();
 
   const position = Cesium.Cartesian3.fromDegrees(
     -71.30325,
@@ -62,7 +62,9 @@ function createModel(url, height) {
   viewer.trackedEntity = entity;
 }
 
-createModel(
-  "1984_Ford_F350.glb",
-  1916.7
-);
+setTimeout( function () {
+  createModel(
+    "1984_Ford_F350.glb",
+    1916.7
+  );
+} );
