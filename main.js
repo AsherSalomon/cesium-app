@@ -5,6 +5,7 @@ const viewer = new Cesium.Viewer('cesiumContainer', {
   terrainProvider: Cesium.createWorldTerrain(),
   timeline: false,
   geocoder: false,
+  baseLayerPicker: false,
   homeButton: false,
   navigationHelpButton: false,
   animation: false,
