@@ -17,7 +17,7 @@ viewer.camera.flyTo({
 
 viewer.geocoder.destroy();
 viewer.homeButton.destroy();
-// viewer.homeButton.destroy();
+viewer.projectionPicker.destroy();
 // viewer.homeButton.destroy();
 viewer.navigationHelpButton.destroy();
 
