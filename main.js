@@ -3,14 +3,14 @@ Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOi
 // Initialize the Cesium Viewer in the HTML element with the `cesiumContainer` ID.
 const viewer = new Cesium.Viewer('cesiumContainer', {
   terrainProvider: Cesium.createWorldTerrain(),
-  timeline: false,
-  geocoder: false,
-  baseLayerPicker: false,
-  homeButton: false,
-  navigationHelpButton: false,
-  animation: false,
-  sceneModePicker: false,
-  fullscreenButton: false
+  // geocoder: false,
+  // baseLayerPicker: false,
+  // homeButton: false,
+  // navigationHelpButton: false,
+  // sceneModePicker: false,
+  // animation: false,
+  // timeline: false,
+  // fullscreenButton: false,
 });
 // Add Cesium OSM Buildings, a global 3D buildings layer.
 const buildingTileset = viewer.scene.primitives.add(Cesium.createOsmBuildings());
