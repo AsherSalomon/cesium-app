@@ -20,3 +20,11 @@ Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOi
 const widget = new Cesium.CesiumWidget('cesiumContainer', {
   terrainProvider: Cesium.createWorldTerrain()
 });
+
+widget.camera.flyTo({
+  destination : Cesium.Cartesian3.fromDegrees(-71.30325 + 0.003, 44.2705, 1916.7),
+  orientation : {
+    heading : Cesium.Math.toRadians(270),
+    pitch : Cesium.Math.toRadians(0),
+  }
+});
