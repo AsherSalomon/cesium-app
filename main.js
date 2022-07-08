@@ -36,8 +36,8 @@ function createModel(url, height) {
   viewer.entities.removeAll();
 
   const position = Cesium.Cartesian3.fromDegrees(
-    -123.0744619,
-    44.0503706,
+    -71.30325,
+    44.2705,
     height
   );
   const heading = Cesium.Math.toRadians(135);
