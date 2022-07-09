@@ -8,7 +8,7 @@ const viewer = new Cesium.Viewer('cesiumContainer', {
   sceneModePicker: false,
   baseLayerPicker: false,
   navigationHelpButton: false,
-  // animation: false,
+  animation: false,
   timeline: false,
   fullscreenButton: false,
 });
@@ -24,7 +24,7 @@ viewer.scene.globe.depthTestAgainstTerrain = true;
 
 // Fly the camera to Mt Washington at the given longitude, latitude, and height.
 viewer.camera.flyTo({
-  destination : Cesium.Cartesian3.fromDegrees(-71.30325 + 0.003, 44.2705, 1916.7 - 29),
+  destination : Cesium.Cartesian3.fromDegrees(-71.30325 + 0.003, 44.2705, 1916.7),
   orientation : {
     heading : Cesium.Math.toRadians(270),
     pitch : Cesium.Math.toRadians(-15),
