@@ -18,6 +18,7 @@ viewer.clock.clockStep = Cesium.ClockStep.SYSTEM_CLOCK;
 // Add Cesium OSM Buildings, a global 3D buildings layer.
 const buildingTileset = viewer.scene.primitives.add(Cesium.createOsmBuildings());
 
+viewer.scene.globe.enableLighting = true;
 viewer.scene.globe.depthTestAgainstTerrain = true;
 
 // Fly the camera to Mt Washington at the given longitude, latitude, and height.
