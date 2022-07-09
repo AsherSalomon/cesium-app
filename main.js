@@ -13,6 +13,8 @@ const viewer = new Cesium.Viewer('cesiumContainer', {
   fullscreenButton: false,
 });
 
+viewer.clock.clockStep = Cesium.ClockStep.SYSTEM_CLOCK;
+
 // Add Cesium OSM Buildings, a global 3D buildings layer.
 const buildingTileset = viewer.scene.primitives.add(Cesium.createOsmBuildings());
 
