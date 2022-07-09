@@ -1,1 +1,1 @@
-import * as cesiumStuff from 'cesium-stuff.js';
+import * as cesiumStuff from './cesium-stuff.js';
