@@ -14,7 +14,7 @@ const viewer = new Cesium.Viewer('cesiumContainer', {
 });
 
 viewer.clock.clockStep = Cesium.ClockStep.SYSTEM_CLOCK;
-scene.moon = new Cesium.Moon();
+viewer.scene.moon = new Cesium.Moon();
 
 // Add Cesium OSM Buildings, a global 3D buildings layer.
 const buildingTileset = viewer.scene.primitives.add(Cesium.createOsmBuildings());
