@@ -1,7 +1,6 @@
 import * as cesium from './cesium.js';
 import * as controls from './controls.js';
 import * as physics from './physics.js';
-import * as truck from './truck.js';
 
 Ammo().then( function ( AmmoLib ) {
 	Ammo = AmmoLib;
