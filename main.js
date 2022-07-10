@@ -1,6 +1,7 @@
-import * as cesiumStuff from './cesium-stuff.js';
+import * as cesium from './cesium.js';
 import * as controls from './controls.js';
 import * as physics from './physics.js';
+import * as truck from './truck.js';
 
 Ammo().then( function ( AmmoLib ) {
 	Ammo = AmmoLib;
@@ -9,7 +10,9 @@ Ammo().then( function ( AmmoLib ) {
 } );
 
 function init() {
-  physics.init();
+  let truck = new Object();
+  cesiumStuff.init( truck );
+  physics.init( truck );
 }
 
 // let start, previousTimeStamp;
