@@ -66,13 +66,17 @@ function createModel(url, height) {
     },
   });
   viewer.trackedEntity = entity;
+
+  return entity;
 }
 
-createModel(
-  "1984_Ford_F350.glb",
-  1916.7 - 29
-);
-
 export function init( truck ) {
+  truck.entity = createModel(
+    "1984_Ford_F350.glb",
+    1916.7 - 29
+  );
+}
 
+export function update() {
+  
 }
