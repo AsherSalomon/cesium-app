@@ -18,6 +18,13 @@ viewer.scene.globe.enableLighting = true;
 viewer.shadows = true;
 viewer.scene.globe.depthTestAgainstTerrain = true;
 viewer.scene.moon = new Cesium.Moon();
+// scene.light = moonLight;
+// const moonLight = new Cesium.DirectionalLight({
+//   direction: getMoonDirection(), // Updated every frame
+//   color: new Cesium.Color(0.9, 0.925, 1.0),
+//   intensity: 0.5,
+// });
+// const scratchMoonPosition = new Cesium.Cartesian3();
 
 // Add Cesium OSM Buildings, a global 3D buildings layer.
 const buildingTileset = viewer.scene.primitives.add(Cesium.createOsmBuildings());
