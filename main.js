@@ -10,7 +10,7 @@ Ammo().then( function ( AmmoLib ) {
 
 function init() {
   let truck = new Object();
-  cesiumStuff.init( truck );
+  cesium.init( truck );
   physics.init( truck );
 }
 
