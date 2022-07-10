@@ -32,10 +32,10 @@ document.addEventListener( 'keydown', onKeyDown, false );
 document.addEventListener( 'keyup', onKeyUp, false );
 
 export function update() {
-  if ( moveForward ) { console.log('moveForward'); }
-  if ( moveBackward ) { console.log('moveBackward'); }
-  if ( moveLeft ) { console.log('moveLeft'); }
-  if ( moveRight ) { console.log('moveRight'); }
-  if ( moveUp ) { console.log('moveUp'); }
-  if ( moveDown ) { console.log('moveDown'); }
+  // if ( moveForward ) { console.log('moveForward'); }
+  // if ( moveBackward ) { console.log('moveBackward'); }
+  // if ( moveLeft ) { console.log('moveLeft'); }
+  // if ( moveRight ) { console.log('moveRight'); }
+  // if ( moveUp ) { console.log('moveUp'); }
+  // if ( moveDown ) { console.log('moveDown'); }
 }
