@@ -73,6 +73,6 @@ createModel(
   1916.7 - 29
 );
 
-export function init() {
+export function init( truck ) {
 
 }
