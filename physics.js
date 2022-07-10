@@ -33,7 +33,7 @@
 // let timeNextSpawn = time + objectTimePeriod;
 // const maxNumObjects = 30;
 
-export function init() {
+export function init( truck ) {
 
   // heightData = generateHeight( terrainWidth, terrainDepth, terrainMinHeight, terrainMaxHeight );
 
