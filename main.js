@@ -21,6 +21,7 @@ function animate( timestamp ) {
 
   controls.update();
   physics.update();
+  cesium.update();
 
   // previousTimeStamp = timestamp;
   window.requestAnimationFrame( animate );
