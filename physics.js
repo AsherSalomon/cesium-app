@@ -1,4 +1,4 @@
-
+let truck;
 
 // // Heightfield parameters
 // const terrainWidthExtents = 100;
@@ -33,7 +33,8 @@
 // let timeNextSpawn = time + objectTimePeriod;
 // const maxNumObjects = 30;
 
-export function init( truck ) {
+export function init( newTruck ) {
+  truck = newTruck;
 
   // heightData = generateHeight( terrainWidth, terrainDepth, terrainMinHeight, terrainMaxHeight );
 
@@ -64,6 +65,8 @@ export function init( truck ) {
 }
 
 export function update() {
+
+  // console.log( truck.entity.position.getValue( now ) );
 
 	// physicsWorld.stepSimulation( deltaTime, 10 );
   //
