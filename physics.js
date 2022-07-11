@@ -68,9 +68,9 @@ export function update() {
 
   // console.log( truck.entity.position.getValue( truck.now() ) );
   // console.log( truck.entity.orientation.getValue( truck.now() ) );
-  let cartesian = truck.entity.position.getValue( truck.now() );
-  cartesian.x += 0.001;
-  truck.entity.position = new ConstantPositionProperty( cartesian );
+  // let cartesian = truck.entity.position.getValue( truck.now() );
+  // cartesian.x += 0.001;
+  // truck.entity.position = new ConstantPositionProperty( cartesian );
 
 	// physicsWorld.stepSimulation( deltaTime, 10 );
   //
