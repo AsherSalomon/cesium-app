@@ -82,8 +82,6 @@ export function init( newTruck ) {
 
   truck.now = function() { return viewer.clock.currentTime }
 
-
-
 }
 
 export function update() {
