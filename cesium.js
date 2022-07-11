@@ -86,9 +86,9 @@ export function init( newTruck ) {
     1916.7 - 29
   );
 
-  truck.now = function() { return viewer.clock.currentTime }
+  truck.now = function() { return viewer.clock.currentTime; }
 
-  console.log( viewer.scene.globe.terrainProvider );
+  console.log( viewer.scene.globe.terrainProvider.tilingScheme );
 
 }
 
