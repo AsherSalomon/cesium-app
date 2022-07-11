@@ -20,6 +20,7 @@ viewer.scene.globe.enableLighting = true;
 viewer.shadows = true;
 viewer.scene.globe.depthTestAgainstTerrain = true;
 viewer.scene.moon = new Cesium.Moon();
+viewer.scene.globe.ShadowMode = ENABLED;
 // scene.light = moonLight;
 // const moonLight = new Cesium.DirectionalLight({
 //   direction: getMoonDirection(), // Updated every frame
