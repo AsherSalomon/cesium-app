@@ -65,8 +65,9 @@ export function init( newTruck ) {
 }
 
 export function update() {
-  
-  console.log( truck.entity.position.getValue( truck.now() ) );
+
+  // console.log( truck.entity.position.getValue( truck.now() ) );
+  console.log( truck.entity.orientation.getValue( truck.now() ) );
 
 	// physicsWorld.stepSimulation( deltaTime, 10 );
   //
