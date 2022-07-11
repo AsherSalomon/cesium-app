@@ -78,8 +78,8 @@ export function init( newTruck ) {
     "1984_Ford_F350.glb",
     1916.7 - 29
   );
+  truck.now = function() { return viewer.clock.currentTime }
 }
 
 export function update() {
-  console.log( truck.entity.position.getValue( viewer.clock.currentTime ) );
 }
