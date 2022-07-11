@@ -10,7 +10,7 @@ const viewer = new Cesium.Viewer('cesiumContainer', {
   sceneModePicker: false,
   baseLayerPicker: false,
   navigationHelpButton: false,
-  animation: false,
+  // animation: false,
   timeline: false,
   fullscreenButton: false,
 });
