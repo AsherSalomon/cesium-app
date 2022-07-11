@@ -24,7 +24,7 @@ viewer.shadows = true;
 viewer.scene.globe.depthTestAgainstTerrain = true;
 viewer.scene.moon = new Cesium.Moon();
 
-viewer.scene.globe._surface._tileProvider._debug.wireframe = true;
+// viewer.scene.globe._surface._tileProvider._debug.wireframe = true;
 
 // scene.light = moonLight;
 // const moonLight = new Cesium.DirectionalLight({
