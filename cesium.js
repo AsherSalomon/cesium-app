@@ -79,7 +79,12 @@ export function init( newTruck ) {
     1916.7 - 29
   );
   truck.now = function() { return viewer.clock.currentTime }
-  truck.setPosition = function( cartesian ) { truck.entity.position = new Cesium.ConstantPositionProperty( cartesian ); }
+  truck.setPosition = function( cartesian ) {
+    truck.entity.position = new Cesium.ConstantPositionProperty( cartesian );
+  }
+  truck.setOrientation = function( quaternion ) {
+    truck.entity.orientation = new Cesium.ConstantPositionProperty( quaternion );
+  }
 }
 
 export function update() {
