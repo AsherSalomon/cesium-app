@@ -69,13 +69,13 @@ export function update() {
   // console.log( truck.entity.position.getValue( truck.now() ) );
   // console.log( truck.entity.orientation.getValue( truck.now() ) );
 
-  let position = truck.entity.position.getValue( truck.now() );
-  position.x += 0.001;
-  truck.entity.position = new Cesium.ConstantPositionProperty( position );
+  // let position = truck.entity.position.getValue( truck.now() );
+  // position.x += 0.001;
+  // truck.entity.position = new Cesium.ConstantPositionProperty( position );
 
-  // let orientation = truck.entity.orientation.getValue( truck.now() );
-  // orientation.x += 0.001;
-  // truck.setOrientation( orientation );
+  let orientation = truck.entity.orientation.getValue( truck.now() );
+  orientation.x += 0.001;
+  truck.entity.orientation = new Cesium.ConstantPositionProperty( orientation );
 
 
 
