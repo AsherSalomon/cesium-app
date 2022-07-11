@@ -82,10 +82,6 @@ export function init( newTruck ) {
 
   truck.now = function() { return viewer.clock.currentTime }
 
-  truck.setOrientation = function( quaternion ) {
-    truck.entity.orientation = new Cesium.ConstantPositionProperty( quaternion );
-  }
-
 
 
 }
