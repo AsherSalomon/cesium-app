@@ -73,10 +73,9 @@ export function update() {
   // position.x += 0.001;
   // truck.setPosition( position );
 
-
-  let orientation = truck.entity.orientation.getValue( truck.now() );
-  orientation.x += 0.001;
-  truck.setOrientation( orientation );
+  // let orientation = truck.entity.orientation.getValue( truck.now() );
+  // orientation.x += 0.001;
+  // truck.setOrientation( orientation );
 
 	// physicsWorld.stepSimulation( deltaTime, 10 );
   //
