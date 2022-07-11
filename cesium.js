@@ -24,8 +24,6 @@ viewer.shadows = true;
 viewer.scene.globe.depthTestAgainstTerrain = true;
 viewer.scene.moon = new Cesium.Moon();
 
-// viewer.scene.globe.ShadowMode = 1;
-
 // scene.light = moonLight;
 // const moonLight = new Cesium.DirectionalLight({
 //   direction: getMoonDirection(), // Updated every frame
@@ -88,7 +86,7 @@ export function init( newTruck ) {
 
   truck.now = function() { return viewer.clock.currentTime }
 
-  console.log( viewer.scene.globe );
+  console.log( viewer.scene.globe.terrainProvider );
 
 }
 
