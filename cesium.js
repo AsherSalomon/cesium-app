@@ -14,7 +14,7 @@ const viewer = new Cesium.Viewer('cesiumContainer', {
   baseLayerPicker: false,
   navigationHelpButton: false,
   animation: false,
-  // timeline: false,
+  timeline: false,
   fullscreenButton: false,
 });
 
@@ -23,6 +23,8 @@ viewer.scene.globe.enableLighting = true;
 viewer.shadows = true;
 viewer.scene.globe.depthTestAgainstTerrain = true;
 viewer.scene.moon = new Cesium.Moon();
+
+viewer.scene.globe._surface._tileProvider._debug.wireframe = true;
 
 // scene.light = moonLight;
 // const moonLight = new Cesium.DirectionalLight({
