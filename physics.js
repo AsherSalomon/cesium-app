@@ -65,10 +65,7 @@ export function init( newTruck ) {
 }
 
 export function update() {
-
-  // console.log( truck.entity.position.getValue( truck.now() ) );
-  // console.log( truck.entity.orientation.getValue( truck.now() ) );
-
+  
   // let position = truck.entity.position.getValue( truck.now() );
   // position.x += 0.001;
   // truck.entity.position = new Cesium.ConstantPositionProperty( position );
