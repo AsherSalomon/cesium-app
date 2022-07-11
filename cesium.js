@@ -82,6 +82,8 @@ export function init( newTruck ) {
 
   truck.now = function() { return viewer.clock.currentTime }
 
+  console.log( terrain.scene.globe );
+
 }
 
 export function update() {
