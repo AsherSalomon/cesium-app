@@ -73,9 +73,9 @@ export function update() {
   // position.x += 0.001;
   // truck.entity.position = new Cesium.ConstantPositionProperty( position );
 
-  let orientation = truck.entity.orientation.getValue( truck.now() );
-  orientation.x += 0.001;
-  truck.entity.orientation = new Cesium.ConstantPositionProperty( orientation );
+  // let orientation = truck.entity.orientation.getValue( truck.now() );
+  // orientation.x += 0.001;
+  // truck.entity.orientation = new Cesium.ConstantPositionProperty( orientation );
 
 
 
