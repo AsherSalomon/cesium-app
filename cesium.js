@@ -79,6 +79,16 @@ function createModel(url, height) {
   return entity;
 }
 
+function addPoint( cartesian3 ) {
+  viewer.entities.add({
+    position: cartesian3,
+    point: {
+      pixelSize: 5,
+      color: Cesium.Color.WHITE,
+    },
+  });
+}
+
 export function init( newTruck ) {
   truck = newTruck;
 
@@ -92,7 +102,9 @@ export function init( newTruck ) {
   viewer.scene.globe.terrainProvider.readyPromise.then(function() {
     let projection = viewer.scene.globe.terrainProvider.tilingScheme.projection;
     let cartographic = new Cesium.Cartographic(-71.30325, 44.2705, 1916.7);
-    console.log(projection.ellipsoid.cartographicToCartesian(cartographic));
+    let cartesian3 = projection.ellipsoid.cartographicToCartesian(cartographic);
+    console.log(cartesian3);
+    addPoint(cartesian3);
   });
 
 }
