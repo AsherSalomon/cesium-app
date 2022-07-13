@@ -97,6 +97,8 @@ export function init( newTruck ) {
     1916.7 - 29
   );
 
+  console.log(Cesium.TerrainEncoding);
+
   truck.now = function() { return viewer.clock.currentTime; }
 
 }
