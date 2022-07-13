@@ -101,7 +101,7 @@ export function init( newTruck ) {
 
   viewer.scene.globe.terrainProvider.readyPromise.then(function() {
     let projection = viewer.scene.globe.terrainProvider.tilingScheme.projection;
-    let cartographic = new Cesium.Cartographic(-71.30325, 44.2705, 1916.7);
+    let cartographic = new Cesium.Cartographic.fromDegrees(-71.30325, 44.2705, 1916.7);
     let cartesian3 = projection.ellipsoid.cartographicToCartesian(cartographic);
     // console.log(cartesian3);
     addPoint(cartesian3);
