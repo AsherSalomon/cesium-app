@@ -99,25 +99,21 @@ export function init( newTruck ) {
 
   truck.now = function() { return viewer.clock.currentTime; }
 
-  let provider = viewer.scene.globe.terrainProvider;
-  provider.readyPromise.then(function() {
-    let projection = provider.tilingScheme.projection;
-    let cartographic = new Cesium.Cartographic.fromDegrees(-71.30325, 44.2705, 1916.7);
-    let cartesian3 = projection.ellipsoid.cartographicToCartesian(cartographic);
-    addPoint(cartesian3);
-    // console.log(provider.availability.computeMaximumLevelAtPosition(cartographic));
-    let level = 0;
-    let cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, level);
-  });
-
-  // provider.availability.computeMaximumLevelAtPosition
-  // provider.requestTileGeometry
-
 }
 
 let maximumLevel = 0;
 function maximumLevelChanged() {
+  let provider = viewer.scene.globe.terrainProvider;
+  let cartographic = new Cesium.Cartographic.fromDegrees(-71.30325, 44.2705, 1916.7);
+  let cartesian3 = projection.ellipsoid.cartographicToCartesian(cartographic);
+  addPoint(cartesian3);
+  // console.log(provider.availability.computeMaximumLevelAtPosition(cartographic));
+  let level = 0;
+  let cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, level);
   console.log('maximumLevelChanged');
+
+  // provider.availability.computeMaximumLevelAtPosition
+  // provider.requestTileGeometry
 }
 
 export function update() {
