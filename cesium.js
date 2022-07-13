@@ -109,7 +109,7 @@ function maximumLevelChanged() {
   let cartesian3 = projection.ellipsoid.cartographicToCartesian(cartographic);
   let cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, maximumLevel);
   let terrainData = provider.requestTileGeometry(cartesian2.x, cartesian2.y, maximumLevel);
-  terrainData.then((val) => console.log("asynchronous logging has val:", val));
+  terrainData.then(val => console.log("asynchronous logging has val:", val));
   // console.log(terrainData);
   // addPoint(cartesian3);
 }
