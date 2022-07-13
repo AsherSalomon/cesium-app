@@ -83,8 +83,8 @@ function addPoint( cartesian3 ) {
   viewer.entities.add({
     position: cartesian3,
     point: {
-      pixelSize: 5,
-      color: Cesium.Color.WHITE,
+      pixelSize: 10,
+      color: Cesium.Color.RED,
     },
   });
 }
@@ -103,7 +103,7 @@ export function init( newTruck ) {
     let projection = viewer.scene.globe.terrainProvider.tilingScheme.projection;
     let cartographic = new Cesium.Cartographic(-71.30325, 44.2705, 1916.7);
     let cartesian3 = projection.ellipsoid.cartographicToCartesian(cartographic);
-    console.log(cartesian3);
+    // console.log(cartesian3);
     addPoint(cartesian3);
   });
 
