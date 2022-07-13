@@ -89,10 +89,9 @@ export function init( newTruck ) {
 
   truck.now = function() { return viewer.clock.currentTime; }
 
-  // console.log( viewer.scene.globe.terrainProvider ); // .tilingScheme
-  viewer.scene.globe.terrainProvider.readyPromise.then(console.log(
-    viewer.scene.globe.terrainProvider.tilingScheme
-  ));
+  viewer.scene.globe.terrainProvider.readyPromise.then(
+    console.log(viewer.scene.globe.terrainProvider.tilingScheme.projection)
+  );
 
 }
 
