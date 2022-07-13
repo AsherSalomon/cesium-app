@@ -115,10 +115,19 @@ export function init( newTruck ) {
 
 }
 
+let maximumLevel = 0;
+function maximumLevelChanged() {
+  console.log('maximumLevelChanged');
+}
+
 export function update() {
   let provider = viewer.scene.globe.terrainProvider;
   if (provider.ready) {
     let cartographic = new Cesium.Cartographic.fromDegrees(-71.30325, 44.2705, 1916.7);
-    console.log(provider.availability.computeMaximumLevelAtPosition(cartographic));
+    let newMaximumLevel = provider.availability.computeMaximumLevelAtPosition(cartographic);
+    if (newMaximumLevel != maximumLevel) {
+      maximumLevel = newMaximumLevel;
+      maximumLevelChanged();
+    }
   }
 }
