@@ -89,16 +89,16 @@ export function init( newTruck ) {
 
   truck.now = function() { return viewer.clock.currentTime; }
 
-  console.log( viewer.scene.globe.terrainProvider ); // .tilingScheme
+  // console.log( viewer.scene.globe.terrainProvider ); // .tilingScheme
 
 }
 
-// let oneOff = true;
+let oneOff = true;
 export function update() {
-  // if ( oneOff ) {
-  //   if ( viewer.scene.globe.terrainProvider.ready ) {
-  //     oneOff = false;
-  //     console.log( viewer.scene.globe.terrainProvider.TilingScheme );
-  //   }
-  // }
+  if ( oneOff ) {
+    if ( viewer.scene.globe.terrainProvider.ready ) {
+      oneOff = false;
+      console.log( viewer.scene.globe.terrainProvider.tilingScheme );
+    }
+  }
 }
