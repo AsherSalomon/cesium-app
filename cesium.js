@@ -90,9 +90,9 @@ export function init( newTruck ) {
   truck.now = function() { return viewer.clock.currentTime; }
 
   viewer.scene.globe.terrainProvider.readyPromise.then(function() {
-    let myProj = viewer.scene.globe.terrainProvider.tilingScheme.projection;
-    let myCart = new Cesium.Cartographic(-71.30325, 44.2705, 1916.7);
-    console.log(myProj.ellipsoid);
+    let projection = viewer.scene.globe.terrainProvider.tilingScheme.projection;
+    let cartographic = new Cesium.Cartographic(-71.30325, 44.2705, 1916.7);
+    console.log(projection.ellipsoid.cartographicToCartesian(cartographic));
   });
 
 }
