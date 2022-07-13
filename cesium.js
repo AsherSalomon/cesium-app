@@ -107,11 +107,9 @@ function maximumLevelChanged() {
   let projection = provider.tilingScheme.projection;
   let cartographic = new Cesium.Cartographic.fromDegrees(-71.30325, 44.2705, 1916.7);
   let cartesian3 = projection.ellipsoid.cartographicToCartesian(cartographic);
-  addPoint(cartesian3);
-  // console.log(provider.availability.computeMaximumLevelAtPosition(cartographic));
-  let level = 0;
-  let cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, level);
-  console.log('maximumLevelChanged');
+  // addPoint(cartesian3);
+  let cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, maximumLevel);
+  console.log(cartesian2);
 
   // provider.availability.computeMaximumLevelAtPosition
   // provider.requestTileGeometry
