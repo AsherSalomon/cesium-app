@@ -91,7 +91,7 @@ export function init( newTruck ) {
 
   viewer.scene.globe.terrainProvider.readyPromise.then(
     // console.log(viewer.scene.globe.terrainProvider.tilingScheme.projection)
-    console.log(Cesium.Cartographic(-71.30325, 44.2705, 1916.7).toString())
+    console.log(new Cesium.Cartographic(-71.30325, 44.2705, 1916.7))
   );
 
 }
