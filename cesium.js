@@ -99,17 +99,19 @@ export function init( newTruck ) {
 
   truck.now = function() { return viewer.clock.currentTime; }
 
-  viewer.scene.globe.terrainProvider.readyPromise.then(function() {
-    let provider = viewer.scene.globe.terrainProvider;
+  let provider = viewer.scene.globe.terrainProvider;
+  provider.readyPromise.then(function() {
     let projection = provider.tilingScheme.projection;
     let cartographic = new Cesium.Cartographic.fromDegrees(-71.30325, 44.2705, 1916.7);
     let cartesian3 = projection.ellipsoid.cartographicToCartesian(cartographic);
     addPoint(cartesian3);
-    let cartesian2 = provider.tilingScheme.positionToTileXY(cartographic);
-    console.log(cartesian2);
+    console.log(provider.availability.computeMaximumLevelAtPosition(cartographic));
+    let level = 0;
+    let cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, level);
   });
 
-  // viewer.scene.globe.terrainProvider.requestTileGeometry
+  // provider.availability.computeMaximumLevelAtPosition
+  // provider.requestTileGeometry
 
 }
 
