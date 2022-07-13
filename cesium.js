@@ -104,6 +104,7 @@ export function init( newTruck ) {
 let maximumLevel = 0;
 function maximumLevelChanged() {
   let provider = viewer.scene.globe.terrainProvider;
+  let projection = provider.tilingScheme.projection;
   let cartographic = new Cesium.Cartographic.fromDegrees(-71.30325, 44.2705, 1916.7);
   let cartesian3 = projection.ellipsoid.cartographicToCartesian(cartographic);
   addPoint(cartesian3);
