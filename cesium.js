@@ -89,10 +89,11 @@ export function init( newTruck ) {
 
   truck.now = function() { return viewer.clock.currentTime; }
 
-  viewer.scene.globe.terrainProvider.readyPromise.then(
-    // console.log(viewer.scene.globe.terrainProvider.tilingScheme.projection)
-    console.log(new Cesium.Cartographic(-71.30325, 44.2705, 1916.7))
-  );
+  let myCart = new Cesium.Cartographic(-71.30325, 44.2705, 1916.7);
+  viewer.scene.globe.terrainProvider.readyPromise.then(function() {
+    console.log(viewer.scene.globe.terrainProvider.tilingScheme.projection);
+    console.log('hi');
+  });
 
 }
 
