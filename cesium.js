@@ -92,7 +92,7 @@ export function init( newTruck ) {
   viewer.scene.globe.terrainProvider.readyPromise.then(function() {
     let myProj = viewer.scene.globe.terrainProvider.tilingScheme.projection;
     let myCart = new Cesium.Cartographic(-71.30325, 44.2705, 1916.7);
-    console.log(myProj.project(myCart));
+    console.log(myProj.ellipsoid);
   });
 
 }
