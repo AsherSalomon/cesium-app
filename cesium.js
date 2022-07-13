@@ -116,6 +116,9 @@ export function init( newTruck ) {
 }
 
 export function update() {
-  let cartographic = new Cesium.Cartographic.fromDegrees(-71.30325, 44.2705, 1916.7);
-  console.log(provider.availability.computeMaximumLevelAtPosition(cartographic));
+  let provider = viewer.scene.globe.terrainProvider;
+  if (provider.ready) {
+    let cartographic = new Cesium.Cartographic.fromDegrees(-71.30325, 44.2705, 1916.7);
+    console.log(provider.availability.computeMaximumLevelAtPosition(cartographic));
+  }
 }
