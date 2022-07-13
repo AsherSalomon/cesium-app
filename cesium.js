@@ -109,10 +109,8 @@ function maximumLevelChanged() {
   let cartesian3 = projection.ellipsoid.cartographicToCartesian(cartographic);
   // addPoint(cartesian3);
   let cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, maximumLevel);
-  console.log(cartesian2);
-
-  // provider.availability.computeMaximumLevelAtPosition
-  // provider.requestTileGeometry
+  let terrainData = provider.requestTileGeometry(cartesian2.x, cartesian2.y, maximumLevel);
+  console.log(terrainData);
 }
 
 export function update() {
