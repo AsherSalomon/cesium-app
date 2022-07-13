@@ -93,5 +93,12 @@ export function init( newTruck ) {
 
 }
 
+let oneOff = true;
 export function update() {
+  if ( oneOff ) {
+    if ( viewer.scene.globe.terrainProvider.ready ) {
+      oneOff = false;
+      console.log( viewer.scene.globe.terrainProvider.TilingScheme );
+    }
+  }
 }
