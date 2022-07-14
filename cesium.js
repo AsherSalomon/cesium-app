@@ -104,7 +104,7 @@ export function init( newTruck ) {
     // console.log('tileLoadProgressEvent', e);
     quadtreePrimitive.forEachLoadedTile(function(quadtreeTile) {
       let globeSurfaceTile = quadtreeTile.data;
-      console.log(globeSurfaceTile.mesh);
+      console.log(typeof globeSurfaceTile.mesh);
     });
   });
 
