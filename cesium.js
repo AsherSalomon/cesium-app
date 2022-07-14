@@ -99,8 +99,7 @@ export function init( newTruck ) {
 
   truck.now = function() { return viewer.clock.currentTime; }
 
-  let event = viewer.scene.globe.tileLoadProgressEvent();
-  event.addEventListener(function(e) {
+  viewer.scene.globe.tileLoadProgressEvent.addEventListener(function(e) {
     console.log('tileLoadProgressEvent', e);
   });
 
