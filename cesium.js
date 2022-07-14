@@ -106,8 +106,8 @@ let maximumLevel = 0;
 function maximumLevelChanged() {
   let provider = viewer.scene.globe.terrainProvider;
   let projection = provider.tilingScheme.projection;
-  console.log(projection);
   let cartographic = new Cesium.Cartographic.fromDegrees(-71.30325, 44.2705, 1916.7);
+  console.log(cartographic);
   let cartesian3 = projection.ellipsoid.cartographicToCartesian(cartographic);
   // addPoint(cartesian3);
   let cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, maximumLevel);
@@ -115,6 +115,9 @@ function maximumLevelChanged() {
   promise.then(function(terrainData) {
     console.log(terrainData);
     console.log(Cesium.TerrainEncoding);
+    // https://gis.stackexchange.com/questions/334002/cesium-projection-system
+    // var cartographic = Cesium.Cartographic.fromCartesian(cartesian);
+
     // TerrainEncoding.decodeHeight
     // TerrainEncoding.decodePosition // ?
   });
