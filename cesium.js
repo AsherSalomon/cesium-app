@@ -125,11 +125,11 @@ function maximumLevelChanged() {
   let promise = provider.requestTileGeometry(cartesian2.x, cartesian2.y, maximumLevel);
   promise.then(function(terrainData) {
     console.log(terrainData);
-    console.log(Cesium.TerrainEncoding);
+    // console.log(Cesium.TerrainEncoding);
 
-    // let cartesian3 = projection.ellipsoid.cartographicToCartesian(cartographic);
-    var cartesian3 = Cesium.Cartographic.toCartesian(cartographic, projection.ellipsoid);
-    addPoint(cartesian3);
+    // // let cartesian3 = projection.ellipsoid.cartographicToCartesian(cartographic);
+    // var cartesian3 = Cesium.Cartographic.toCartesian(cartographic, projection.ellipsoid);
+    // addPoint(cartesian3);
 
     // terrainData.createMesh
     // GlobeSurfaceTile
