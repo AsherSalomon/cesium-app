@@ -102,7 +102,9 @@ export function init( newTruck ) {
   let quadtreePrimitive = viewer.scene.globe._surface;
   viewer.scene.globe.tileLoadProgressEvent.addEventListener(function(e) {
     // console.log('tileLoadProgressEvent', e);
-    quadtreePrimitive.forEachLoadedTile(console.log);
+    quadtreePrimitive.forEachLoadedTile(function(tile) {
+      console.log(tile);
+    });
   });
 
 }
