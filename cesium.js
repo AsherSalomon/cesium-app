@@ -97,7 +97,6 @@ export function init( newTruck ) {
     1916.7 - 29
   );
 
-  console.log(Cesium.TerrainEncoding);
 
   truck.now = function() { return viewer.clock.currentTime; }
 
@@ -107,15 +106,18 @@ let maximumLevel = 0;
 function maximumLevelChanged() {
   let provider = viewer.scene.globe.terrainProvider;
   let projection = provider.tilingScheme.projection;
+  console.log(projection);
   let cartographic = new Cesium.Cartographic.fromDegrees(-71.30325, 44.2705, 1916.7);
   let cartesian3 = projection.ellipsoid.cartographicToCartesian(cartographic);
+  // addPoint(cartesian3);
   let cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, maximumLevel);
   let promise = provider.requestTileGeometry(cartesian2.x, cartesian2.y, maximumLevel);
   promise.then(function(terrainData) {
     console.log(terrainData);
+    console.log(Cesium.TerrainEncoding);
+    // TerrainEncoding.decodeHeight
+    // TerrainEncoding.decodePosition // ?
   });
-  // console.log(terrainData);
-  // addPoint(cartesian3);
 }
 
 export function update() {
