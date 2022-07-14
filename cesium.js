@@ -99,11 +99,11 @@ export function init( newTruck ) {
 
   truck.now = function() { return viewer.clock.currentTime; }
 
-  // viewer.scene.globe.tileLoadProgressEvent.addEventListener(function(e) {
-  //   console.log('tileLoadProgressEvent', e);
-  // });
-
-  console.log(viewer.scene.globe._surface);
+  let quadtreePrimitive = viewer.scene.globe._surface;
+  viewer.scene.globe.tileLoadProgressEvent.addEventListener(function(e) {
+    // console.log('tileLoadProgressEvent', e);
+    quadtreePrimitive.forEachLoadedTile(console.log);
+  });
 
 }
 
