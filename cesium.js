@@ -99,19 +99,19 @@ export function init( newTruck ) {
 
   truck.now = function() { return viewer.clock.currentTime; }
 
-  let quadtreePrimitive = viewer.scene.globe._surface;
-  viewer.scene.globe.tileLoadProgressEvent.addEventListener(function(e) {
-    // console.log('tileLoadProgressEvent', e);
-    quadtreePrimitive.forEachLoadedTile(function(quadtreeTile) {
-      // console.log(quadtreeTile);
-      let globeSurfaceTile = quadtreeTile.data;
-      console.log(globeSurfaceTile);
-      let terrainMesh = globeSurfaceTile.mesh;
-      // console.log(terrainMesh);
-      let quantizedMeshTerrainData = globeSurfaceTile.terrainData;
-      // console.log(quantizedMeshTerrainData);
-    });
-  });
+  // let quadtreePrimitive = viewer.scene.globe._surface;
+  // viewer.scene.globe.tileLoadProgressEvent.addEventListener(function(e) {
+  //   // console.log('tileLoadProgressEvent', e);
+  //   quadtreePrimitive.forEachLoadedTile(function(quadtreeTile) {
+  //     // console.log(quadtreeTile);
+  //     let globeSurfaceTile = quadtreeTile.data;
+  //     console.log(globeSurfaceTile);
+  //     let terrainMesh = globeSurfaceTile.mesh;
+  //     // console.log(terrainMesh);
+  //     let quantizedMeshTerrainData = globeSurfaceTile.terrainData;
+  //     // console.log(quantizedMeshTerrainData);
+  //   });
+  // });
 
 }
 
@@ -160,13 +160,13 @@ function maximumLevelChanged() {
 }
 
 export function update() {
-  // let provider = viewer.scene.globe.terrainProvider;
-  // if (provider.ready) {
-  //   let cartographic = new Cesium.Cartographic.fromDegrees(-71.30325, 44.2705, 1916.7);
-  //   let newMaximumLevel = provider.availability.computeMaximumLevelAtPosition(cartographic);
-  //   if (newMaximumLevel != maximumLevel) {
-  //     maximumLevel = newMaximumLevel;
-  //     maximumLevelChanged();
-  //   }
-  // }
+  let provider = viewer.scene.globe.terrainProvider;
+  if (provider.ready) {
+    let cartographic = new Cesium.Cartographic.fromDegrees(-71.30325, 44.2705, 1916.7);
+    let newMaximumLevel = provider.availability.computeMaximumLevelAtPosition(cartographic);
+    if (newMaximumLevel != maximumLevel) {
+      maximumLevel = newMaximumLevel;
+      maximumLevelChanged();
+    }
+  }
 }
