@@ -103,7 +103,8 @@ export function init( newTruck ) {
   viewer.scene.globe.tileLoadProgressEvent.addEventListener(function(e) {
     // console.log('tileLoadProgressEvent', e);
     quadtreePrimitive.forEachLoadedTile(function(quadtreeTile) {
-      console.log(quadtreeTile.data);
+      let globeSurfaceTile = quadtreeTile.data;
+      console.log(globeSurfaceTile.mesh);
     });
   });
 
