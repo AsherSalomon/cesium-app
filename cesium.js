@@ -99,9 +99,11 @@ export function init( newTruck ) {
 
   truck.now = function() { return viewer.clock.currentTime; }
 
-  viewer.scene.globe.tileLoadProgressEvent.addEventListener(function(e) {
-    console.log('tileLoadProgressEvent', e);
-  });
+  // viewer.scene.globe.tileLoadProgressEvent.addEventListener(function(e) {
+  //   console.log('tileLoadProgressEvent', e);
+  // });
+
+  console.log(viewer.scene.globe._surface);
 
 }
 
