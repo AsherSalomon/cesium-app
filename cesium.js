@@ -21,9 +21,17 @@ viewer.scene.globe.enableLighting = true;
 viewer.shadows = true;
 viewer.scene.globe.depthTestAgainstTerrain = true;
 viewer.scene.moon = new Cesium.Moon();
-viewer.scene.primitives.add(Cesium.createOsmBuildings());
 
 export function init() {
+  viewer.scene.primitives.add(Cesium.createOsmBuildings());
+
+  viewer.camera.flyTo({
+    destination : Cesium.Cartesian3.fromDegrees(-71.30325 + 0.003, 44.2705, 1916.7 + 35),
+    orientation : {
+      heading : Cesium.Math.toRadians(270),
+      pitch : Cesium.Math.toRadians(-15),
+    }
+  });
 }
 
 export function update() {
