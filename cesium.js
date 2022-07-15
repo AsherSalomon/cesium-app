@@ -117,7 +117,20 @@ function updateTileList(newTileList) {
       }
     }
     if (oldTileInNewList = false) {
-      
+      tileList.splice(i, 1);
+    }
+  }
+
+  for (let i = 0; i < newTileList.length; i++) {
+    let newTileInOldList = false;
+    for (let j = 0; j < tileList.length; j++) {
+      if (newTileList[i] == tileList[j]) {
+        newTileInOldList = true;
+        break;
+      }
+    }
+    if (newTileInOldList) {
+      tileList.push(newTileList[i]);
     }
   }
 }
