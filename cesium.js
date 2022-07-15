@@ -174,9 +174,9 @@ function addTile(quadtreeTile){
         const v1 = getPosition(encoding, 3, projection, vertices, i1);
         const v2 = getPosition(encoding, 3, projection, vertices, i2);
 
-        quadtreeTile.entities.push(addPoint(v0));
-        quadtreeTile.entities.push(addPoint(v1));
-        quadtreeTile.entities.push(addPoint(v2));
+        // quadtreeTile.entities.push(addPoint(v0));
+        // quadtreeTile.entities.push(addPoint(v1));
+        // quadtreeTile.entities.push(addPoint(v2));
         // addPolygon(v0, v1, v2);
       }
     }
@@ -187,11 +187,11 @@ function addTile(quadtreeTile){
 }
 
 function removeTile(quadtreeTile){
-  if (quadtreeTile.entities != undefined) {
-    for (let i = 0; i < quadtreeTile.entities.length; i++) {
-      viewer.entities.remove(quadtreeTile.entities[i]);
-    }
-  }
+  // if (quadtreeTile.entities != undefined) {
+  //   for (let i = 0; i < quadtreeTile.entities.length; i++) {
+  //     viewer.entities.remove(quadtreeTile.entities[i]);
+  //   }
+  // }
   quadtreeTile.entities = undefined;
 }
 
