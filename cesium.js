@@ -160,6 +160,8 @@ export function init( newTruck ) {
                 addPoint(v1);
                 addPoint(v2);
               }
+            } else {
+              console.log('undefined');
             }
           }
         }
