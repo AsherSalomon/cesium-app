@@ -115,7 +115,7 @@ function updateTileList(newTileList) {
       }
     }
     if (oldTileInNewList == false) {
-      // console.log(tileList[i]._rectangle);
+      console.log('remove', tileList[i]._rectangle);
       // viewer.entities.remove(tileList[i]._rectangle);
       tileList.splice(i, 1);
     }
@@ -129,9 +129,8 @@ function updateTileList(newTileList) {
         break;
       }
     }
-    console.log('hi');
-    if (newTileInOldList) {
-      // console.log(newTileList[i]._rectangle);
+    if (newTileInOldList == false) {
+      console.log('add', newTileList[i]._rectangle);
       // viewer.entities.add(newTileList[i]._rectangle);
       tileList.push(newTileList[i]);
     }
