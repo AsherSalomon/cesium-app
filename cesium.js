@@ -66,10 +66,9 @@ export function update() {
     let conditionL = quadtreeTile._level == selectedTile.level;
     if (conditionX && conditionY && conditionL) {
       newTileList.push(quadtreeTile);
-      console.log(quadtreeTile == quadtreeTile);
     }
   });
-  // updateTileList(newTileList);
+  updateTileList(newTileList);
 
 }
 
@@ -126,6 +125,7 @@ function updateTileList(newTileList) {
   for (let i = 0; i < newTileList.length; i++) {
     let newTileInOldList = false;
     for (let j = 0; j < tileListLength; j++) {
+      console.log(newTileList[i] == tileList[j]);
       if (newTileList[i] == tileList[j]) {
         newTileInOldList = true;
         break;
