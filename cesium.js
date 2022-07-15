@@ -100,6 +100,8 @@ export function init( newTruck ) {
 
   truck.now = function() { return viewer.clock.currentTime; }
 
+  let provider = viewer.scene.globe.terrainProvider;
+  let projection = provider.tilingScheme.projection;
   let quadtreePrimitive = viewer.scene.globe._surface;
   viewer.scene.globe.tileLoadProgressEvent.addEventListener(function(e) {
     // console.log('tileLoadProgressEvent', e);
