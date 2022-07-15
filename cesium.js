@@ -48,9 +48,9 @@ export function init() {
     quadtreePrimitive.forEachLoadedTile(function(quadtreeTile) {
       // console.log(quadtreeTile.rectangle);
       count++;
-    }
+    });
     console.log(count);
-  }
+  });
 }
 
 let selectedTile = {cartesian2: {x: 0, y: 0}, level: 0}
