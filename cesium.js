@@ -171,7 +171,7 @@ export function init( newTruck ) {
 
 }
 
-let onlyOnce = false;
+let onlyOnce = true;
 let cartesian2 = 0;
 let maximumLevel = 0;
 function maximumLevelChanged() {
