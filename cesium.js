@@ -178,20 +178,21 @@ function addTile(quadtreeTile){
         // quadtreeTile.entities.push(addPoint(v1));
         // quadtreeTile.entities.push(addPoint(v2));
         // addPolygon(v0, v1, v2);
-        console.log('Polygon');
       }
+      console.log('add polygons');
     }
   }
 
 }
 
 function removeTile(quadtreeTile){
-  // if (quadtreeTile.entities != undefined) {
-  //   for (let i = 0; i < quadtreeTile.entities.length; i++) {
-  //     viewer.entities.remove(quadtreeTile.entities[i]);
-  //   }
-  // }
-  quadtreeTile.entities = undefined;
+  if (quadtreeTile.entities != undefined) {
+    // for (let i = 0; i < quadtreeTile.entities.length; i++) {
+    //   viewer.entities.remove(quadtreeTile.entities[i]);
+    // }
+    console.log('remove polygons');
+    quadtreeTile.entities = undefined;
+  }
 }
 
 function getPosition(encoding, mode, projection, vertices, index, result) {
