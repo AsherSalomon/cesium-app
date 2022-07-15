@@ -121,13 +121,13 @@ export function init( newTruck ) {
 
   truck.now = function() { return viewer.clock.currentTime; }
 
-  let provider = viewer.scene.globe.terrainProvider;
-  if (provider.ready) {
-    let projection = provider.tilingScheme.projection;
-    let quadtreePrimitive = viewer.scene.globe._surface;
-    viewer.scene.globe.tileLoadProgressEvent.addEventListener(function(e) {
-      // console.log('tileLoadProgressEvent', e);
-      quadtreePrimitive.forEachLoadedTile(function(quadtreeTile) {
+  let quadtreePrimitive = viewer.scene.globe._surface;
+  viewer.scene.globe.tileLoadProgressEvent.addEventListener(function(e) {
+    // console.log('tileLoadProgressEvent', e);
+    quadtreePrimitive.forEachLoadedTile(function(quadtreeTile) {
+      let provider = viewer.scene.globe.terrainProvider;
+      if (provider.ready) {
+        let projection = provider.tilingScheme.projection;
         console.log(quadtreeTile);
         // console.log(quadtreeTile.renderable && onlyOnce);
 
@@ -167,9 +167,9 @@ export function init( newTruck ) {
             }
           }
         }
-      });
+      }
     });
-  }
+  });
 
 }
 
