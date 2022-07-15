@@ -90,6 +90,19 @@ function addPoint( cartesian3 ) {
   });
 }
 
+function addPolygon( v0, v1, v2 ) {
+  viewer.entities.add({
+    name: "Cyan vertical polygon with per-position heights and outline",
+    polygon: {
+      hierarchy: [v0, v1, v2],
+      // perPositionHeight: true,
+      material: Cesium.Color.CYAN.withAlpha(0.5),
+      // outline: true,
+      // outlineColor: Cesium.Color.BLACK,
+    },
+  });
+}
+
 function getPosition(encoding, mode, projection, vertices, index, result) {
   let position = encoding.getExaggeratedPosition(vertices, index, result);
 
