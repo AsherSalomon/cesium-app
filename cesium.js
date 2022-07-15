@@ -3,7 +3,7 @@ Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOi
 
 const viewer = new Cesium.Viewer('cesiumContainer', {
   terrainProvider: Cesium.createWorldTerrain({
-    // requestWaterMask: true,
+    requestWaterMask: true,
     requestVertexNormals: true,
   }),
   geocoder: false,
