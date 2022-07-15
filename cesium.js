@@ -178,10 +178,9 @@ function addTile(quadtreeTile){
         // quadtreeTile.entities.push(addPoint(v1));
         // quadtreeTile.entities.push(addPoint(v2));
         // addPolygon(v0, v1, v2);
+        console.log('Polygon');
       }
     }
-  } else {
-    console.log('not provider.ready or not quadtreeTile.renderable');
   }
 
 }
