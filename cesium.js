@@ -135,10 +135,8 @@ export function init( newTruck ) {
   truck.now = function() { return viewer.clock.currentTime; }
 
   let quadtreePrimitive = viewer.scene.globe._surface;
-  viewer.scene.globe.tileLoadProgressEvent.addEventListener(function(e) {
-    // console.log('tileLoadProgressEvent', e);
+  viewer.scene.globe.tileLoadProgressEvent.addEventListener(function() {
     quadtreePrimitive.forEachLoadedTile(function(quadtreeTile) {
-      // console.log(quadtreeTile);
       let provider = viewer.scene.globe.terrainProvider;
       if (provider.ready) {
         let projection = provider.tilingScheme.projection;
@@ -197,17 +195,6 @@ export function init( newTruck ) {
 let onlyOnce = true;
 let cartesian2 = {x: 0, y: 0};
 let maximumLevel = 0;
-// function maximumLevelChanged() {
-//   onlyOnce = true;
-//   let provider = viewer.scene.globe.terrainProvider;
-//   // let projection = provider.tilingScheme.projection;
-//   let cartographic = new Cesium.Cartographic.fromDegrees(-71.30325, 44.2705, 1916.7);
-//   cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, maximumLevel);
-//   // let promise = provider.requestTileGeometry(cartesian2.x, cartesian2.y, maximumLevel);
-//   // promise.then(function(terrainData) {
-//   //   console.log(terrainData);
-//   // });
-// }
 
 export function update() {
   let provider = viewer.scene.globe.terrainProvider;
@@ -222,7 +209,6 @@ export function update() {
       let onlyOnce = true;
       maximumLevel = newMaximumLevel;
       cartesian2 = newCartesian2;
-      // maximumLevelChanged();
     }
   }
 }
