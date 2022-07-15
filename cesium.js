@@ -134,26 +134,29 @@ export function init( newTruck ) {
         let conditionL = quadtreeTile._level == maximumLevel;
         if (conditionX && conditionY && conditionL) {
           let globeSurfaceTile = quadtreeTile.data;
-          console.log(globeSurfaceTile);
-          // let terrainMesh = globeSurfaceTile.mesh;
-          // console.log(terrainMesh);
-          // let quantizedMeshTerrainData = globeSurfaceTile.terrainData;
-          // console.log(quantizedMeshTerrainData);
-          let mesh = globeSurfaceTile.renderedMesh;
-          // console.log(mesh);
-          if (mesh !== undefined) {
-            const vertices = mesh.vertices;
-            const indices = mesh.indices;
-            const encoding = mesh.encoding;
-            const indicesLength = indices.length;
-            for (let i = 0; i < indicesLength; i += 3) {
-              const i0 = indices[i];
-              const i1 = indices[i + 1];
-              const i2 = indices[i + 2];
+          if (onlyOnce) {
+            onlyOnce = false;
+            console.log(globeSurfaceTile);
+            // let terrainMesh = globeSurfaceTile.mesh;
+            // console.log(terrainMesh);
+            // let quantizedMeshTerrainData = globeSurfaceTile.terrainData;
+            // console.log(quantizedMeshTerrainData);
+            let mesh = globeSurfaceTile.renderedMesh;
+            // console.log(mesh);
+            if (mesh !== undefined) {
+              const vertices = mesh.vertices;
+              const indices = mesh.indices;
+              const encoding = mesh.encoding;
+              const indicesLength = indices.length;
+              for (let i = 0; i < indicesLength; i += 3) {
+                const i0 = indices[i];
+                const i1 = indices[i + 1];
+                const i2 = indices[i + 2];
 
-              const v0 = getPosition(encoding, 3, projection, vertices, i0);
-              const v1 = getPosition(encoding, 3, projection, vertices, i1);
-              const v2 = getPosition(encoding, 3, projection, vertices, i2);
+                const v0 = getPosition(encoding, 3, projection, vertices, i0);
+                const v1 = getPosition(encoding, 3, projection, vertices, i1);
+                const v2 = getPosition(encoding, 3, projection, vertices, i2);
+              }
             }
           }
         }
@@ -163,9 +166,11 @@ export function init( newTruck ) {
 
 }
 
+let onlyOnce = true;
 let cartesian2 = 0;
 let maximumLevel = 0;
 function maximumLevelChanged() {
+  onlyOnce = true;
   let provider = viewer.scene.globe.terrainProvider;
   let projection = provider.tilingScheme.projection;
   let cartographic = new Cesium.Cartographic.fromDegrees(-71.30325, 44.2705, 1916.7);
