@@ -1,6 +1,6 @@
 import * as cesium from './cesium.js';
-// import * as controls from './controls.js';
 import * as physics from './physics.js';
+import Controls from './controls.js';
 
 Ammo().then( function ( AmmoLib ) {
 	Ammo = AmmoLib;
@@ -9,9 +9,8 @@ Ammo().then( function ( AmmoLib ) {
 } );
 
 function init() {
-  let truck = new Object();
-  cesium.init( truck );
-  physics.init( truck );
+  // cesium.init();
+  physics.init(new Controls());
 }
 
 // let start, previousTimeStamp;
@@ -19,12 +18,9 @@ function animate( timestamp ) {
   // if ( start === undefined ) { start = timestamp; }
   // const elapsed = timestamp - start;
 
-  // controls.update();
-  cesium.update();
+  // cesium.update();
   physics.update();
 
   // previousTimeStamp = timestamp;
   window.requestAnimationFrame( animate );
 }
-
-console.log('hi asher');
