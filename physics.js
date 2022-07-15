@@ -8,7 +8,7 @@ export function init( newTruck ) {
 
 export function update() {
   let leftRight = controls.right - controls.left;
-  let upDown = controls.up - controls.down;
+  let upDown = controls.down - controls.up;
   let forwardBackward = controls.forward - controls.backward;
 
   let position = truckEntity.position.getValue( truckEntity.now() );
