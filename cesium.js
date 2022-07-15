@@ -208,7 +208,7 @@ export function update() {
     let newMaximumLevel = provider.availability.computeMaximumLevelAtPosition(cartographic);
     let newCartesian2 = provider.tilingScheme.positionToTileXY(cartographic, maximumLevel);
     var conditionX = newCartesian2.x != cartesian2.x;
-    var conditionX = newCartesian2.y != cartesian2.y;
+    var conditionY = newCartesian2.y != cartesian2.y;
     var conditionL = newMaximumLevel != maximumLevel;
     if (conditionX || conditionY || conditionL) {
       maximumLevel = newMaximumLevel;
