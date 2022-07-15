@@ -129,14 +129,13 @@ export function init( newTruck ) {
       if (provider.ready) {
         let projection = provider.tilingScheme.projection;
         // console.log(quadtreeTile);
-        console.log(quadtreeTile.renderable && onlyOnce);
 
         let conditionX = quadtreeTile._x == cartesian2.x;
         let conditionY = quadtreeTile._y == cartesian2.y;
         let conditionL = quadtreeTile._level == maximumLevel;
         if (conditionX && conditionY && conditionL) {
           let globeSurfaceTile = quadtreeTile.data;
-          if (onlyOnce) {
+          if (onlyOnce && quadtreeTile.renderable) {
             onlyOnce = false;
             // console.log(globeSurfaceTile);
             // let terrainMesh = globeSurfaceTile.mesh;
