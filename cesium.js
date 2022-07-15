@@ -116,7 +116,7 @@ function updateTileList(newTileList) {
         break;
       }
     }
-    if (oldTileInNewList = false) {
+    if (oldTileInNewList == false) {
       tileList.splice(i, 1);
     }
   }
