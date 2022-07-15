@@ -154,7 +154,6 @@ export function init( newTruck ) {
             // let quantizedMeshTerrainData = globeSurfaceTile.terrainData;
             // console.log(quantizedMeshTerrainData);
             let mesh = globeSurfaceTile.renderedMesh;
-            console.log(mesh);
             if (mesh !== undefined) {
               const vertices = mesh.vertices;
               const indices = mesh.indices;
