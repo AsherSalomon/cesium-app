@@ -116,11 +116,12 @@ function updateTileList(newTileList) {
     }
     if (oldTileInNewList == false) {
       // console.log('remove', tileList[i]._rectangle);
-      viewer.entities.remove({
-        rectangle: {
-          coordinates: tileList[i]._rectangle,
-        },
-      });
+      // viewer.entities.remove({
+      //   rectangle: {
+      //     coordinates: tileList[i]._rectangle,
+      //   },
+      //   material: Cesium.Color.GREEN.withAlpha(0.5),
+      // });
       tileList.splice(i, 1);
     }
   }
@@ -139,6 +140,7 @@ function updateTileList(newTileList) {
         rectangle: {
           coordinates: newTileList[i]._rectangle,
         },
+        material: Cesium.Color.GREEN.withAlpha(0.5),
       });
       tileList.push(newTileList[i]);
     }
