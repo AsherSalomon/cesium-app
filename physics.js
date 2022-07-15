@@ -1,6 +1,6 @@
-let contorls;
-export function init( newControls ) {
-  controls = newControls;
+import * as controls from './controls.js';
+
+export function init() {
 }
 export function update() {
   let leftRight = controls.left - controls.right;
