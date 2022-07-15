@@ -170,10 +170,10 @@ export function init( newTruck ) {
                 const v0 = getPosition(encoding, 3, projection, vertices, i0);
                 const v1 = getPosition(encoding, 3, projection, vertices, i1);
                 const v2 = getPosition(encoding, 3, projection, vertices, i2);
-                addPoint(v0);
-                addPoint(v1);
-                addPoint(v2);
-                addPolygon(v0, v1, v2);
+                // addPoint(v0);
+                // addPoint(v1);
+                // addPoint(v2);
+                // addPolygon(v0, v1, v2);
               }
             // } else {
             //   console.log('undefined');
