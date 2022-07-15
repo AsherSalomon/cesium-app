@@ -92,7 +92,7 @@ function addPoint( cartesian3 ) {
 
 function addPolygon( v0, v1, v2 ) {
   viewer.entities.add({
-    name: "Cyan vertical polygon with per-position heights and outline",
+    // name: "Cyan vertical polygon with per-position heights and outline",
     polygon: {
       hierarchy: [v0, v1, v2],
       // perPositionHeight: true,
@@ -173,6 +173,7 @@ export function init( newTruck ) {
                 addPoint(v0);
                 addPoint(v1);
                 addPoint(v2);
+                addPolygon(v0, v1, v2);
               }
             // } else {
             //   console.log('undefined');
