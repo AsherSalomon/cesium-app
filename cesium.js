@@ -106,11 +106,17 @@ export function init( newTruck ) {
       // console.log(quadtreeTile);
       let globeSurfaceTile = quadtreeTile.data;
       // console.log(globeSurfaceTile);
-      let terrainMesh = globeSurfaceTile.mesh;
+      // let terrainMesh = globeSurfaceTile.mesh;
       // console.log(terrainMesh);
-      let quantizedMeshTerrainData = globeSurfaceTile.terrainData;
+      // let quantizedMeshTerrainData = globeSurfaceTile.terrainData;
       // console.log(quantizedMeshTerrainData);
-      console.log(globeSurfaceTile.renderedMesh);
+      let mesh = globeSurfaceTile.renderedMesh;
+      // console.log(mesh);
+      const vertices = mesh.vertices;
+      const indices = mesh.indices;
+      const encoding = mesh.encoding;
+      const indicesLength = indices.length;
+
     });
   });
 
