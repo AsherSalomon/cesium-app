@@ -136,6 +136,7 @@ function updateTileList(newTileList) {
       //   },
       //   material: Cesium.Color.GREEN.withAlpha(0.5),
       // });
+      addTile(newTileList[i]);
       tileList.push(newTileList[i]);
     }
   }
