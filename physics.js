@@ -71,7 +71,7 @@ export function update() {
 
   let leftRight = controls.left - controls.right;
   let upDown = controls.up - controls.down;
-  let forwardBackward = controls.left - controls.right;
+  let forwardBackward = controls.forward - controls.backward;
 
   let position = truck.entity.position.getValue( truck.now() );
   position.x += leftRight;
