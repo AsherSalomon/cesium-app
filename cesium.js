@@ -68,7 +68,6 @@ export function update() {
       newTileList.push(quadtreeTile);
     }
   });
-  console.log(newTileList);
   updateTileList(newTileList);
 
 }
@@ -107,6 +106,7 @@ function createModel(url, height) {
 
 
 function updateTileList(newTileList) {
+  console.log(newTileList);
   for (let i = tileList.length - 1; i >= 0; i--) {
     let oldTileInNewList = false;
     for (let j = 0; j < newTileList.length; j++) {
