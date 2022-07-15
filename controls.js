@@ -1,4 +1,4 @@
-export class Controls {
+export default class Controls {
   constructor() {
     this.forward = false;
     this.backward = false;
