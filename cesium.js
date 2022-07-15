@@ -44,8 +44,15 @@ export function init() {
 
 }
 
+let selectedTile = {cartesian2: {x: 0, y: 0}, level: 0}
 export function update() {
-
+  let provider = viewer.scene.globe.terrainProvider;
+  if (provider.ready) {
+    let position = truckEntity.position.getValue(truckEntity.now());
+    let ellipsoid = provider.tilingScheme.projection.ellipsoid;
+    let positionCartographic = ellipsoid.cartesianToCartographic(position);
+    console.log(positionCartographic);
+  }
 }
 
 function createModel(url, height) {
