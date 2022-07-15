@@ -2,6 +2,9 @@
 let viewer;
 export let truckEntity;
 
+let selectedTile = {cartesian2: {x: 0, y: 0}, level: 0}
+let tileList = [];
+
 export function init() {
   Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyZmZjMzQzNi01MGI3LTRiY2ItODE3ZC00OGM3ZjBkZjQxNzUiLCJpZCI6MTAwNDY2LCJpYXQiOjE2NTcyNDAzODl9.ij6tW00jwNgBeDuzMgzMRzS82kQLKucEyLgPhQQs3a4';
 
@@ -44,7 +47,6 @@ export function init() {
 
 }
 
-let selectedTile = {cartesian2: {x: 0, y: 0}, level: 0}
 export function update() {
   let provider = viewer.scene.globe.terrainProvider;
   if (provider.ready) {
@@ -58,17 +60,17 @@ export function update() {
     // console.log(selectedTile);
   }
 
-  // let count = 0;
+  let newTileList = [];
   viewer.scene.globe._surface.forEachLoadedTile(function(quadtreeTile) {
     let conditionX = Math.abs(quadtreeTile._x - selectedTile.cartesian2.x) <= 1;
     let conditionY = Math.abs(quadtreeTile._y - selectedTile.cartesian2.y) <= 1;
     let conditionL = quadtreeTile._level == selectedTile.level;
     if (conditionX && conditionY && conditionL) {
       // console.log(quadtreeTile._rectangle);
-      // count++;
+      newTileList.push(quadtreeTile);
     }
   });
-  // console.log(count);
+  updateTileList(newTileList);
 
 }
 
@@ -102,4 +104,20 @@ function createModel(url, height) {
   viewer.trackedEntity = entity;
 
   return entity;
+}
+
+
+function updateTileList(newTileList) {
+  for (let i = tileList.length - 1; i >= 0; i--) {
+    let oldTileInNewList = false;
+    for (let j = 0; j < newTileList.length; j++) {
+      if (tileList[i] == newTileList[j]) {
+        oldTileInNewList = true;
+        break;
+      }
+    }
+    if (oldTileInNewList = false) {
+      
+    }
+  }
 }
