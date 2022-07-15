@@ -134,10 +134,7 @@ function updateTileList(newTileList) {
         rectangle: {
           coordinates: newTileList[i]._rectangle,
         },
-        fill: false,
-        outline: true,
-        height: 1
-        // material: Cesium.Color.GREEN.withAlpha(0.5),
+        material: Cesium.Color.GREEN.withAlpha(0.5),
       });
       tileList.push(tileToPush);
     }
