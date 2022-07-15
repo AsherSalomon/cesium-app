@@ -122,7 +122,6 @@ function updateTileList(newTileList) {
   }
   let tileListLength = tileList.length;
   for (let i = 0; i < newTileList.length; i++) {
-    console.log('hi');
     let newTileInOldList = false;
     for (let j = 0; j < tileListLength; j++) {
       if (newTileList[i] == tileList[j]) {
@@ -130,6 +129,7 @@ function updateTileList(newTileList) {
         break;
       }
     }
+    console.log('hi');
     if (newTileInOldList) {
       // console.log(newTileList[i]._rectangle);
       // viewer.entities.add(newTileList[i]._rectangle);
