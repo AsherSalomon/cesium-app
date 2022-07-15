@@ -90,6 +90,27 @@ function addPoint( cartesian3 ) {
   });
 }
 
+function getPosition(encoding, mode, projection, vertices, index, result) {
+  let position = encoding.getExaggeratedPosition(vertices, index, result);
+
+  if (defined(mode) && mode !== SceneMode.SCENE3D) {
+    const ellipsoid = projection.ellipsoid;
+    const positionCartographic = ellipsoid.cartesianToCartographic(
+      position,
+      scratchCartographic
+    );
+    position = projection.project(positionCartographic, result);
+    position = Cartesian3.fromElements(
+      position.z,
+      position.x,
+      position.y,
+      result
+    );
+  }
+
+  return position;
+}
+
 export function init( newTruck ) {
   truck = newTruck;
 
@@ -125,9 +146,9 @@ export function init( newTruck ) {
           const i1 = indices[i + 1];
           const i2 = indices[i + 2];
 
-          const v0 = Cesium.GlobeSurfaceTile.getPosition(encoding, 3, projection, vertices, i0);
-          const v1 = Cesium.GlobeSurfaceTile.getPosition(encoding, 3, projection, vertices, i1);
-          const v2 = Cesium.GlobeSurfaceTile.getPosition(encoding, 3, projection, vertices, i2);
+          const v0 = getPosition(encoding, 3, projection, vertices, i0);
+          const v1 = getPosition(encoding, 3, projection, vertices, i1);
+          const v2 = getPosition(encoding, 3, projection, vertices, i2);
         }
       }
     });
