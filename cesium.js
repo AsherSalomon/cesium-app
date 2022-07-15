@@ -54,7 +54,7 @@ export function update() {
     let level = provider.availability.computeMaximumLevelAtPosition(cartographic);
     let cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, level);
     selectedTile['cartesian2'] = cartesian2;
-    selectedTile['level'] = cartesian2;
+    selectedTile['level'] = level;
     console.log(selectedTile);
   }
 }
