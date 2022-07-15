@@ -84,7 +84,7 @@ function addPoint( cartesian3 ) {
   viewer.entities.add({
     position: cartesian3,
     point: {
-      pixelSize: 10,
+      pixelSize: 1,
       color: Cesium.Color.WHITE,
     },
   });
@@ -92,6 +92,22 @@ function addPoint( cartesian3 ) {
 
 function getPosition(encoding, mode, projection, vertices, index, result) {
   let position = encoding.getExaggeratedPosition(vertices, index, result);
+
+  // if (defined(mode) && mode !== SceneMode.SCENE3D) {
+  //   const ellipsoid = projection.ellipsoid;
+  //   const positionCartographic = ellipsoid.cartesianToCartographic(
+  //     position,
+  //     scratchCartographic
+  //   );
+  //   position = projection.project(positionCartographic, result);
+  //   position = Cartesian3.fromElements(
+  //     position.z,
+  //     position.x,
+  //     position.y,
+  //     result
+  //   );
+  // }
+
   return position;
 }
 
@@ -111,7 +127,7 @@ export function init( newTruck ) {
   viewer.scene.globe.tileLoadProgressEvent.addEventListener(function(e) {
     // console.log('tileLoadProgressEvent', e);
     quadtreePrimitive.forEachLoadedTile(function(quadtreeTile) {
-      // console.log(quadtreeTile);
+      console.log(quadtreeTile);
       let globeSurfaceTile = quadtreeTile.data;
       // console.log(globeSurfaceTile);
       // let terrainMesh = globeSurfaceTile.mesh;
@@ -140,58 +156,59 @@ export function init( newTruck ) {
 
 }
 
+let cartesian2 = 0;
 let maximumLevel = 0;
 function maximumLevelChanged() {
   let provider = viewer.scene.globe.terrainProvider;
   let projection = provider.tilingScheme.projection;
   let cartographic = new Cesium.Cartographic.fromDegrees(-71.30325, 44.2705, 1916.7);
-  let cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, maximumLevel);
-  let promise = provider.requestTileGeometry(cartesian2.x, cartesian2.y, maximumLevel);
-  promise.then(function(terrainData) {
-    console.log(terrainData);
-    // console.log(Cesium.TerrainEncoding);
-    // TerrainEncoding.decodePosition
-
-    // // let cartesian3 = projection.ellipsoid.cartographicToCartesian(cartographic);
-    // var cartesian3 = Cesium.Cartographic.toCartesian(cartographic, projection.ellipsoid);
-    // addPoint(cartesian3);
-
-    // terrainData.createMesh
-    // GlobeSurfaceTile
-    // createMeshOptions
-
-    // TaskProcessor
-
-    // GlobeVS
-    // QUANTIZATION_BITS12
-    // decompressTextureCoordinates
-
-    // GlobeSurfaceTileProvider
-    // computeOccludeePoint
-    // cornerPositions
-
-    // PolygonPipeline.scaleToGeodeticHeight
-    // PolygonPipeline.computeRhumbLineSubdivision
-    // RectangleGeometry
-    // GlobeSurfaceTile._createVertexArrayForMesh
-
-    // TerrainFillMesh
-    // createFillMesh
-
-    // Geometry._textureCoordinateRotationPoints
-    // TerrainEncoding.decodeHeight
-    // TerrainEncoding.decodePosition // ?
-  });
+  cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, maximumLevel);
+  // let promise = provider.requestTileGeometry(cartesian2.x, cartesian2.y, maximumLevel);
+  // promise.then(function(terrainData) {
+  //   console.log(terrainData);
+  //   // console.log(Cesium.TerrainEncoding);
+  //   // TerrainEncoding.decodePosition
+  //
+  //   // // let cartesian3 = projection.ellipsoid.cartographicToCartesian(cartographic);
+  //   // var cartesian3 = Cesium.Cartographic.toCartesian(cartographic, projection.ellipsoid);
+  //   // addPoint(cartesian3);
+  //
+  //   // terrainData.createMesh
+  //   // GlobeSurfaceTile
+  //   // createMeshOptions
+  //
+  //   // TaskProcessor
+  //
+  //   // GlobeVS
+  //   // QUANTIZATION_BITS12
+  //   // decompressTextureCoordinates
+  //
+  //   // GlobeSurfaceTileProvider
+  //   // computeOccludeePoint
+  //   // cornerPositions
+  //
+  //   // PolygonPipeline.scaleToGeodeticHeight
+  //   // PolygonPipeline.computeRhumbLineSubdivision
+  //   // RectangleGeometry
+  //   // GlobeSurfaceTile._createVertexArrayForMesh
+  //
+  //   // TerrainFillMesh
+  //   // createFillMesh
+  //
+  //   // Geometry._textureCoordinateRotationPoints
+  //   // TerrainEncoding.decodeHeight
+  //   // TerrainEncoding.decodePosition // ?
+  // });
 }
 
 export function update() {
-  // let provider = viewer.scene.globe.terrainProvider;
-  // if (provider.ready) {
-  //   let cartographic = new Cesium.Cartographic.fromDegrees(-71.30325, 44.2705, 1916.7);
-  //   let newMaximumLevel = provider.availability.computeMaximumLevelAtPosition(cartographic);
-  //   if (newMaximumLevel != maximumLevel) {
-  //     maximumLevel = newMaximumLevel;
-  //     maximumLevelChanged();
-  //   }
-  // }
+  let provider = viewer.scene.globe.terrainProvider;
+  if (provider.ready) {
+    let cartographic = new Cesium.Cartographic.fromDegrees(-71.30325, 44.2705, 1916.7);
+    let newMaximumLevel = provider.availability.computeMaximumLevelAtPosition(cartographic);
+    if (newMaximumLevel != maximumLevel) {
+      maximumLevel = newMaximumLevel;
+      maximumLevelChanged();
+    }
+  }
 }
