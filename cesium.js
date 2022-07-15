@@ -225,3 +225,16 @@ function addPoint(cartesian3) {
     },
   });
 }
+
+function addPolygon( v0, v1, v2 ) {
+  return viewer.entities.add({
+    // name: "Cyan vertical polygon with per-position heights and outline",
+    polygon: {
+      hierarchy: [v0, v1, v2],
+      // perPositionHeight: true,
+      material: Cesium.Color.GREEN.withAlpha(0.5),
+      // outline: true,
+      // outlineColor: Cesium.Color.BLACK,
+    },
+  });
+}
