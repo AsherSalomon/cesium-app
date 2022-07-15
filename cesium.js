@@ -50,7 +50,11 @@ export function update() {
   if (provider.ready) {
     let position = truckEntity.position.getValue(truckEntity.now());
     let ellipsoid = provider.tilingScheme.projection.ellipsoid;
-    let positionCartographic = ellipsoid.cartesianToCartographic(position);
+    let cartographic = ellipsoid.cartesianToCartographic(position);
+    let level = provider.availability.computeMaximumLevelAtPosition(cartographic);
+    let cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, maximumLevel);
+    selectedTile[cartesian2] = cartesian2;
+    selectedTile[level] = cartesian2;
   }
 }
 
