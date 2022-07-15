@@ -8,7 +8,7 @@ Ammo().then( function ( AmmoLib ) {
 } );
 
 function init() {
-  // cesium.init();
+  cesium.init();
   physics.init();
 }
 
@@ -17,7 +17,7 @@ function animate( timestamp ) {
   // if ( start === undefined ) { start = timestamp; }
   // const elapsed = timestamp - start;
 
-  // cesium.update();
+  cesium.update();
   physics.update();
 
   // previousTimeStamp = timestamp;
