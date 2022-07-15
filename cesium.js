@@ -118,15 +118,15 @@ export function init( newTruck ) {
         const indices = mesh.indices;
         const encoding = mesh.encoding;
         const indicesLength = indices.length;
-        // for (let i = 0; i < indicesLength; i += 3) {
-        //   const i0 = indices[i];
-        //   const i1 = indices[i + 1];
-        //   const i2 = indices[i + 2];
-        //
-        //   const v0 = getPosition(encoding, mode, projection, vertices, i0);
-        //   const v1 = getPosition(encoding, mode, projection, vertices, i1);
-        //   const v2 = getPosition(encoding, mode, projection, vertices, i2);
-        // }
+        for (let i = 0; i < indicesLength; i += 3) {
+          const i0 = indices[i];
+          const i1 = indices[i + 1];
+          const i2 = indices[i + 2];
+
+          const v0 = globeSurfaceTile.getPosition(encoding, mode, projection, vertices, i0);
+          const v1 = globeSurfaceTile.getPosition(encoding, mode, projection, vertices, i1);
+          const v2 = globeSurfaceTile.getPosition(encoding, mode, projection, vertices, i2);
+        }
       }
     });
   });
