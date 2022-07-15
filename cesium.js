@@ -51,7 +51,6 @@ export function update() {
     let position = truckEntity.position.getValue(truckEntity.now());
     let ellipsoid = provider.tilingScheme.projection.ellipsoid;
     let positionCartographic = ellipsoid.cartesianToCartographic(position);
-    console.log(positionCartographic);
   }
 }
 
