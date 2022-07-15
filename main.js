@@ -1,19 +1,19 @@
 import * as cesium from './cesium.js';
 import * as physics from './physics.js';
 
-Ammo().then( function ( AmmoLib ) {
+Ammo().then(function (AmmoLib) {
 	Ammo = AmmoLib;
 	init();
   animate();
-} );
+});
 
 function init() {
   cesium.init();
-  physics.init( cesium.truckEntity );
+  physics.init(cesium.truckEntity);
 }
 
 // let start, previousTimeStamp;
-function animate( timestamp ) {
+function animate(timestamp) {
   // if ( start === undefined ) { start = timestamp; }
   // const elapsed = timestamp - start;
 
@@ -21,5 +21,5 @@ function animate( timestamp ) {
   physics.update();
 
   // previousTimeStamp = timestamp;
-  window.requestAnimationFrame( animate );
+  window.requestAnimationFrame(animate);
 }
