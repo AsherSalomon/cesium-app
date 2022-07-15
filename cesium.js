@@ -52,7 +52,7 @@ export function update() {
     let ellipsoid = provider.tilingScheme.projection.ellipsoid;
     let cartographic = ellipsoid.cartesianToCartographic(position);
     let level = provider.availability.computeMaximumLevelAtPosition(cartographic);
-    let cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, maximumLevel);
+    let cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, level);
     selectedTile[cartesian2] = cartesian2;
     selectedTile[level] = cartesian2;
   }
