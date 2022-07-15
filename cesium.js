@@ -177,7 +177,7 @@ function addTile(quadtreeTile){
         // quadtreeTile.entities.push(addPoint(v0));
         // quadtreeTile.entities.push(addPoint(v1));
         // quadtreeTile.entities.push(addPoint(v2));
-        quadtreeTile.entities.push(addPolygon(v0, v1, v2));
+        // quadtreeTile.entities.push(addPolygon(v0, v1, v2));
       }
       // console.log('add polygons');
     }
