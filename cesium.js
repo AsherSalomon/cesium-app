@@ -181,6 +181,7 @@ function addTile(quadtreeTile){
       }
       // console.log('add polygons');
       console.log(mesh.vertices);
+      console.log(mesh.indices);
     }
   }
 
