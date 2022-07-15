@@ -1,5 +1,6 @@
 
 let viewer;
+let truck;
 
 export function init() {
   Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyZmZjMzQzNi01MGI3LTRiY2ItODE3ZC00OGM3ZjBkZjQxNzUiLCJpZCI6MTAwNDY2LCJpYXQiOjE2NTcyNDAzODl9.ij6tW00jwNgBeDuzMgzMRzS82kQLKucEyLgPhQQs3a4';
@@ -34,8 +35,45 @@ export function init() {
       pitch : Cesium.Math.toRadians(-15),
     }
   });
+
+  truck = createModel(
+    "1984_Ford_F350.glb",
+    1916.7 - 29
+  );
 }
 
 export function update() {
 
+}
+
+function createModel(url, height) {
+  viewer.entities.removeAll();
+
+  const position = Cesium.Cartesian3.fromDegrees(
+    -71.30325,
+    44.2705,
+    height
+  );
+  const heading = Cesium.Math.toRadians(270);
+  const pitch = 0;
+  const roll = 0;
+  const hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll);
+  const orientation = Cesium.Transforms.headingPitchRollQuaternion(
+    position,
+    hpr
+  );
+
+  const entity = viewer.entities.add({
+    name: url,
+    position: position,
+    orientation: orientation,
+    model: {
+      uri: url,
+      minimumPixelSize: 0,
+      maximumScale: 20000,
+    },
+  });
+  viewer.trackedEntity = entity;
+
+  return entity;
 }
