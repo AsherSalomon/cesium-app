@@ -129,14 +129,13 @@ function updateTileList(newTileList) {
       }
     }
     if (newTileInOldList == false) {
-      let tileToPush = newTileList[i];
-      tileToPush.entity = viewer.entities.add({
+      newTileList[i].entity = viewer.entities.add({
         rectangle: {
           coordinates: newTileList[i]._rectangle,
         },
         material: Cesium.Color.GREEN.withAlpha(0.5),
       });
-      tileList.push(tileToPush);
+      tileList.push(newTileList[i]);
     }
   }
 }
