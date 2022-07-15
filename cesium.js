@@ -1,7 +1,4 @@
 
-import defined from "../Core/defined.js";
-
-
 let truck;
 
 Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyZmZjMzQzNi01MGI3LTRiY2ItODE3ZC00OGM3ZjBkZjQxNzUiLCJpZCI6MTAwNDY2LCJpYXQiOjE2NTcyNDAzODl9.ij6tW00jwNgBeDuzMgzMRzS82kQLKucEyLgPhQQs3a4';
@@ -116,7 +113,7 @@ export function init( newTruck ) {
       // console.log(quantizedMeshTerrainData);
       let mesh = globeSurfaceTile.renderedMesh;
       // console.log(mesh);
-      if (defined(mesh)) {
+      if (mesh !== undefined) {
         const vertices = mesh.vertices;
         const indices = mesh.indices;
         const encoding = mesh.encoding;
