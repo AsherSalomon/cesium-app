@@ -102,6 +102,7 @@ function createModel(url, height) {
   viewer.trackedEntity = entity;
 
   return entity;
+
 }
 
 
@@ -138,4 +139,69 @@ function updateTileList(newTileList) {
       tileList.push(newTileList[i]);
     }
   }
+
+}
+
+function addTile(quadtreeTile){
+  let provider = viewer.scene.globe.terrainProvider;
+  if (provider.ready && quadtreeTile.renderable) {
+    let projection = provider.tilingScheme.projection;
+    let globeSurfaceTile = quadtreeTile.data;
+    let mesh = globeSurfaceTile.renderedMesh;
+    if (mesh !== undefined) {
+      const vertices = mesh.vertices;
+      const indices = mesh.indices;
+      const encoding = mesh.encoding;
+      const indicesLength = indices.length;
+      for (let i = 0; i < indicesLength; i += 3) {
+        const i0 = indices[i];
+        const i1 = indices[i + 1];
+        const i2 = indices[i + 2];
+
+        const v0 = getPosition(encoding, 3, projection, vertices, i0);
+        const v1 = getPosition(encoding, 3, projection, vertices, i1);
+        const v2 = getPosition(encoding, 3, projection, vertices, i2);
+        addPoint(v0);
+        addPoint(v1);
+        addPoint(v2);
+        // addPolygon(v0, v1, v2);
+      }
+    }
+  }
+
+}
+
+function removeTile(quadtreeTile){
+
+}
+
+function getPosition(encoding, mode, projection, vertices, index, result) {
+  let position = encoding.getExaggeratedPosition(vertices, index, result);
+
+  // if (defined(mode) && mode !== SceneMode.SCENE3D) {
+  //   const ellipsoid = projection.ellipsoid;
+  //   const positionCartographic = ellipsoid.cartesianToCartographic(
+  //     position,
+  //     scratchCartographic
+  //   );
+  //   position = projection.project(positionCartographic, result);
+  //   position = Cartesian3.fromElements(
+  //     position.z,
+  //     position.x,
+  //     position.y,
+  //     result
+  //   );
+  // }
+
+  return position;
+}
+
+function addPoint( cartesian3 ) {
+  viewer.entities.add({
+    position: cartesian3,
+    point: {
+      pixelSize: 1,
+      color: Cesium.Color.WHITE,
+    },
+  });
 }
