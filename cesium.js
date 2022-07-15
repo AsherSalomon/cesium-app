@@ -21,8 +21,7 @@ viewer.scene.globe.enableLighting = true;
 viewer.shadows = true;
 viewer.scene.globe.depthTestAgainstTerrain = true;
 viewer.scene.moon = new Cesium.Moon();
-
-const buildingTileset = viewer.scene.primitives.add(Cesium.createOsmBuildings());
+viewer.scene.primitives.add(Cesium.createOsmBuildings());
 
 export function init() {
 }
