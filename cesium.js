@@ -136,7 +136,7 @@ function updateTileList(newTileList) {
         rectangle: {
           coordinates: newTileList[i]._rectangle,
         },
-        material: Cesium.Color.GREEN,
+        // material: Cesium.Color.GREEN.withAlpha(0.5),
       });
       tileList.push(tileToPush);
     }
