@@ -3,8 +3,8 @@ import * as controls from './controls.js';
 export function init() {
 }
 export function update() {
-  let leftRight = controls.left - controls.right;
+  let rightLeft = controls.right - controls.left;
   let upDown = controls.up - controls.down;
   let forwardBackward = controls.forward - controls.backward;
-  console.log(leftRight, forwardBackward, upDown);
+  console.log(rightLeft, forwardBackward, upDown);
 }
