@@ -156,6 +156,9 @@ export function init( newTruck ) {
                 const v0 = getPosition(encoding, 3, projection, vertices, i0);
                 const v1 = getPosition(encoding, 3, projection, vertices, i1);
                 const v2 = getPosition(encoding, 3, projection, vertices, i2);
+                addPoint(v0);
+                addPoint(v1);
+                addPoint(v2);
               }
             }
           }
@@ -166,7 +169,7 @@ export function init( newTruck ) {
 
 }
 
-let onlyOnce = true;
+let onlyOnce = false;
 let cartesian2 = 0;
 let maximumLevel = 0;
 function maximumLevelChanged() {
