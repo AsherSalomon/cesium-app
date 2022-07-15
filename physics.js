@@ -1,3 +1,6 @@
+
+import * as controls from './controls.js';
+
 let truck;
 
 // // Heightfield parameters
@@ -65,10 +68,16 @@ export function init( newTruck ) {
 }
 
 export function update() {
-  
-  // let position = truck.entity.position.getValue( truck.now() );
-  // position.x += 0.001;
-  // truck.entity.position = new Cesium.ConstantPositionProperty( position );
+
+  let leftRight = controls.left - controls.right;
+  let upDown = controls.up - controls.down;
+  let forwardBackward = controls.left - controls.right;
+
+  let position = truck.entity.position.getValue( truck.now() );
+  position.x += leftRight;
+  position.y += upDown;
+  position.z += forwardBackward;
+  truck.entity.position = new Cesium.ConstantPositionProperty( position );
 
   // let orientation = truck.entity.orientation.getValue( truck.now() );
   // orientation.x += 0.001;
