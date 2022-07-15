@@ -131,9 +131,12 @@ function updateTileList(newTileList) {
     if (newTileInOldList == false) {
       let tileToPush = newTileList[i];
       tileToPush.entity = viewer.entities.add({
-        wall: {
+        rectangle: {
           coordinates: newTileList[i]._rectangle,
         },
+        fill: false,
+        outline: true,
+        height: 1
         // material: Cesium.Color.GREEN.withAlpha(0.5),
       });
       tileList.push(tileToPush);
