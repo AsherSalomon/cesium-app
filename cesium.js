@@ -167,7 +167,11 @@ function addTile(quadtreeTile){
         addPoint(v2);
         // addPolygon(v0, v1, v2);
       }
+    } else {
+      console.log('mesh is undefined');
     }
+  } else {
+    console.log('not provider.ready or not quadtreeTile.renderable');
   }
 
 }
