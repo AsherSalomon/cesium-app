@@ -128,8 +128,8 @@ export function init( newTruck ) {
       let provider = viewer.scene.globe.terrainProvider;
       if (provider.ready) {
         let projection = provider.tilingScheme.projection;
-        console.log(quadtreeTile);
-        // console.log(quadtreeTile.renderable && onlyOnce);
+        // console.log(quadtreeTile);
+        console.log(quadtreeTile.renderable && onlyOnce);
 
         let conditionX = quadtreeTile._x == cartesian2.x;
         let conditionY = quadtreeTile._y == cartesian2.y;
