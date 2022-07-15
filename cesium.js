@@ -42,15 +42,15 @@ export function init() {
   );
   truckEntity.now = function() { return viewer.clock.currentTime; }
 
-  let quadtreePrimitive = viewer.scene.globe._surface;
-  viewer.scene.globe.tileLoadProgressEvent.addEventListener(function() {
-    let count = 0;
-    quadtreePrimitive.forEachLoadedTile(function(quadtreeTile) {
-      // console.log(quadtreeTile.rectangle);
-      count++;
-    });
-    console.log(count);
-  });
+  // let quadtreePrimitive = viewer.scene.globe._surface;
+  // viewer.scene.globe.tileLoadProgressEvent.addEventListener(function() {
+  //   let count = 0;
+  //   quadtreePrimitive.forEachLoadedTile(function(quadtreeTile) {
+  //     // console.log(quadtreeTile.rectangle);
+  //     count++;
+  //   });
+  //   console.log(count);
+  // });
 }
 
 let selectedTile = {cartesian2: {x: 0, y: 0}, level: 0}
@@ -66,6 +66,13 @@ export function update() {
     selectedTile['level'] = level;
     // console.log(selectedTile);
   }
+  
+  let count = 0;
+  quadtreePrimitive.forEachLoadedTile(function(quadtreeTile) {
+    // console.log(quadtreeTile.rectangle);
+    count++;
+  });
+  console.log(count);
 }
 
 function createModel(url, height) {
