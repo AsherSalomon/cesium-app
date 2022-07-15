@@ -143,9 +143,9 @@ export function init( newTruck ) {
         let projection = provider.tilingScheme.projection;
         // console.log(quadtreeTile);
 
-        let conditionX = quadtreeTile._x == cartesian2.x;
-        let conditionY = quadtreeTile._y == cartesian2.y;
-        let conditionL = quadtreeTile._level == maximumLevel;
+        var conditionX = quadtreeTile._x == cartesian2.x;
+        var conditionY = quadtreeTile._y == cartesian2.y;
+        var conditionL = quadtreeTile._level == maximumLevel;
         if (conditionX && conditionY && conditionL) {
           let globeSurfaceTile = quadtreeTile.data;
           if (onlyOnce && quadtreeTile.renderable) {
@@ -207,9 +207,9 @@ export function update() {
     let cartographic = new Cesium.Cartographic.fromDegrees(-71.30325, 44.2705, 1916.7);
     let newMaximumLevel = provider.availability.computeMaximumLevelAtPosition(cartographic);
     let newCartesian2 = provider.tilingScheme.positionToTileXY(cartographic, maximumLevel);
-    let conditionX = newCartesian2.x != cartesian2.x;
-    let conditionX = newCartesian2.y != cartesian2.y;
-    let conditionL = newMaximumLevel != maximumLevel;
+    var conditionX = newCartesian2.x != cartesian2.x;
+    var conditionX = newCartesian2.y != cartesian2.y;
+    var conditionL = newMaximumLevel != maximumLevel;
     if (conditionX || conditionY || conditionL) {
       maximumLevel = newMaximumLevel;
       cartesian2 = newCartesian2;
