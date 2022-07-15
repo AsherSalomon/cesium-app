@@ -60,8 +60,8 @@ export function update() {
 
   let count = 0;
   viewer.scene.globe._surface.forEachLoadedTile(function(quadtreeTile) {
-    let conditionX = quadtreeTile._x == selectedTile.cartesian2.x;
-    let conditionY = quadtreeTile._y == selectedTile.cartesian2.y;
+    let conditionX = Math.abs(quadtreeTile._x - selectedTile.cartesian2.x) <= 1;
+    let conditionY = Math.abs(quadtreeTile._y - selectedTile.cartesian2.y) <= 1;
     let conditionL = quadtreeTile._level == selectedTile.level;
     if (conditionX && conditionY && conditionL) {
     // console.log(quadtreeTile.rectangle);
