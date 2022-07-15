@@ -9,7 +9,7 @@ Ammo().then( function ( AmmoLib ) {
 
 function init() {
   cesium.init();
-  physics.init();
+  physics.init( cesium.truckEntity );
 }
 
 // let start, previousTimeStamp;
