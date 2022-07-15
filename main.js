@@ -1,6 +1,5 @@
 import * as cesium from './cesium.js';
 import * as physics from './physics.js';
-import Controls from './controls.js';
 
 Ammo().then( function ( AmmoLib ) {
 	Ammo = AmmoLib;
@@ -10,7 +9,7 @@ Ammo().then( function ( AmmoLib ) {
 
 function init() {
   // cesium.init();
-  physics.init(new Controls());
+  physics.init();
 }
 
 // let start, previousTimeStamp;
