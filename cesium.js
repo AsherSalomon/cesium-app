@@ -115,7 +115,7 @@ function updateTileList(newTileList) {
       }
     }
     if (oldTileInNewList == false) {
-      viewer.entities.remove(tileList[i].entity);
+      // viewer.entities.remove(tileList[i].entity);
       tileList.splice(i, 1);
     }
   }
@@ -129,12 +129,12 @@ function updateTileList(newTileList) {
       }
     }
     if (newTileInOldList == false) {
-      newTileList[i].entity = viewer.entities.add({
-        rectangle: {
-          coordinates: newTileList[i]._rectangle,
-        },
-        material: Cesium.Color.GREEN.withAlpha(0.5),
-      });
+      // newTileList[i].entity = viewer.entities.add({
+      //   rectangle: {
+      //     coordinates: newTileList[i]._rectangle,
+      //   },
+      //   material: Cesium.Color.GREEN.withAlpha(0.5),
+      // });
       tileList.push(newTileList[i]);
     }
   }
