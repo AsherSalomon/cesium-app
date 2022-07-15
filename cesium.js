@@ -115,24 +115,23 @@ function updateTileList(newTileList) {
       }
     }
     if (oldTileInNewList == false) {
-      console.log(tileList[i]._rectangle);
+      // console.log(tileList[i]._rectangle);
       // viewer.entities.remove(tileList[i]._rectangle);
       tileList.splice(i, 1);
     }
   }
-
+  console.log('hi');
   let tileListLength = tileList.length;
   for (let i = 0; i < newTileList.length; i++) {
     let newTileInOldList = false;
     for (let j = 0; j < tileListLength; j++) {
-      console.log(newTileList[i] == tileList[j]);
       if (newTileList[i] == tileList[j]) {
         newTileInOldList = true;
         break;
       }
     }
     if (newTileInOldList) {
-      console.log(newTileList[i]._rectangle);
+      // console.log(newTileList[i]._rectangle);
       // viewer.entities.add(newTileList[i]._rectangle);
       tileList.push(newTileList[i]);
     }
