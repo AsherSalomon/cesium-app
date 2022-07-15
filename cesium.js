@@ -128,27 +128,32 @@ export function init( newTruck ) {
     // console.log('tileLoadProgressEvent', e);
     quadtreePrimitive.forEachLoadedTile(function(quadtreeTile) {
       console.log(quadtreeTile);
-      let globeSurfaceTile = quadtreeTile.data;
-      // console.log(globeSurfaceTile);
-      // let terrainMesh = globeSurfaceTile.mesh;
-      // console.log(terrainMesh);
-      // let quantizedMeshTerrainData = globeSurfaceTile.terrainData;
-      // console.log(quantizedMeshTerrainData);
-      let mesh = globeSurfaceTile.renderedMesh;
-      // console.log(mesh);
-      if (mesh !== undefined) {
-        const vertices = mesh.vertices;
-        const indices = mesh.indices;
-        const encoding = mesh.encoding;
-        const indicesLength = indices.length;
-        for (let i = 0; i < indicesLength; i += 3) {
-          const i0 = indices[i];
-          const i1 = indices[i + 1];
-          const i2 = indices[i + 2];
+      let conditionX = quadtreeTile._x == cartesian2.x;
+      let conditionY = quadtreeTile._y == cartesian2.y;
+      let conditionL = quadtreeTile._level == maximumLevel;
+      if (conditionX && conditionY && conditionL) {
+        let globeSurfaceTile = quadtreeTile.data;
+        // console.log(globeSurfaceTile);
+        // let terrainMesh = globeSurfaceTile.mesh;
+        // console.log(terrainMesh);
+        // let quantizedMeshTerrainData = globeSurfaceTile.terrainData;
+        // console.log(quantizedMeshTerrainData);
+        let mesh = globeSurfaceTile.renderedMesh;
+        // console.log(mesh);
+        if (mesh !== undefined) {
+          const vertices = mesh.vertices;
+          const indices = mesh.indices;
+          const encoding = mesh.encoding;
+          const indicesLength = indices.length;
+          for (let i = 0; i < indicesLength; i += 3) {
+            const i0 = indices[i];
+            const i1 = indices[i + 1];
+            const i2 = indices[i + 2];
 
-          const v0 = getPosition(encoding, 3, projection, vertices, i0);
-          const v1 = getPosition(encoding, 3, projection, vertices, i1);
-          const v2 = getPosition(encoding, 3, projection, vertices, i2);
+            const v0 = getPosition(encoding, 3, projection, vertices, i0);
+            const v1 = getPosition(encoding, 3, projection, vertices, i1);
+            const v2 = getPosition(encoding, 3, projection, vertices, i2);
+          }
         }
       }
     });
