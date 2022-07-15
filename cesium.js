@@ -64,7 +64,7 @@ export function update() {
     let conditionY = Math.abs(quadtreeTile._y - selectedTile.cartesian2.y) <= 1;
     let conditionL = quadtreeTile._level == selectedTile.level;
     if (conditionX && conditionY && conditionL) {
-      console.log(quadtreeTile._rectangle);
+      // console.log(quadtreeTile._rectangle);
       // count++;
     }
   });
