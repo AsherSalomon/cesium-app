@@ -17,7 +17,13 @@ const viewer = new Cesium.Viewer('cesiumContainer', {
 });
 
 export function init() {
-
+  viewer.clock.clockStep = Cesium.ClockStep.SYSTEM_CLOCK;
+  viewer.scene.globe.enableLighting = true;
+  viewer.shadows = true;
+  viewer.scene.globe.depthTestAgainstTerrain = true;
+  viewer.scene.moon = new Cesium.Moon();
+  
+  const buildingTileset = viewer.scene.primitives.add(Cesium.createOsmBuildings());
 }
 
 export function update() {
