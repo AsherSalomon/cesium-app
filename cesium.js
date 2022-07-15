@@ -120,9 +120,9 @@ function updateTileList(newTileList) {
       tileList.splice(i, 1);
     }
   }
-  console.log('hi');
   let tileListLength = tileList.length;
   for (let i = 0; i < newTileList.length; i++) {
+    console.log('hi');
     let newTileInOldList = false;
     for (let j = 0; j < tileListLength; j++) {
       if (newTileList[i] == tileList[j]) {
