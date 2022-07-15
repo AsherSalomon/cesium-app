@@ -135,14 +135,14 @@ export function init( newTruck ) {
         if (conditionX && conditionY && conditionL) {
           let globeSurfaceTile = quadtreeTile.data;
           if (onlyOnce) {
-            onlyOnce = false;
+            // onlyOnce = false;
             console.log(globeSurfaceTile);
             // let terrainMesh = globeSurfaceTile.mesh;
             // console.log(terrainMesh);
             // let quantizedMeshTerrainData = globeSurfaceTile.terrainData;
             // console.log(quantizedMeshTerrainData);
             let mesh = globeSurfaceTile.renderedMesh;
-            // console.log(mesh);
+            console.log(mesh);
             if (mesh !== undefined) {
               const vertices = mesh.vertices;
               const indices = mesh.indices;
@@ -156,12 +156,12 @@ export function init( newTruck ) {
                 const v0 = getPosition(encoding, 3, projection, vertices, i0);
                 const v1 = getPosition(encoding, 3, projection, vertices, i1);
                 const v2 = getPosition(encoding, 3, projection, vertices, i2);
-                addPoint(v0);
-                addPoint(v1);
-                addPoint(v2);
+                // addPoint(v0);
+                // addPoint(v1);
+                // addPoint(v2);
               }
-            } else {
-              console.log('undefined');
+            // } else {
+            //   console.log('undefined');
             }
           }
         }
