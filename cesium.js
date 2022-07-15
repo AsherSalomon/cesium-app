@@ -5,8 +5,6 @@ export let truckEntity;
 let selectedTile = {cartesian2: {x: 0, y: 0}, level: 0}
 let tileList = [];
 
-let myGreen = Cesium.Color.GREEN.withAlpha(0.5);
-
 export function init() {
   Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyZmZjMzQzNi01MGI3LTRiY2ItODE3ZC00OGM3ZjBkZjQxNzUiLCJpZCI6MTAwNDY2LCJpYXQiOjE2NTcyNDAzODl9.ij6tW00jwNgBeDuzMgzMRzS82kQLKucEyLgPhQQs3a4';
 
@@ -117,7 +115,6 @@ function updateTileList(newTileList) {
       }
     }
     if (oldTileInNewList == false) {
-      // console.log('remove', tileList[i]._rectangle);
       viewer.entities.remove(tileList[i].entity);
       tileList.splice(i, 1);
     }
@@ -132,14 +129,12 @@ function updateTileList(newTileList) {
       }
     }
     if (newTileInOldList == false) {
-      // console.log('add', newTileList[i]._rectangle);
       let tileToPush = newTileList[i];
       tileToPush.entity = viewer.entities.add({
-        rectangle: {
+        wall: {
           coordinates: newTileList[i]._rectangle,
         },
         // material: Cesium.Color.GREEN.withAlpha(0.5),
-        material: myGreen,
       });
       tileList.push(tileToPush);
     }
