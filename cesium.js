@@ -128,13 +128,13 @@ export function init( newTruck ) {
     viewer.scene.globe.tileLoadProgressEvent.addEventListener(function(e) {
       // console.log('tileLoadProgressEvent', e);
       quadtreePrimitive.forEachLoadedTile(function(quadtreeTile) {
-        console.log(quadtreeTile);
+        // console.log(quadtreeTile);
         let conditionX = quadtreeTile._x == cartesian2.x;
         let conditionY = quadtreeTile._y == cartesian2.y;
         let conditionL = quadtreeTile._level == maximumLevel;
         if (conditionX && conditionY && conditionL) {
           let globeSurfaceTile = quadtreeTile.data;
-          // console.log(globeSurfaceTile);
+          console.log(globeSurfaceTile);
           // let terrainMesh = globeSurfaceTile.mesh;
           // console.log(terrainMesh);
           // let quantizedMeshTerrainData = globeSurfaceTile.terrainData;
