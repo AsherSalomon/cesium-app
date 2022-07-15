@@ -187,49 +187,17 @@ export function init( newTruck ) {
 }
 
 let onlyOnce = true;
-let cartesian2 = 0;
+let cartesian2 = {x: 0, y: 0};
 let maximumLevel = 0;
 function maximumLevelChanged() {
   onlyOnce = true;
   let provider = viewer.scene.globe.terrainProvider;
-  let projection = provider.tilingScheme.projection;
+  // let projection = provider.tilingScheme.projection;
   let cartographic = new Cesium.Cartographic.fromDegrees(-71.30325, 44.2705, 1916.7);
   cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, maximumLevel);
   // let promise = provider.requestTileGeometry(cartesian2.x, cartesian2.y, maximumLevel);
   // promise.then(function(terrainData) {
   //   console.log(terrainData);
-  //   // console.log(Cesium.TerrainEncoding);
-  //   // TerrainEncoding.decodePosition
-  //
-  //   // // let cartesian3 = projection.ellipsoid.cartographicToCartesian(cartographic);
-  //   // var cartesian3 = Cesium.Cartographic.toCartesian(cartographic, projection.ellipsoid);
-  //   // addPoint(cartesian3);
-  //
-  //   // terrainData.createMesh
-  //   // GlobeSurfaceTile
-  //   // createMeshOptions
-  //
-  //   // TaskProcessor
-  //
-  //   // GlobeVS
-  //   // QUANTIZATION_BITS12
-  //   // decompressTextureCoordinates
-  //
-  //   // GlobeSurfaceTileProvider
-  //   // computeOccludeePoint
-  //   // cornerPositions
-  //
-  //   // PolygonPipeline.scaleToGeodeticHeight
-  //   // PolygonPipeline.computeRhumbLineSubdivision
-  //   // RectangleGeometry
-  //   // GlobeSurfaceTile._createVertexArrayForMesh
-  //
-  //   // TerrainFillMesh
-  //   // createFillMesh
-  //
-  //   // Geometry._textureCoordinateRotationPoints
-  //   // TerrainEncoding.decodeHeight
-  //   // TerrainEncoding.decodePosition // ?
   // });
 }
 
@@ -238,9 +206,14 @@ export function update() {
   if (provider.ready) {
     let cartographic = new Cesium.Cartographic.fromDegrees(-71.30325, 44.2705, 1916.7);
     let newMaximumLevel = provider.availability.computeMaximumLevelAtPosition(cartographic);
-    if (newMaximumLevel != maximumLevel) {
+    let newCartesian2 = provider.tilingScheme.positionToTileXY(cartographic, maximumLevel);
+    let conditionX = newCartesian2.x != cartesian2.x;
+    let conditionX = newCartesian2.y != cartesian2.y;
+    let conditionL = newMaximumLevel != maximumLevel;
+    if (conditionX || conditionY || conditionL) {
       maximumLevel = newMaximumLevel;
-      maximumLevelChanged();
+      cartesian2 = newCartesian2;
+      // maximumLevelChanged();
     }
   }
 }
