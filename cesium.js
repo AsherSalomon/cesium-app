@@ -1,6 +1,6 @@
 
 let viewer;
-let truck;
+export let truckEntity;
 
 export function init() {
   Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyZmZjMzQzNi01MGI3LTRiY2ItODE3ZC00OGM3ZjBkZjQxNzUiLCJpZCI6MTAwNDY2LCJpYXQiOjE2NTcyNDAzODl9.ij6tW00jwNgBeDuzMgzMRzS82kQLKucEyLgPhQQs3a4';
@@ -36,10 +36,12 @@ export function init() {
     }
   });
 
-  truck = createModel(
+  truckEntity = createModel(
     "1984_Ford_F350.glb",
     1916.7 - 29
   );
+  truckEntity.now = function() { return viewer.clock.currentTime; }
+
 }
 
 export function update() {
