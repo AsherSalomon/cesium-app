@@ -66,7 +66,8 @@ export function update() {
     selectedTile['level'] = level;
     // console.log(selectedTile);
   }
-  
+
+  let quadtreePrimitive = viewer.scene.globe._surface;
   let count = 0;
   quadtreePrimitive.forEachLoadedTile(function(quadtreeTile) {
     // console.log(quadtreeTile.rectangle);
