@@ -57,7 +57,6 @@ export function update() {
     let cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, level);
     selectedTile.cartesian2 = cartesian2;
     selectedTile.level = level;
-    // console.log(selectedTile);
   }
 
   let newTileList = [];
@@ -66,7 +65,6 @@ export function update() {
     let conditionY = Math.abs(quadtreeTile._y - selectedTile.cartesian2.y) <= 1;
     let conditionL = quadtreeTile._level == selectedTile.level;
     if (conditionX && conditionY && conditionL) {
-      // console.log(quadtreeTile._rectangle);
       newTileList.push(quadtreeTile);
     }
   });
@@ -117,19 +115,22 @@ function updateTileList(newTileList) {
       }
     }
     if (oldTileInNewList == false) {
+      viewer.entities.remove(tileList[i]._rectangle);
       tileList.splice(i, 1);
     }
   }
 
+  let tileListLength = tileList.length;
   for (let i = 0; i < newTileList.length; i++) {
     let newTileInOldList = false;
-    for (let j = 0; j < tileList.length; j++) {
+    for (let j = 0; j < tileListLength; j++) {
       if (newTileList[i] == tileList[j]) {
         newTileInOldList = true;
         break;
       }
     }
     if (newTileInOldList) {
+      viewer.entities.add(newTileList[i]._rectangle);
       tileList.push(newTileList[i]);
     }
   }
