@@ -123,9 +123,9 @@ export function init( newTruck ) {
           const i1 = indices[i + 1];
           const i2 = indices[i + 2];
 
-          const v0 = globeSurfaceTile.getPosition(encoding, mode, projection, vertices, i0);
-          const v1 = globeSurfaceTile.getPosition(encoding, mode, projection, vertices, i1);
-          const v2 = globeSurfaceTile.getPosition(encoding, mode, projection, vertices, i2);
+          const v0 = globeSurfaceTile.getPosition(encoding, 3, projection, vertices, i0);
+          const v1 = globeSurfaceTile.getPosition(encoding, 3, projection, vertices, i1);
+          const v2 = globeSurfaceTile.getPosition(encoding, 3, projection, vertices, i2);
         }
       }
     });
