@@ -42,15 +42,6 @@ export function init() {
   );
   truckEntity.now = function() { return viewer.clock.currentTime; }
 
-  // let quadtreePrimitive = viewer.scene.globe._surface;
-  // viewer.scene.globe.tileLoadProgressEvent.addEventListener(function() {
-  //   let count = 0;
-  //   quadtreePrimitive.forEachLoadedTile(function(quadtreeTile) {
-  //     // console.log(quadtreeTile.rectangle);
-  //     count++;
-  //   });
-  //   console.log(count);
-  // });
 }
 
 let selectedTile = {cartesian2: {x: 0, y: 0}, level: 0}
@@ -62,18 +53,18 @@ export function update() {
     let cartographic = ellipsoid.cartesianToCartographic(position);
     let level = provider.availability.computeMaximumLevelAtPosition(cartographic);
     let cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, level);
-    selectedTile['cartesian2'] = cartesian2;
-    selectedTile['level'] = level;
+    selectedTile.cartesian2 = cartesian2;
+    selectedTile.level = level;
     // console.log(selectedTile);
   }
 
-  let quadtreePrimitive = viewer.scene.globe._surface;
-  let count = 0;
-  quadtreePrimitive.forEachLoadedTile(function(quadtreeTile) {
+  viewer.scene.globe._surface.forEachLoadedTile(function(quadtreeTile) {
+    let conditionX = quadtreeTile._x == selectedTile.cartesian2.x;
+    let conditionY = quadtreeTile._y == selectedTile.cartesian2.y;
+    let conditionL = quadtreeTile._level == selectedTile.level;
     // console.log(quadtreeTile.rectangle);
-    count++;
   });
-  console.log(count);
+
 }
 
 function createModel(url, height) {
