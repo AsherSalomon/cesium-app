@@ -92,22 +92,6 @@ function addPoint( cartesian3 ) {
 
 function getPosition(encoding, mode, projection, vertices, index, result) {
   let position = encoding.getExaggeratedPosition(vertices, index, result);
-
-  if (defined(mode) && mode !== SceneMode.SCENE3D) {
-    const ellipsoid = projection.ellipsoid;
-    const positionCartographic = ellipsoid.cartesianToCartographic(
-      position,
-      scratchCartographic
-    );
-    position = projection.project(positionCartographic, result);
-    position = Cartesian3.fromElements(
-      position.z,
-      position.x,
-      position.y,
-      result
-    );
-  }
-
   return position;
 }
 
