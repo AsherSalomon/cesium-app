@@ -6,5 +6,5 @@ export function update() {
   let leftRight = controls.left - controls.right;
   let upDown = controls.up - controls.down;
   let forwardBackward = controls.forward - controls.backward;
-  console.log(leftRight, upDown, forwardBackward);
+  console.log(leftRight, forwardBackward, upDown);
 }
