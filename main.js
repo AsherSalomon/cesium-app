@@ -26,3 +26,5 @@ function animate( timestamp ) {
   // previousTimeStamp = timestamp;
   window.requestAnimationFrame( animate );
 }
+
+console.log('hi asher');
