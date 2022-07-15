@@ -180,6 +180,7 @@ function addTile(quadtreeTile){
         // quadtreeTile.entities.push(addPolygon(v0, v1, v2));
       }
       // console.log('add polygons');
+      console.log(mesh.vertices);
     }
   }
 
