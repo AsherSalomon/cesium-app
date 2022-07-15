@@ -106,7 +106,6 @@ function createModel(url, height) {
 
 
 function updateTileList(newTileList) {
-  console.log(newTileList);
   for (let i = tileList.length - 1; i >= 0; i--) {
     let oldTileInNewList = false;
     for (let j = 0; j < newTileList.length; j++) {
@@ -115,6 +114,7 @@ function updateTileList(newTileList) {
         break;
       }
     }
+    console.log(oldTileInNewList);
     if (oldTileInNewList == false) {
       console.log(tileList[i]._rectangle);
       // viewer.entities.remove(tileList[i]._rectangle);
