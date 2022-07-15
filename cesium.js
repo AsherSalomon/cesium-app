@@ -65,10 +65,10 @@ export function update() {
     let conditionY = Math.abs(quadtreeTile._y - selectedTile.cartesian2.y) <= 1;
     let conditionL = quadtreeTile._level == selectedTile.level;
     if (conditionX && conditionY && conditionL) {
-      console.log(quadtreeTile);
       newTileList.push(quadtreeTile);
     }
   });
+  console.log(newTileList);
   updateTileList(newTileList);
 
 }
