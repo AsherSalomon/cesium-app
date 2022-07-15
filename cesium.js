@@ -69,7 +69,7 @@ export function update() {
     }
   });
   updateTileList(newTileList);
-
+  tryToAddTiles();
 }
 
 function createModel(url, height) {
@@ -117,6 +117,7 @@ function updateTileList(newTileList) {
     }
     if (oldTileInNewList == false) {
       // viewer.entities.remove(tileList[i].entity);
+      removeTile(tileList[i]);
       tileList.splice(i, 1);
     }
   }
@@ -136,16 +137,25 @@ function updateTileList(newTileList) {
       //   },
       //   material: Cesium.Color.GREEN.withAlpha(0.5),
       // });
-      addTile(newTileList[i]);
+
+      // addTile(newTileList[i]);
       tileList.push(newTileList[i]);
     }
   }
 
 }
 
+function tryToAddTiles() {
+  for (let i = 0; i < tileList.length; i++) {
+    if (tileList[i].entities == undefined && tileList[i].renderable) {
+      addTile(tileList[i]);
+    }
+  }
+}
+
 function addTile(quadtreeTile){
   let provider = viewer.scene.globe.terrainProvider;
-  if (provider.ready && quadtreeTile.renderable) {
+  if (provider.ready) { // && quadtreeTile.renderable) {
     let projection = provider.tilingScheme.projection;
     let globeSurfaceTile = quadtreeTile.data;
     let mesh = globeSurfaceTile.renderedMesh;
@@ -154,6 +164,7 @@ function addTile(quadtreeTile){
       const indices = mesh.indices;
       const encoding = mesh.encoding;
       const indicesLength = indices.length;
+      quadtreeTile.entities = [];
       for (let i = 0; i < indicesLength; i += 3) {
         const i0 = indices[i];
         const i1 = indices[i + 1];
@@ -162,13 +173,12 @@ function addTile(quadtreeTile){
         const v0 = getPosition(encoding, 3, projection, vertices, i0);
         const v1 = getPosition(encoding, 3, projection, vertices, i1);
         const v2 = getPosition(encoding, 3, projection, vertices, i2);
-        addPoint(v0);
-        addPoint(v1);
-        addPoint(v2);
+
+        quadtreeTile.entities.push(addPoint(v0));
+        quadtreeTile.entities.push(addPoint(v1));
+        quadtreeTile.entities.push(addPoint(v2));
         // addPolygon(v0, v1, v2);
       }
-    } else {
-      console.log('mesh is undefined');
     }
   } else {
     console.log('not provider.ready or not quadtreeTile.renderable');
@@ -177,7 +187,12 @@ function addTile(quadtreeTile){
 }
 
 function removeTile(quadtreeTile){
-
+  if (quadtreeTile.entities != undefined) {
+    for (let i = 0; i < quadtreeTile.entities.length; i++) {
+      viewer.entities.remove(quadtreeTile.entities[i]);
+    }
+  }
+  quadtreeTile.entities = undefined;
 }
 
 function getPosition(encoding, mode, projection, vertices, index, result) {
@@ -201,8 +216,8 @@ function getPosition(encoding, mode, projection, vertices, index, result) {
   return position;
 }
 
-function addPoint( cartesian3 ) {
-  viewer.entities.add({
+function addPoint(cartesian3) {
+  return viewer.entities.add({
     position: cartesian3,
     point: {
       pixelSize: 1,
