@@ -305,12 +305,12 @@ export function createTerrain(positions, indices, tileName) {
   const terrainBody = new Ammo.btRigidBody(rbInfo);
 
   terrainBodies[tileName] = terrainBody;
-  // physicsWorld.addRigidBody(terrainBody);
+  physicsWorld.addRigidBody(terrainBody);
 
 }
 
 export function removeTerrain(tileName) {
-  // physicsWorld.removeRigidBody(terrainBodies[tileName]);
+  physicsWorld.removeRigidBody(terrainBodies[tileName]);
   delete terrainBodies[tileName];
 
 }
