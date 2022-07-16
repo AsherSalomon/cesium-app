@@ -55,12 +55,12 @@ export function update(elapsed) {
   // position.z = ;
   truckEntity.position = new Cesium.ConstantPositionProperty(position);
 
-  // const quaternion = truckEntity.orientation.getValue(truckEntity.now());
-  // // quaternion.x = ;
-  // // quaternion.y = ;
-  // // quaternion.z = ;
-  // // quaternion.w = ;
-  // truckEntity.orientation = new Cesium.ConstantPositionProperty(quaternion);
+  const quaternion = truckEntity.orientation.getValue(truckEntity.now());
+  // quaternion.x = ;
+  // quaternion.y = ;
+  // quaternion.z = ;
+  // quaternion.w = ;
+  truckEntity.orientation = new Cesium.ConstantPositionProperty(quaternion);
 
 	// physicsWorld.setGravity( new Ammo.btVector3( 0, -9.82, 0 ) );
 
@@ -167,6 +167,73 @@ function createVehicle(pos, quat) {
 	addWheel(false, new Ammo.btVector3(wheelHalfTrackBack, wheelAxisHeightBack, wheelAxisPositionBack), wheelRadiusBack, wheelWidthBack, BACK_RIGHT);
 
 	// Sync keybord actions and physics and graphics
+	function sync(dt) {
+
+		breakingForce = 0;
+		engineForce = 0;
+
+		if (actions.acceleration) {
+			if (speed < -1)
+				breakingForce = maxBreakingForce;
+			else engineForce = maxEngineForce;
+		}
+		if (actions.braking) {
+			if (speed > 1)
+				breakingForce = maxBreakingForce;
+			else engineForce = -maxEngineForce / 2;
+		}
+		if (actions.left) {
+			if (vehicleSteering < steeringClamp)
+				vehicleSteering += steeringIncrement;
+		}
+		else {
+			if (actions.right) {
+				if (vehicleSteering > -steeringClamp)
+					vehicleSteering -= steeringIncrement;
+			}
+			else {
+				if (vehicleSteering < -steeringIncrement)
+					vehicleSteering += steeringIncrement;
+				else {
+					if (vehicleSteering > steeringIncrement)
+						vehicleSteering -= steeringIncrement;
+					else {
+						vehicleSteering = 0;
+					}
+				}
+			}
+		}
+
+		vehicle.applyEngineForce(engineForce, BACK_LEFT);
+		vehicle.applyEngineForce(engineForce, BACK_RIGHT);
+
+		vehicle.setBrake(breakingForce / 2, FRONT_LEFT);
+		vehicle.setBrake(breakingForce / 2, FRONT_RIGHT);
+		vehicle.setBrake(breakingForce, BACK_LEFT);
+		vehicle.setBrake(breakingForce, BACK_RIGHT);
+
+		vehicle.setSteeringValue(vehicleSteering, FRONT_LEFT);
+		vehicle.setSteeringValue(vehicleSteering, FRONT_RIGHT);
+
+		var tm, p, q, i;
+		var n = vehicle.getNumWheels();
+		for (i = 0; i < n; i++) {
+			vehicle.updateWheelTransform(i, true);
+			tm = vehicle.getWheelTransformWS(i);
+			p = tm.getOrigin();
+			q = tm.getRotation();
+			// wheelMeshes[i].position.set(p.x(), p.y(), p.z());
+			// wheelMeshes[i].quaternion.set(q.x(), q.y(), q.z(), q.w());
+		}
+
+		tm = vehicle.getChassisWorldTransform();
+		p = tm.getOrigin();
+		q = tm.getRotation();
+		// chassisMesh.position.set(p.x(), p.y(), p.z());
+		// chassisMesh.quaternion.set(q.x(), q.y(), q.z(), q.w());
+  }
+
+	syncList.push(sync);
 
 }
 
