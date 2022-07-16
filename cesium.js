@@ -85,11 +85,11 @@ function createModel(url, height) {
   viewer.entities.removeAll();
 
   const position = Cesium.Cartesian3.fromDegrees(
-    -71.30325,
-    44.2705,
+    -71.303343,
+    44.269824,
     height
   );
-  const heading = Cesium.Math.toRadians(270);
+  const heading = Cesium.Math.toRadians(45);
   const pitch = 0;
   const roll = 0;
   const hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll);
