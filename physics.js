@@ -101,22 +101,22 @@ function createVehicle(pos, quat) {
 
 	// Vehicle contants
 
-	const chassisWidth = 1.8;
+	const chassisWidth = 2.032;
 	const chassisHeight = .6;
-	const chassisLength = 4;
-	const massVehicle = 800;
+	const chassisLength = 6.761;
+	const massVehicle = 3787.5;
 
 	const wheelAxisPositionBack = -1;
-	const wheelRadiusBack = .4;
-	const wheelWidthBack = .3;
+	const wheelRadiusBack = 0.432;
+	const wheelWidthBack = 0.245;
 	const wheelHalfTrackBack = 1;
 	const wheelAxisHeightBack = .3;
 
 	const wheelAxisFrontPosition = 1.7;
 	const wheelHalfTrackFront = 1;
 	const wheelAxisHeightFront = .3;
-	const wheelRadiusFront = .35;
-	const wheelWidthFront = .2;
+	const wheelRadiusFront = 0.432;
+	const wheelWidthFront = 0.245;
 
 	const friction = 1000;
 	const suspensionStiffness = 20.0;
