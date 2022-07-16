@@ -28,6 +28,7 @@ function animate(timestamp) {
   cesium.update();
 	if (waitingForPhysicsInit == false) {
   	// physics.update(elapsed);
+		console.log(elapsed);
 	}
 
   previousTimeStamp = timestamp;
