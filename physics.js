@@ -88,6 +88,9 @@ function keydown(e) {
 		e.stopPropagation();
 		return false;
 	}
+  if (e.code == 'KeyE') {
+    update(0.16);
+  }
 }
 
 function createObjects() {
