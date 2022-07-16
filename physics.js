@@ -158,7 +158,7 @@ function createVehicle(pos, quat) {
 		wheelInfo.set_m_frictionSlip(friction);
 		wheelInfo.set_m_rollInfluence(rollInfluence);
 
-		wheelMeshes[index] = createWheelMesh(radius, width);
+		// wheelMeshes[index] = createWheelMesh(radius, width);
 	}
 
 	addWheel(true, new Ammo.btVector3(wheelHalfTrackFront, wheelAxisHeightFront, wheelAxisFrontPosition), wheelRadiusFront, wheelWidthFront, FRONT_LEFT);
