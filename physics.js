@@ -69,6 +69,24 @@ export function update(elapsed) {
 
 }
 
+function keyup(e) {
+	if(keysActions[e.code]) {
+		actions[keysActions[e.code]] = false;
+		e.preventDefault();
+		e.stopPropagation();
+		return false;
+	}
+}
+
+function keydown(e) {
+	if(keysActions[e.code]) {
+		actions[keysActions[e.code]] = true;
+		e.preventDefault();
+		e.stopPropagation();
+		return false;
+	}
+}
+
 function createObjects() {
   const position = truckEntity.position.getValue(truckEntity.now());
   const quaternion = truckEntity.orientation.getValue(truckEntity.now());
