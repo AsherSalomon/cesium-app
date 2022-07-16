@@ -1,9 +1,9 @@
 
-let viewer;
+const viewer;
 export let truckEntity;
 
 let selectedTile = {cartesian2: {x: 0, y: 0}, level: 0}
-let tileList = [];
+const tileList = [];
 
 export function init() {
   Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyZmZjMzQzNi01MGI3LTRiY2ItODE3ZC00OGM3ZjBkZjQxNzUiLCJpZCI6MTAwNDY2LCJpYXQiOjE2NTcyNDAzODl9.ij6tW00jwNgBeDuzMgzMRzS82kQLKucEyLgPhQQs3a4';
@@ -48,22 +48,22 @@ export function init() {
 }
 
 export function update() {
-  let provider = viewer.scene.globe.terrainProvider;
+  const provider = viewer.scene.globe.terrainProvider;
   if (provider.ready) {
-    let position = truckEntity.position.getValue(truckEntity.now());
-    let ellipsoid = provider.tilingScheme.projection.ellipsoid;
-    let cartographic = ellipsoid.cartesianToCartographic(position);
-    let level = provider.availability.computeMaximumLevelAtPosition(cartographic);
-    let cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, level);
+    const position = truckEntity.position.getValue(truckEntity.now());
+    const ellipsoid = provider.tilingScheme.projection.ellipsoid;
+    const cartographic = ellipsoid.cartesianToCartographic(position);
+    const level = provider.availability.computeMaximumLevelAtPosition(cartographic);
+    const cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, level);
     selectedTile.cartesian2 = cartesian2;
     selectedTile.level = level;
   }
 
   let newTileList = [];
   viewer.scene.globe._surface.forEachLoadedTile(function(quadtreeTile) {
-    let conditionX = Math.abs(quadtreeTile._x - selectedTile.cartesian2.x) <= 1;
-    let conditionY = Math.abs(quadtreeTile._y - selectedTile.cartesian2.y) <= 1;
-    let conditionL = quadtreeTile._level == selectedTile.level;
+    const conditionX = Math.abs(quadtreeTile._x - selectedTile.cartesian2.x) <= 1;
+    const conditionY = Math.abs(quadtreeTile._y - selectedTile.cartesian2.y) <= 1;
+    const conditionL = quadtreeTile._level == selectedTile.level;
     if (conditionX && conditionY && conditionL) {
       newTileList.push(quadtreeTile);
     }
@@ -154,34 +154,41 @@ function tryToAddTiles() {
 }
 
 function addTile(quadtreeTile){
-  let provider = viewer.scene.globe.terrainProvider;
+  const provider = viewer.scene.globe.terrainProvider;
   if (provider.ready) { // && quadtreeTile.renderable) {
-    let projection = provider.tilingScheme.projection;
-    let globeSurfaceTile = quadtreeTile.data;
-    let mesh = globeSurfaceTile.renderedMesh;
+    const projection = provider.tilingScheme.projection;
+    const globeSurfaceTile = quadtreeTile.data;
+    const mesh = globeSurfaceTile.renderedMesh;
     if (mesh !== undefined) {
+      quadtreeTile.entities = [];
       const vertices = mesh.vertices;
       const indices = mesh.indices;
       const encoding = mesh.encoding;
-      const indicesLength = indices.length;
-      quadtreeTile.entities = [];
-      for (let i = 0; i < indicesLength; i += 3) {
-        const i0 = indices[i];
-        const i1 = indices[i + 1];
-        const i2 = indices[i + 2];
-
-        const v0 = getPosition(encoding, 3, projection, vertices, i0);
-        const v1 = getPosition(encoding, 3, projection, vertices, i1);
-        const v2 = getPosition(encoding, 3, projection, vertices, i2);
-
-        // quadtreeTile.entities.push(addPoint(v0));
-        // quadtreeTile.entities.push(addPoint(v1));
-        // quadtreeTile.entities.push(addPoint(v2));
-        // quadtreeTile.entities.push(addPolygon(v0, v1, v2));
-      }
+      // const indicesLength = indices.length;
+      // for (let i = 0; i < indicesLength; i += 3) {
+      //   const i0 = indices[i];
+      //   const i1 = indices[i + 1];
+      //   const i2 = indices[i + 2];
+      //
+      //   const v0 = getPosition(encoding, 3, projection, vertices, i0);
+      //   const v1 = getPosition(encoding, 3, projection, vertices, i1);
+      //   const v2 = getPosition(encoding, 3, projection, vertices, i2);
+      //
+      //   // quadtreeTile.entities.push(addPoint(v0));
+      //   // quadtreeTile.entities.push(addPoint(v1));
+      //   // quadtreeTile.entities.push(addPoint(v2));
+      //   // quadtreeTile.entities.push(addPolygon(v0, v1, v2));
+      // }
       // console.log('add polygons');
-      console.log(mesh.vertices);
-      console.log(mesh.indices);
+      // console.log(mesh.vertices); // Float32Array
+      // console.log(mesh.indices); // Uint16Array
+
+      const verticesLength = vertices.length;
+      const positions = new Array(verticesLength);
+      for (let i = 0; i < verticesLength; i ++) {
+        positions[i] = getPosition(encoding, 3, projection, vertices, i);
+      }
+      // doSomthingWith(positions, indices); // to do
     }
   }
 
