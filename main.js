@@ -12,14 +12,14 @@ function init() {
   physics.init(cesium.truckEntity);
 }
 
-// let start, previousTimeStamp;
+let start, previousTimeStamp;
 function animate(timestamp) {
-  // if ( start === undefined ) { start = timestamp; }
-  // const elapsed = timestamp - start;
+  if (start === undefined) {start = timestamp;}
+  const elapsed = timestamp - start;
 
   cesium.update();
-  physics.update();
+  physics.update(elapsed);
 
-  // previousTimeStamp = timestamp;
+  previousTimeStamp = timestamp;
   window.requestAnimationFrame(animate);
 }
