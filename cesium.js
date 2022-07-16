@@ -5,6 +5,8 @@ export let truckEntity;
 let selectedTile = {cartesian2: {x: 0, y: 0}, level: 0}
 const tileList = [];
 
+let initPosition = [-71.303343, 44.269824, 1916.7 - 32]
+
 export function init() {
   Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyZmZjMzQzNi01MGI3LTRiY2ItODE3ZC00OGM3ZjBkZjQxNzUiLCJpZCI6MTAwNDY2LCJpYXQiOjE2NTcyNDAzODl9.ij6tW00jwNgBeDuzMgzMRzS82kQLKucEyLgPhQQs3a4';
 
@@ -32,17 +34,18 @@ export function init() {
   viewer.scene.primitives.add(Cesium.createOsmBuildings());
 
   viewer.camera.flyTo({
-    destination : Cesium.Cartesian3.fromDegrees(-71.30325 + 0.003, 44.2705, 1916.7 + 35),
+    destination : Cesium.Cartesian3.fromDegrees(
+      initPosition[0] + 0.003,
+      initPosition[1],
+      initPosition[2] + 65
+    ),
     orientation : {
       heading : Cesium.Math.toRadians(270),
       pitch : Cesium.Math.toRadians(-15),
     }
   });
 
-  truckEntity = createModel(
-    "1984_Ford_F350.glb",
-    1916.7 - 32
-  );
+  truckEntity = createModel('1984_Ford_F350.glb');
   truckEntity.now = function() { return viewer.clock.currentTime; }
 
 }
@@ -81,13 +84,13 @@ export function update() {
 
 }
 
-function createModel(url, height) {
+function createModel(url) {
   viewer.entities.removeAll();
 
   const position = Cesium.Cartesian3.fromDegrees(
-    -71.303343,
-    44.269824,
-    height
+    initPosition[0],
+    initPosition[1],
+    initPosition[2]
   );
   const heading = Cesium.Math.toRadians(45);
   const pitch = 0;
