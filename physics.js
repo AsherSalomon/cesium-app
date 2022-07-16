@@ -2,7 +2,12 @@ import * as controls from './controls.js';
 
 let truckEntity;
 
-
+// Physics variables
+let collisionConfiguration;
+let dispatcher;
+let broadphase;
+let solver;
+let physicsWorld;
 
 export function init(newTruck) {
   truckEntity = newTruck;
