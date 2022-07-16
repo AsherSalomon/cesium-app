@@ -6,6 +6,9 @@
 let truckEntity;
 const terrainBodies = {};
 
+// - Global variables -
+var DISABLE_DEACTIVATION = 4;
+
 // Physics variables
 let collisionConfiguration;
 let dispatcher;
