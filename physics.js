@@ -1,7 +1,7 @@
 
 // https://github.com/kripken/ammo.js/blob/main/examples/webgl_demo_vehicle/index.html
 
-import * as controls from './controls.js';
+// import * as controls from './controls.js';
 
 let truckEntity;
 const terrainBodies = {};
@@ -12,6 +12,17 @@ let dispatcher;
 let broadphase;
 let solver;
 let physicsWorld;
+
+const syncList = [];
+
+// Keybord actions
+var actions = {};
+var keysActions = {
+	"KeyW":'acceleration',
+	"KeyS":'braking',
+	"KeyA":'left',
+	"KeyD":'right'
+};
 
 export function init(newTruck) {
   truckEntity = newTruck;
@@ -28,29 +39,37 @@ export function init(newTruck) {
 }
 
 export function update(elapsed) {
-  const leftRight = controls.right - controls.left;
-  const upDown = controls.down - controls.up;
-  const forwardBackward = controls.forward - controls.backward;
+  // const leftRight = controls.right - controls.left;
+  // const upDown = controls.down - controls.up;
+  // const forwardBackward = controls.forward - controls.backward;
 
   const position = truckEntity.position.getValue(truckEntity.now());
-  position.x += leftRight;
-  position.y += upDown;
-  position.z += forwardBackward;
+  // position.x += leftRight;
+  // position.y += upDown;
+  // position.z += forwardBackward;
+  // position.x = ;
+  // position.y = ;
+  // position.z = ;
   truckEntity.position = new Cesium.ConstantPositionProperty(position);
 
-  const orientation = truckEntity.orientation.getValue(truckEntity.now());
+  const quaternion = truckEntity.orientation.getValue(truckEntity.now());
+  // quaternion.x = ;
+  // quaternion.y = ;
+  // quaternion.z = ;
+  // quaternion.w = ;
+  truckEntity.orientation = new Cesium.ConstantPositionProperty(quaternion);
 
 	// physicsWorld.setGravity( new Ammo.btVector3( 0, -9.82, 0 ) );
 
+	for (let i = 0; i < syncList.length; i++) { syncList[i](elapsed); }
 	physicsWorld.stepSimulation( elapsed, 10 );
 
 }
 
 function createObjects() {
   const position = truckEntity.position.getValue(truckEntity.now());
-  const orientation = truckEntity.orientation.getValue(truckEntity.now());
-  console.log(orientation);
-	// createVehicle(position, ZERO_QUATERNION);
+  const quaternion = truckEntity.orientation.getValue(truckEntity.now());
+	createVehicle(position, quaternion);
 
 }
 
@@ -93,6 +112,13 @@ function createVehicle(pos, quat) {
 	transform.setIdentity();
 	transform.setOrigin(new Ammo.btVector3(pos.x, pos.y, pos.z));
 	transform.setRotation(new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w));
+	const motionState = new Ammo.btDefaultMotionState(transform);
+	const localInertia = new Ammo.btVector3(0, 0, 0);
+	geometry.calculateLocalInertia(massVehicle, localInertia);
+	const body = new Ammo.btRigidBody(new Ammo.btRigidBodyConstructionInfo(massVehicle, motionState, geometry, localInertia));
+	body.setActivationState(DISABLE_DEACTIVATION);
+	physicsWorld.addRigidBody(body);
+	// var chassisMesh = createChassisMesh(chassisWidth, chassisHeight, chassisLength);
 
 	// Raycast Vehicle
 	let engineForce = 0;
@@ -102,6 +128,42 @@ function createVehicle(pos, quat) {
 	const rayCaster = new Ammo.btDefaultVehicleRaycaster(physicsWorld);
 	const vehicle = new Ammo.btRaycastVehicle(tuning, body, rayCaster);
 	physicsWorld.addAction(vehicle);
+
+	// Wheels
+	const FRONT_LEFT = 0;
+	const FRONT_RIGHT = 1;
+	const BACK_LEFT = 2;
+	const BACK_RIGHT = 3;
+	const wheelMeshes = [];
+	const wheelDirectionCS0 = new Ammo.btVector3(0, -1, 0);
+	const wheelAxleCS = new Ammo.btVector3(-1, 0, 0);
+
+	function addWheel(isFront, pos, radius, width, index) {
+
+		const wheelInfo = vehicle.addWheel(
+				pos,
+				wheelDirectionCS0,
+				wheelAxleCS,
+				suspensionRestLength,
+				radius,
+				tuning,
+				isFront);
+
+		wheelInfo.set_m_suspensionStiffness(suspensionStiffness);
+		wheelInfo.set_m_wheelsDampingRelaxation(suspensionDamping);
+		wheelInfo.set_m_wheelsDampingCompression(suspensionCompression);
+		wheelInfo.set_m_frictionSlip(friction);
+		wheelInfo.set_m_rollInfluence(rollInfluence);
+
+		wheelMeshes[index] = createWheelMesh(radius, width);
+	}
+
+	addWheel(true, new Ammo.btVector3(wheelHalfTrackFront, wheelAxisHeightFront, wheelAxisFrontPosition), wheelRadiusFront, wheelWidthFront, FRONT_LEFT);
+	addWheel(true, new Ammo.btVector3(-wheelHalfTrackFront, wheelAxisHeightFront, wheelAxisFrontPosition), wheelRadiusFront, wheelWidthFront, FRONT_RIGHT);
+	addWheel(false, new Ammo.btVector3(-wheelHalfTrackBack, wheelAxisHeightBack, wheelAxisPositionBack), wheelRadiusBack, wheelWidthBack, BACK_LEFT);
+	addWheel(false, new Ammo.btVector3(wheelHalfTrackBack, wheelAxisHeightBack, wheelAxisPositionBack), wheelRadiusBack, wheelWidthBack, BACK_RIGHT);
+
+	// Sync keybord actions and physics and graphics
 
 }
 
