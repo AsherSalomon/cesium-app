@@ -195,8 +195,8 @@ function addTile(quadtreeTile){
       for (let i = 0; i < verticesLength; i ++) {
         positions[i] = getPosition(encoding, 3, projection, vertices, i);
       }
-      console.log(quadtreeTile);
-      const tileName = 'muck';
+      const tileName = quadtreeTile._x +'_'+ quadtreeTile._y +'_'+ quadtreeTile._level;
+      console.log(tileName);
       createTerrain(positions, indices, tileName);
     }
   }
