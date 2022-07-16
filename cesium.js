@@ -37,7 +37,7 @@ export function init() {
     destination : Cesium.Cartesian3.fromDegrees(
       initPosition[0] + 0.001,
       initPosition[1],
-      initPosition[2] + 20
+      initPosition[2] + 22
     ),
     orientation : {
       heading : Cesium.Math.toRadians(270),
@@ -92,7 +92,7 @@ function createModel(url) {
     initPosition[1],
     initPosition[2]
   );
-  const heading = Cesium.Math.toRadians(48);
+  const heading = Cesium.Math.toRadians(55);
   const pitch = 0;
   const roll = 0;
   const hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll);
