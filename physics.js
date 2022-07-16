@@ -44,7 +44,7 @@ export function init(newTruck) {
 
 }
 
-export function update(elapsed) {
+export function update(delta) {
   // const leftRight = controls.right - controls.left;
   // const upDown = controls.down - controls.up;
   // const forwardBackward = controls.forward - controls.backward;
@@ -67,8 +67,8 @@ export function update(elapsed) {
 
 	// physicsWorld.setGravity( new Ammo.btVector3( 0, -9.82, 0 ) );
 
-	for (let i = 0; i < syncList.length; i++) { syncList[i](elapsed); }
-	physicsWorld.stepSimulation( elapsed, 10 );
+	for (let i = 0; i < syncList.length; i++) { syncList[i](delta); }
+	physicsWorld.stepSimulation( delta, 10 );
 
 }
 
