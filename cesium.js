@@ -41,7 +41,7 @@ export function init() {
 
   truckEntity = createModel(
     "1984_Ford_F350.glb",
-    1916.7 - 28
+    1916.7 - 32
   );
   truckEntity.now = function() { return viewer.clock.currentTime; }
 
