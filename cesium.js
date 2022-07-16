@@ -196,7 +196,6 @@ function addTile(quadtreeTile){
         positions[i] = getPosition(encoding, 3, projection, vertices, i);
       }
       const tileName = quadtreeTile._x +'_'+ quadtreeTile._y +'_'+ quadtreeTile._level;
-      console.log(tileName);
       createTerrain(positions, indices, tileName);
     }
   }
@@ -210,6 +209,8 @@ function removeTile(quadtreeTile){
     }
     // console.log('remove polygons');
     quadtreeTile.entities = undefined;
+    const tileName = quadtreeTile._x +'_'+ quadtreeTile._y +'_'+ quadtreeTile._level;
+    removeTerrain(tileName);
   }
 }
 
