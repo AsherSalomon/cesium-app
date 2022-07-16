@@ -46,40 +46,38 @@ function createObjects() {
 }
 
 export function createTerrain(positions, indices, tileName) {
-  if (terrainBodies[tileName] == undefined) {
-    const mesh = new Ammo.btTriangleMesh();
-    const vertices = new Array(positions.length);
-    for (let i = 0; i < positions.length; i++) {
-      vertices[i] = new Ammo.btVector3(positions[i].x, positions[i].y, positions[i].z);
-    }
-    const indicesLength = indices.length;
-    for (let i = 0; i < indicesLength; i += 3) {
-      mesh.addTriangle(
-        vertices[indices[i]],
-        vertices[indices[i + 1]],
-        vertices[indices[i + 2]]
-      );
-    }
-
-  	const transform = new Ammo.btTransform();
-  	transform.setIdentity();
-  	transform.setOrigin(new Ammo.btVector3());
-  	transform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
-  	const motionState = new Ammo.btDefaultMotionState(transform);
-
-    const shape = new Ammo.btBvhTriangleMeshShape(mesh, true);
-    const localInertia = new Ammo.btVector3(0, 0, 0);
-    const rbInfo = new Ammo.btRigidBodyConstructionInfo(0, motionState, shape, localInertia);
-    const terrainBody = new Ammo.btRigidBody(rbInfo);
-
-    terrainBodies[tileName] = terrainBody;
+  const mesh = new Ammo.btTriangleMesh();
+  const vertices = new Array(positions.length);
+  for (let i = 0; i < positions.length; i++) {
+    vertices[i] = new Ammo.btVector3(positions[i].x, positions[i].y, positions[i].z);
   }
-  physicsWorld.addRigidBody(terrainBodies[tileName]);
+  const indicesLength = indices.length;
+  for (let i = 0; i < indicesLength; i += 3) {
+    mesh.addTriangle(
+      vertices[indices[i]],
+      vertices[indices[i + 1]],
+      vertices[indices[i + 2]]
+    );
+  }
+
+	const transform = new Ammo.btTransform();
+	transform.setIdentity();
+	transform.setOrigin(new Ammo.btVector3());
+	transform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
+	const motionState = new Ammo.btDefaultMotionState(transform);
+
+  const shape = new Ammo.btBvhTriangleMeshShape(mesh, true);
+  const localInertia = new Ammo.btVector3(0, 0, 0);
+  const rbInfo = new Ammo.btRigidBodyConstructionInfo(0, motionState, shape, localInertia);
+  const terrainBody = new Ammo.btRigidBody(rbInfo);
+
+  terrainBodies[tileName] = terrainBody;
+  physicsWorld.addRigidBody(terrainBody);
 
 }
 export function removeTerrain(tileName) {
   physicsWorld.removeRigidBody(terrainBodies[tileName]);
-
+  delete terrainBodies[tileName];
 }
 
 // https://github.com/kripken/ammo.js/blob/main/examples/webgl_demo_vehicle/index.html
