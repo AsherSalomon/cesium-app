@@ -195,7 +195,9 @@ function createVehicle(pos, quat) {
 	function sync(dt) {
 
 		const speed = vehicle.getCurrentSpeedKmHour();
-    console.log(body.getLinearVelocity())
+
+    const bodyV = body.getLinearVelocity();
+    console.log(bodyV.x(), bodyV.y(), bodyV.z())
 
 		breakingForce = 0;
 		engineForce = 0;
