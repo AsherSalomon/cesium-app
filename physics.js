@@ -59,6 +59,11 @@ export function createTerrain(positions, indices, tileName) {
       vertices[indices[i + 2]]
     );
   }
+  // high poly count causes
+  // "Uncaught RuntimeError: abort(OOM). Build with -s ASSERTIONS=1 for more info."
+  // "at FB.addTriangle"
+  // https://forum.playcanvas.com/t/solved-ammo-script-error-abort-oom/13465
+  // try to lower polly count.
 
 	const transform = new Ammo.btTransform();
 	transform.setIdentity();
@@ -75,9 +80,11 @@ export function createTerrain(positions, indices, tileName) {
   physicsWorld.addRigidBody(terrainBody);
 
 }
+
 export function removeTerrain(tileName) {
   physicsWorld.removeRigidBody(terrainBodies[tileName]);
   delete terrainBodies[tileName];
+
 }
 
 // https://github.com/kripken/ammo.js/blob/main/examples/webgl_demo_vehicle/index.html
