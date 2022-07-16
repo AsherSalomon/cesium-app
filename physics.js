@@ -47,19 +47,19 @@ function createObjects() {
 }
 
 export function createTerrain(positions, indices, tileName) {
-  // const mesh = new Ammo.btTriangleMesh(true, true);
-  // const vertices = new Array(positions.length);
-  // for (let i = 0; i < positions.length; i++) {
-  //   vertices[i] = new Ammo.btVector3(, , );
-  // }
-  // for (let i = 0; i * 3 < indices.length; i++) {
-  //     mesh.addTriangle(
-  //         new Ammo.btVector3(vertices[indices[i * 3] * 3], vertices[indices[i * 3] * 3 + 1], vertices[indices[i * 3] * 3 + 2]),
-  //         new Ammo.btVector3(vertices[indices[i * 3 + 1] * 3], vertices[indices[i * 3 + 1] * 3 + 1], vertices[indices[i * 3 + 1] * 3 + 2]),
-  //         new Ammo.btVector3(vertices[indices[i * 3 + 2] * 3], vertices[indices[i * 3 + 2] * 3 + 1], vertices[indices[i * 3 + 2] * 3 + 2]),
-  //         false
-  //     );
-  // }
+  const mesh = new Ammo.btTriangleMesh();
+  const vertices = new Array(positions.length);
+  for (let i = 0; i < positions.length; i++) {
+    vertices[i] = new Ammo.btVector3(positions[i].x, positions[i].y, positions[i].z);
+  }
+  const indicesLength = indices.length;
+  for (let i = 0; i < indicesLength; i += 3) {
+    mesh.addTriangle(
+      vertices[indices[i]],
+      vertices[indices[i + 1]],
+      vertices[indices[i + 2]]
+    );
+  }
 
   // terrainBodies[tileName] = ;
 
