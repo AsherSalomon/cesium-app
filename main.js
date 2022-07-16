@@ -11,9 +11,9 @@ Ammo().then(function (AmmoLib) {
 
 function init() {
   cesium.init();
-	console.log('waiting...');
+	// console.log('waiting...');
 	setTimeout(function() {
-		console.log('physics.init');
+		// console.log('physics.init');
 	  physics.init(cesium.truckEntity);
 		cesium.getPhysicsFunctions(physics.createTerrain, physics.removeTerrain);
 		waitingForPhysicsInit = false;
@@ -27,7 +27,7 @@ function animate(timestamp) {
 
   cesium.update();
 	if (waitingForPhysicsInit == false) {
-  	// physics.update(elapsed);
+  	physics.update(elapsed);
 	}
 
   previousTimeStamp = timestamp;
