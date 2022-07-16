@@ -138,7 +138,7 @@ function createVehicle(pos, quat) {
 	const transform = new Ammo.btTransform();
 	transform.setIdentity();
 	// transform.setOrigin(new Ammo.btVector3(pos.x, pos.y, pos.z));
-	transform.setOrigin(new Ammo.btVector3(0, 0, 0));
+	transform.setOrigin(new Ammo.btVector3(0, 4, -20));
 	transform.setRotation(new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w));
 	const motionState = new Ammo.btDefaultMotionState(transform);
 	const localInertia = new Ammo.btVector3(0, 0, 0);
