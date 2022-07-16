@@ -35,9 +35,9 @@ export function init() {
 
   viewer.camera.flyTo({
     destination : Cesium.Cartesian3.fromDegrees(
-      initPosition[0] + 0.001,
+      initPosition[0] + 0.0005,
       initPosition[1],
-      initPosition[2] + 22
+      initPosition[2] + 11
     ),
     orientation : {
       heading : Cesium.Math.toRadians(270),
