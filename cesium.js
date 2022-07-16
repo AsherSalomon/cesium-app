@@ -52,6 +52,7 @@ let removeTerrain;
 export function getPhysicsFunctions(getCreateTerrain, getRemoveTerrain) {
   createTerrain = getCreateTerrain;
   removeTerrain = getRemoveTerrain;
+  
 }
 
 export function update() {
@@ -77,6 +78,7 @@ export function update() {
   });
   updateTileList(newTileList);
   tryToAddTiles();
+
 }
 
 function createModel(url, height) {
@@ -158,6 +160,7 @@ function tryToAddTiles() {
       addTile(tileList[i]);
     }
   }
+
 }
 
 function addTile(quadtreeTile){
@@ -209,6 +212,7 @@ function removeTile(quadtreeTile){
     const tileName = quadtreeTile._x +'_'+ quadtreeTile._y +'_'+ quadtreeTile._level;
     removeTerrain(tileName);
   }
+
 }
 
 function getPosition(encoding, mode, projection, vertices, index, result) {
@@ -230,6 +234,7 @@ function getPosition(encoding, mode, projection, vertices, index, result) {
   // }
 
   return position;
+
 }
 
 function addPoint(cartesian3) {
@@ -240,6 +245,7 @@ function addPoint(cartesian3) {
       color: Cesium.Color.WHITE,
     },
   });
+
 }
 
 function addPolygon( v0, v1, v2 ) {
@@ -253,4 +259,5 @@ function addPolygon( v0, v1, v2 ) {
       // outlineColor: Cesium.Color.BLACK,
     },
   });
+
 }
