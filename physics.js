@@ -4,6 +4,9 @@ let truckEntity;
 
 export function init(newTruck) {
   truckEntity = newTruck;
+
+  console.log(Ammo);
+
 }
 
 export function update() {
@@ -17,3 +20,5 @@ export function update() {
   position.z += forwardBackward;
   truckEntity.position = new Cesium.ConstantPositionProperty(position);
 }
+
+// https://stackoverflow.com/questions/59665854/ammo-js-custom-mesh-collision-with-sphere
