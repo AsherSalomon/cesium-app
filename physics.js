@@ -46,21 +46,21 @@ export function update(elapsed) {
   // const upDown = controls.down - controls.up;
   // const forwardBackward = controls.forward - controls.backward;
 
-  const position = truckEntity.position.getValue(truckEntity.now());
-  // position.x += leftRight;
-  // position.y += upDown;
-  // position.z += forwardBackward;
-  // position.x = ;
-  // position.y = ;
-  // position.z = ;
-  truckEntity.position = new Cesium.ConstantPositionProperty(position);
-
-  const quaternion = truckEntity.orientation.getValue(truckEntity.now());
-  // quaternion.x = ;
-  // quaternion.y = ;
-  // quaternion.z = ;
-  // quaternion.w = ;
-  truckEntity.orientation = new Cesium.ConstantPositionProperty(quaternion);
+  // const position = truckEntity.position.getValue(truckEntity.now());
+  // // position.x += leftRight;
+  // // position.y += upDown;
+  // // position.z += forwardBackward;
+  // // position.x = ;
+  // // position.y = ;
+  // // position.z = ;
+  // truckEntity.position = new Cesium.ConstantPositionProperty(position);
+  //
+  // const quaternion = truckEntity.orientation.getValue(truckEntity.now());
+  // // quaternion.x = ;
+  // // quaternion.y = ;
+  // // quaternion.z = ;
+  // // quaternion.w = ;
+  // truckEntity.orientation = new Cesium.ConstantPositionProperty(quaternion);
 
 	// physicsWorld.setGravity( new Ammo.btVector3( 0, -9.82, 0 ) );
 
@@ -249,6 +249,18 @@ function createVehicle(pos, quat) {
 		q = tm.getRotation();
 		// chassisMesh.position.set(p.x(), p.y(), p.z());
 		// chassisMesh.quaternion.set(q.x(), q.y(), q.z(), q.w());
+    const position = truckEntity.position.getValue(truckEntity.now());
+    position.x = p.x();
+    position.y = p.y();
+    position.z = p.z();
+    truckEntity.position = new Cesium.ConstantPositionProperty(position);
+
+    const quaternion = truckEntity.orientation.getValue(truckEntity.now());
+    quaternion.x = q.x();
+    quaternion.y = q.y();
+    quaternion.z = q.z();
+    quaternion.w = q.w();
+    truckEntity.orientation = new Cesium.ConstantPositionProperty(quaternion);
   }
 
 	syncList.push(sync);
