@@ -186,9 +186,6 @@ function addTile(quadtreeTile){
       //   // quadtreeTile.entities.push(addPoint(v2));
       //   // quadtreeTile.entities.push(addPolygon(v0, v1, v2));
       // }
-      // console.log('add polygons');
-      // console.log(mesh.vertices); // Float32Array
-      // console.log(mesh.indices); // Uint16Array
 
       const verticesLength = vertices.length;
       const positions = new Array(verticesLength);
