@@ -24,12 +24,12 @@ let start, previousTimeStamp;
 function animate(timestamp) {
   if (start === undefined) {start = timestamp;}
 	const delta = (timestamp - previousTimeStamp) / 1000;
+  previousTimeStamp = timestamp;
 
   cesium.update();
 	if (waitingForPhysicsInit == false) {
-  	physics.update(delta);
+  	// physics.update(delta);
 	}
 
-  previousTimeStamp = timestamp;
   window.requestAnimationFrame(animate);
 }
