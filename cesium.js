@@ -47,6 +47,13 @@ export function init() {
 
 }
 
+let createTerrain;
+let removeTerrain;
+export function getPhysicsFunctions(getCreateTerrain, getRemoveTerrain) {
+  createTerrain = getCreateTerrain;
+  removeTerrain = getRemoveTerrain;
+}
+
 export function update() {
   const provider = viewer.scene.globe.terrainProvider;
   if (provider.ready) {
@@ -188,7 +195,8 @@ function addTile(quadtreeTile){
       for (let i = 0; i < verticesLength; i ++) {
         positions[i] = getPosition(encoding, 3, projection, vertices, i);
       }
-      // doSomthingWith(positions, indices); // to do
+      const tileName = 'muck';
+      createTerrain(positions, indices, tileName);
     }
   }
 
