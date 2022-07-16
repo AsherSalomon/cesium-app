@@ -191,6 +191,7 @@ function createVehicle(pos, quat) {
 		engineForce = 0;
 
 		if (actions.acceleration) {
+      console.log('wee!');
 			if (speed < -1)
 				breakingForce = maxBreakingForce;
 			else engineForce = maxEngineForce;
