@@ -190,6 +190,8 @@ function createVehicle(pos, quat) {
 	// Sync keybord actions and physics and graphics
 	function sync(dt) {
 
+		const speed = vehicle.getCurrentSpeedKmHour();
+
 		breakingForce = 0;
 		engineForce = 0;
 
