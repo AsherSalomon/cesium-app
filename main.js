@@ -9,7 +9,9 @@ Ammo().then(function (AmmoLib) {
 
 function init() {
   cesium.init();
+	console.log('waiting...');
 	setTimeout(function() {
+		console.log('physics.init');
 	  physics.init(cesium.truckEntity);
 		cesium.getPhysicsFunctions(physics.createTerrain, physics.removeTerrain);
 	}, 10 * 1000);
