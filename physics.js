@@ -39,6 +39,9 @@ export function init(newTruck) {
 
   createObjects();
 
+	window.addEventListener( 'keydown', keydown);
+	window.addEventListener( 'keyup', keyup);
+
 }
 
 export function update(elapsed) {
