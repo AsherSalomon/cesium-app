@@ -195,6 +195,7 @@ function addTile(quadtreeTile){
       for (let i = 0; i < verticesLength; i ++) {
         positions[i] = getPosition(encoding, 3, projection, vertices, i);
       }
+      console.log(positions[0]);
       const tileName = quadtreeTile._x +'_'+ quadtreeTile._y +'_'+ quadtreeTile._level;
       createTerrain(positions, indices, tileName);
     }
