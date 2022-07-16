@@ -1,6 +1,8 @@
 import * as cesium from './cesium.js';
 import * as physics from './physics.js';
 
+let waitingForPhysicsInit = true;
+
 Ammo().then(function (AmmoLib) {
 	Ammo = AmmoLib;
 	init();
@@ -14,6 +16,7 @@ function init() {
 		console.log('physics.init');
 	  physics.init(cesium.truckEntity);
 		cesium.getPhysicsFunctions(physics.createTerrain, physics.removeTerrain);
+		waitingForPhysicsInit = false;
 	}, 10 * 1000);
 }
 
@@ -23,7 +26,9 @@ function animate(timestamp) {
   const elapsed = timestamp - start;
 
   cesium.update();
-  physics.update(elapsed);
+	if (waitingForPhysicsInit == false) {
+  	physics.update(elapsed);
+	}
 
   previousTimeStamp = timestamp;
   window.requestAnimationFrame(animate);
