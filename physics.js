@@ -55,12 +55,12 @@ export function update(elapsed) {
   // position.z = ;
   truckEntity.position = new Cesium.ConstantPositionProperty(position);
 
-  // const quaternion = truckEntity.orientation.getValue(truckEntity.now());
-  // // quaternion.x = ;
-  // // quaternion.y = ;
-  // // quaternion.z = ;
-  // // quaternion.w = ;
-  // truckEntity.orientation = new Cesium.ConstantPositionProperty(quaternion);
+  const quaternion = truckEntity.orientation.getValue(truckEntity.now());
+  // quaternion.x = ;
+  // quaternion.y = ;
+  // quaternion.z = ;
+  // quaternion.w = ;
+  truckEntity.orientation = new Cesium.ConstantPositionProperty(quaternion);
 
 	// physicsWorld.setGravity( new Ammo.btVector3( 0, -9.82, 0 ) );
 
