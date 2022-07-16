@@ -41,5 +41,13 @@ export function update(elapsed) {
 // https://stackoverflow.com/questions/59665854/ammo-js-custom-mesh-collision-with-sphere
 
 function createObjects() {
+  const mesh = new Ammo.btTriangleMesh(true, true);
+
+}
+
+export function createTerrain(positions, indices, tileName) {
+
+}
+export function removeTerrain(tileName) {
 
 }
