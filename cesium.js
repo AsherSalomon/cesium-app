@@ -41,7 +41,7 @@ export function init() {
 
   truckEntity = createModel(
     "1984_Ford_F350.glb",
-    1916.7 - 29
+    1916.7 - 28
   );
   truckEntity.now = function() { return viewer.clock.currentTime; }
 
@@ -52,7 +52,7 @@ let removeTerrain;
 export function getPhysicsFunctions(getCreateTerrain, getRemoveTerrain) {
   createTerrain = getCreateTerrain;
   removeTerrain = getRemoveTerrain;
-  
+
 }
 
 export function update() {
