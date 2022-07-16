@@ -5,7 +5,7 @@ export let truckEntity;
 let selectedTile = {cartesian2: {x: 0, y: 0}, level: 0}
 const tileList = [];
 
-let initPosition = [-71.303343, 44.269824, 1916.7 - 32]
+let initPosition = [-71.303343, 44.269824, 1916.7 - 35]
 
 export function init() {
   Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyZmZjMzQzNi01MGI3LTRiY2ItODE3ZC00OGM3ZjBkZjQxNzUiLCJpZCI6MTAwNDY2LCJpYXQiOjE2NTcyNDAzODl9.ij6tW00jwNgBeDuzMgzMRzS82kQLKucEyLgPhQQs3a4';
@@ -35,9 +35,9 @@ export function init() {
 
   viewer.camera.flyTo({
     destination : Cesium.Cartesian3.fromDegrees(
-      initPosition[0] + 0.003,
+      initPosition[0] + 0.001,
       initPosition[1],
-      initPosition[2] + 65
+      initPosition[2] + 20
     ),
     orientation : {
       heading : Cesium.Math.toRadians(270),
