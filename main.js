@@ -23,7 +23,7 @@ function init() {
 let start, previousTimeStamp;
 function animate(timestamp) {
   if (start === undefined) {start = timestamp;}
-	const delta = timestamp - previousTimeStamp;
+	const delta = (timestamp - previousTimeStamp) / 1000;
 
   cesium.update();
 	if (waitingForPhysicsInit == false) {
