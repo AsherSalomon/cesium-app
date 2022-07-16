@@ -1,6 +1,9 @@
 import * as controls from './controls.js';
 
 let truckEntity;
+const terrainBodies = {};
+
+const ZERO_QUATERNION = new THREE.Quaternion(0, 0, 0, 1);
 
 // Physics variables
 let collisionConfiguration;
@@ -8,8 +11,6 @@ let dispatcher;
 let broadphase;
 let solver;
 let physicsWorld;
-
-const terrainBodies = {};
 
 export function init(newTruck) {
   truckEntity = newTruck;
@@ -60,7 +61,22 @@ export function createTerrain(positions, indices, tileName) {
       vertices[indices[i + 2]]
     );
   }
+
+	const transform = new Ammo.btTransform();
+	transform.setIdentity();
+	transform.setOrigin(new Ammo.btVector3());
+	transform.setRotation(new Ammo.btQuaternion(
+    ZERO_QUATERNION.x,
+    ZERO_QUATERNION.y,
+    ZERO_QUATERNION.z,
+    ZERO_QUATERNION.w
+  ));
+	const motionState = new Ammo.btDefaultMotionState(transform);
+
   const shape = new Ammo.btBvhTriangleMeshShape(mesh, true);
+  const localInertia = new Ammo.btVector3(0, 0, 0);
+  const rbInfo = new Ammo.btRigidBodyConstructionInfo(0, motionState, shape, localInertia);
+  const object = new Ammo.btRigidBody(rbInfo);
 
   // terrainBodies[tileName] = ;
 
