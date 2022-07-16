@@ -10,6 +10,7 @@ Ammo().then(function (AmmoLib) {
 function init() {
   cesium.init();
   physics.init(cesium.truckEntity);
+	cesium.getPhysicsFunctions(physics.createTerrain, physics.removeTerrain);
 }
 
 let start, previousTimeStamp;
