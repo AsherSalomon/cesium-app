@@ -3,8 +3,6 @@ import * as controls from './controls.js';
 let truckEntity;
 const terrainBodies = {};
 
-const ZERO_QUATERNION = new THREE.Quaternion(0, 0, 0, 1);
-
 // Physics variables
 let collisionConfiguration;
 let dispatcher;
@@ -65,12 +63,7 @@ export function createTerrain(positions, indices, tileName) {
 	const transform = new Ammo.btTransform();
 	transform.setIdentity();
 	transform.setOrigin(new Ammo.btVector3());
-	transform.setRotation(new Ammo.btQuaternion(
-    ZERO_QUATERNION.x,
-    ZERO_QUATERNION.y,
-    ZERO_QUATERNION.z,
-    ZERO_QUATERNION.w
-  ));
+	transform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
 	const motionState = new Ammo.btDefaultMotionState(transform);
 
   const shape = new Ammo.btBvhTriangleMeshShape(mesh, true);
