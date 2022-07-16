@@ -92,7 +92,7 @@ function createModel(url) {
     initPosition[1],
     initPosition[2]
   );
-  const heading = Cesium.Math.toRadians(55);
+  const heading = Cesium.Math.toRadians(53);
   const pitch = 0;
   const roll = 0;
   const hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll);
