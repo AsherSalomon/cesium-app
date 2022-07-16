@@ -60,6 +60,7 @@ export function createTerrain(positions, indices, tileName) {
       vertices[indices[i + 2]]
     );
   }
+  const shape = new Ammo.btBvhTriangleMeshShape(mesh);
 
   // terrainBodies[tileName] = ;
 
