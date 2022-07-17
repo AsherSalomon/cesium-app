@@ -28,7 +28,7 @@ function animate(timestamp) {
 
   cesium.update();
 	if (waitingForPhysicsInit == false) {
-  	// physics.update(delta);
+  	physics.update(delta);
 	}
 
   window.requestAnimationFrame(animate);
