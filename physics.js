@@ -186,7 +186,7 @@ function createVehicle(pos, quat) {
 	const tuning = new Ammo.btVehicleTuning();
 	const rayCaster = new Ammo.btDefaultVehicleRaycaster(physicsWorld);
 	const vehicle = new Ammo.btRaycastVehicle(tuning, body, rayCaster);
-	vehicle.setCoordinateSystem(2, 0, 1);
+	vehicle.setCoordinateSystem(1, 2, 0);
 	physicsWorld.addAction(vehicle);
 
 	// Wheels
