@@ -306,7 +306,7 @@ function createVehicle(pos, quat) {
     // quaternion.y = q.y();
     // quaternion.z = q.z();
     // quaternion.w = q.w();
-    const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
+    const quaternion = new Cesium.Quaternion(-q.x(), -q.y(), -q.z(), q.w());
     truckEntity.orientation = new Cesium.ConstantPositionProperty(quaternion);
   }
 
