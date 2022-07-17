@@ -127,7 +127,8 @@ function getIdentityQuaternionAtLatLon() {
 function createObjects() {
   const position = truckEntity.position.getValue(truckEntity.now());
   const quaternion = truckEntity.orientation.getValue(truckEntity.now());
-	createVehicle(position, Cesium.Quaternion.conjugate(quaternion));
+  console.log(Cesium.Quaternion.conjugate(quaternion));
+	createVehicle(position, quaternion);
 
 }
 
@@ -306,9 +307,8 @@ function createVehicle(pos, quat) {
     // quaternion.z = q.z();
     // quaternion.w = q.w();
     const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
-    truckEntity.orientation = new Cesium.ConstantPositionProperty(
-      Cesium.Quaternion.conjugate(quaternion)
-    );
+    // console.log(Cesium.Quaternion.conjugate(quaternion));
+    truckEntity.orientation = new Cesium.ConstantPositionProperty(quaternion);
   }
 
 	syncList.push(sync);
