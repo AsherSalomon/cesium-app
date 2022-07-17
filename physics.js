@@ -105,6 +105,24 @@ function keydown(e) {
   // }
 }
 
+function getIdentityQuaternionAtLatLon() {
+  let initPosition = [-71.303343, 44.269824, 1916.7 - 34.9];
+  const position = Cesium.Cartesian3.fromDegrees(
+    initPosition[0],
+    initPosition[1],
+    initPosition[2]
+  );
+  const heading = Cesium.Math.toRadians(54);
+  const pitch = 0;
+  const roll = 0;
+  const hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll);
+  const orientation = Cesium.Transforms.headingPitchRollQuaternion(
+    position,
+    hpr
+  );
+  return null;
+}
+
 function createObjects() {
   const position = truckEntity.position.getValue(truckEntity.now());
   // const quaternion = truckEntity.orientation.getValue(truckEntity.now());
