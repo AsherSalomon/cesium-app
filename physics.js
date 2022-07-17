@@ -280,8 +280,9 @@ function createVehicle(pos, quat) {
     // quaternion.z = q.z();
     // quaternion.w = q.w();
     const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
-    truckEntity.orientation = new Cesium.ConstantPositionProperty(quaternion);
-    console.log(Cesium.Quaternion.magnitude(quaternion));
+    truckEntity.orientation = new Cesium.ConstantPositionProperty(
+      Cesium.Quaternion.inverse(quaternion)
+    );
   }
 
 	syncList.push(sync);
