@@ -1,6 +1,6 @@
 
 let viewer;
-export let truckEntities;
+export const truckEntities = [];
 
 let selectedTile = {cartesian2: {x: 0, y: 0}, level: 0}
 const tileList = [];
@@ -44,7 +44,7 @@ export function init() {
       pitch : Cesium.Math.toRadians(-15),
     }
   });
-
+  
   truckEntities[0] = createModel('1984_Ford_F350.glb');
   for (let i = 1; i <= 4; i++) {
     truckEntities[i] = viewer.entities.add({model: {uri: '1984_Ford_F350_wheel.glb'}});
