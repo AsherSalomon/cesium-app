@@ -66,11 +66,14 @@ export function update(delta) {
   // truckEntity.orientation = new Cesium.ConstantPositionProperty(quaternion);
 
 	// physicsWorld.setGravity( new Ammo.btVector3( 0, -9.82, 0 ) );
-  const position = truckEntity.position.getValue(truckEntity.now());
-  const normal = new Ammo.btVector3(position.x, position.y, position.z);
-  normal.normalize();
-  normal.op_mul(-9.82);
-	physicsWorld.setGravity( normal );
+
+  // const position = truckEntity.position.getValue(truckEntity.now());
+  // const normal = new Ammo.btVector3(position.x, position.y, position.z);
+  // normal.normalize();
+  // normal.op_mul(-9.82);
+	// physicsWorld.setGravity( normal );
+
+	physicsWorld.setGravity( new Ammo.btVector3(0, 0, 0) );
 
 	for (let i = 0; i < syncList.length; i++) { syncList[i](delta); }
 	physicsWorld.stepSimulation( delta, 10 );
