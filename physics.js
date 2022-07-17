@@ -127,7 +127,7 @@ function getIdentityQuaternionAtLatLon() {
 function createObjects() {
   const position = truckEntity.position.getValue(truckEntity.now());
   const quaternion = truckEntity.orientation.getValue(truckEntity.now());
-  console.log(quaternion.conjugate());
+  // console.log(quaternion.conjugate());
 	createVehicle(position, quaternion);
 
 }
