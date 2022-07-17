@@ -49,7 +49,7 @@ export function update(delta) {
   // const upDown = controls.down - controls.up;
   // const forwardBackward = controls.forward - controls.backward;
 
-  const position = truckEntity.position.getValue(truckEntity.now());
+  // const position = truckEntity.position.getValue(truckEntity.now());
   // // position.x += leftRight;
   // // position.y += upDown;
   // // position.z += forwardBackward;
@@ -66,6 +66,7 @@ export function update(delta) {
   // truckEntity.orientation = new Cesium.ConstantPositionProperty(quaternion);
 
 	// physicsWorld.setGravity( new Ammo.btVector3( 0, -9.82, 0 ) );
+  const position = truckEntity.position.getValue(truckEntity.now());
   const normal = new Ammo.btVector3(position.x, position.y, position.z);
   normal.normalize();
   normal *= -9.82;
