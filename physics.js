@@ -49,7 +49,7 @@ export function update(delta) {
   // const upDown = controls.down - controls.up;
   // const forwardBackward = controls.forward - controls.backward;
 
-  // const position = truckEntity.position.getValue(truckEntity.now());
+  const position = truckEntity.position.getValue(truckEntity.now());
   // // position.x += leftRight;
   // // position.y += upDown;
   // // position.z += forwardBackward;
@@ -66,6 +66,10 @@ export function update(delta) {
   // truckEntity.orientation = new Cesium.ConstantPositionProperty(quaternion);
 
 	// physicsWorld.setGravity( new Ammo.btVector3( 0, -9.82, 0 ) );
+  const normal = new Ammo.btVector3(position.x, position.y, position.z);
+  normal.normalize();
+  normal *= -9.82;
+	physicsWorld.setGravity( normal );
 
 	for (let i = 0; i < syncList.length; i++) { syncList[i](delta); }
 	physicsWorld.stepSimulation( delta, 10 );
@@ -196,8 +200,8 @@ function createVehicle(pos, quat) {
 
 		const speed = vehicle.getCurrentSpeedKmHour();
 
-    const bodyV = body.getLinearVelocity();
-    console.log(bodyV.x(), bodyV.y(), bodyV.z())
+    // const bodyV = body.getLinearVelocity();
+    // console.log(bodyV.x(), bodyV.y(), bodyV.z());
 
 		breakingForce = 0;
 		engineForce = 0;
