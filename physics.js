@@ -100,9 +100,9 @@ function keydown(e) {
 		e.stopPropagation();
 		return false;
 	}
-  // if (e.code == 'KeyE') {
-  //   update(0.16);
-  // }
+  if (e.code == 'KeyE') {
+    getIdentityQuaternionAtLatLon();
+  }
 }
 
 function getIdentityQuaternionAtLatLon() {
@@ -120,7 +120,8 @@ function getIdentityQuaternionAtLatLon() {
     position,
     hpr
   );
-  return null;
+  console.log(orientation);
+  // return ;
 }
 
 function createObjects() {
