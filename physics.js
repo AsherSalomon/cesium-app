@@ -69,8 +69,8 @@ export function update(delta) {
   const position = truckEntity.position.getValue(truckEntity.now());
   const normal = new Ammo.btVector3(position.x, position.y, position.z);
   normal.normalize();
-  normal *= -9.82;
-	physicsWorld.setGravity( normal );
+  // normal *= -9.82;
+	physicsWorld.setGravity( normal * -9.82 );
 
 	for (let i = 0; i < syncList.length; i++) { syncList[i](delta); }
 	physicsWorld.stepSimulation( delta, 10 );
