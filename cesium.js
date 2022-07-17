@@ -44,7 +44,7 @@ export function init() {
       pitch : Cesium.Math.toRadians(-15),
     }
   });
-  
+
   truckEntities[0] = createModel('1984_Ford_F350.glb');
   for (let i = 1; i <= 4; i++) {
     truckEntities[i] = viewer.entities.add({model: {uri: '1984_Ford_F350_wheel.glb'}});
@@ -64,7 +64,7 @@ export function getPhysicsFunctions(getCreateTerrain, getRemoveTerrain) {
 export function update() {
   const provider = viewer.scene.globe.terrainProvider;
   if (provider.ready) {
-    const position = truckEntity.position.getValue(truckEntity.now());
+    const position = truckEntities[0].position.getValue(truckEntities.now());
     const ellipsoid = provider.tilingScheme.projection.ellipsoid;
     const cartographic = ellipsoid.cartesianToCartographic(position);
     const level = provider.availability.computeMaximumLevelAtPosition(cartographic);
