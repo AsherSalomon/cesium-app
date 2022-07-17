@@ -3,7 +3,7 @@
 
 // import * as controls from './controls.js';
 
-let truckEntity;
+let truckEntities;
 const terrainBodies = {};
 
 // - Global variables -
@@ -30,7 +30,7 @@ const keysActions = {
 };
 
 export function init(newTruck) {
-  truckEntity = newTruck;
+  truckEntities = newTruck;
 
 	// Physics configuration
 	collisionConfiguration = new Ammo.btDefaultCollisionConfiguration();
@@ -51,26 +51,26 @@ export function update(delta) {
   // const upDown = controls.down - controls.up;
   // const forwardBackward = controls.forward - controls.backward;
 
-  // const position = truckEntity.position.getValue(truckEntity.now());
+  // const position = truckEntities[0].position.getValue(truckEntities.now());
   // // position.x += leftRight;
   // // position.y += upDown;
   // // position.z += forwardBackward;
   // // position.x = ;
   // // position.y = ;
   // // position.z = ;
-  // truckEntity.position = new Cesium.ConstantPositionProperty(position);
+  // truckEntities[0].position = new Cesium.ConstantPositionProperty(position);
   //
-  // const quaternion = truckEntity.orientation.getValue(truckEntity.now());
+  // const quaternion = truckEntities[0].orientation.getValue(truckEntities.now());
   // // quaternion.x = ;
   // // quaternion.y = ;
   // // quaternion.z = ;
   // // quaternion.w = ;
-  // truckEntity.orientation = new Cesium.ConstantPositionProperty(quaternion);
+  // truckEntities[0].orientation = new Cesium.ConstantPositionProperty(quaternion);
 
 	// physicsWorld.setGravity( new Ammo.btVector3( 0, -9.82, 0 ) );
 
   if (gravityOn) {
-    const position = truckEntity.position.getValue(truckEntity.now());
+    const position = truckEntities[0].position.getValue(truckEntities.now());
     const normal = new Ammo.btVector3(position.x, position.y, position.z);
     normal.normalize();
     normal.op_mul(-9.82);
@@ -125,8 +125,8 @@ function getIdentityQuaternionAtLatLon() {
 }
 
 function createObjects() {
-  const position = truckEntity.position.getValue(truckEntity.now());
-  const quaternion = truckEntity.orientation.getValue(truckEntity.now());
+  const position = truckEntities[0].position.getValue(truckEntities.now());
+  const quaternion = truckEntities[0].orientation.getValue(truckEntities.now());
   // console.log(quaternion.conjugate());
 	createVehicle(position, quaternion);
 
@@ -286,6 +286,10 @@ function createVehicle(pos, quat) {
 			q = tm.getRotation();
 			// wheelMeshes[i].position.set(p.x(), p.y(), p.z());
 			// wheelMeshes[i].quaternion.set(q.x(), q.y(), q.z(), q.w());
+      const position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
+      truckEntities[i + 1].position = new Cesium.ConstantPositionProperty(position);
+      const quaternion = new Cesium.Quaternion(-q.x(), -q.y(), -q.z(), q.w());
+      truckEntities[i + 1].orientation = new Cesium.ConstantPositionProperty(quaternion);
 		}
 
 		tm = vehicle.getChassisWorldTransform();
@@ -294,20 +298,20 @@ function createVehicle(pos, quat) {
 		// chassisMesh.position.set(p.x(), p.y(), p.z());
 		// chassisMesh.quaternion.set(q.x(), q.y(), q.z(), q.w());
 
-    // const position = truckEntity.position.getValue(truckEntity.now());
+    // const position = truckEntities[0].position.getValue(truckEntities.now());
     // position.x = p.x();
     // position.y = p.y();
     // position.z = p.z();
     const position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
-    truckEntity.position = new Cesium.ConstantPositionProperty(position);
+    truckEntities[0].position = new Cesium.ConstantPositionProperty(position);
 
-    // const quaternion = truckEntity.orientation.getValue(truckEntity.now());
+    // const quaternion = truckEntities[0].orientation.getValue(truckEntities.now());
     // quaternion.x = q.x();
     // quaternion.y = q.y();
     // quaternion.z = q.z();
     // quaternion.w = q.w();
     const quaternion = new Cesium.Quaternion(-q.x(), -q.y(), -q.z(), q.w());
-    truckEntity.orientation = new Cesium.ConstantPositionProperty(quaternion);
+    truckEntities[0].orientation = new Cesium.ConstantPositionProperty(quaternion);
   }
 
 	syncList.push(sync);
