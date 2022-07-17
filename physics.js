@@ -277,15 +277,13 @@ function createVehicle(pos, quat) {
 		vehicle.setSteeringValue(vehicleSteering, FRONT_LEFT);
 		vehicle.setSteeringValue(vehicleSteering, FRONT_RIGHT);
 
-		let tm, p, q, r, i;
-    let row0, row1, row2;
+		let tm, p, q, i;
 		const n = vehicle.getNumWheels();
 		for (i = 0; i < n; i++) {
 			vehicle.updateWheelTransform(i, true);
 			tm = vehicle.getWheelTransformWS(i);
 			p = tm.getOrigin();
 			q = tm.getRotation();
-      r = new Ammo.btMatrix3x3(q);
 			// wheelMeshes[i].position.set(p.x(), p.y(), p.z());
 			// wheelMeshes[i].quaternion.set(q.x(), q.y(), q.z(), q.w());
 
@@ -299,23 +297,13 @@ function createVehicle(pos, quat) {
 		tm = vehicle.getChassisWorldTransform();
 		p = tm.getOrigin();
 		q = tm.getRotation();
-    r = new Ammo.btMatrix3x3(q);
 		// chassisMesh.position.set(p.x(), p.y(), p.z());
 		// chassisMesh.quaternion.set(q.x(), q.y(), q.z(), q.w());
 
     const position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
     truckEntities[0].position = new Cesium.ConstantPositionProperty(position);
 
-    row0 = r.getRow(0);
-    row1 = r.getRow(1);
-    row2 = r.getRow(2);
-    const matrix = new Cesium.Matrix3(
-      row0.x(), row0.y(), row0.z(),
-      row1.x(), row1.y(), row1.z(),
-      row2.x(), row2.y(), row2.z()
-    );
-    // const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
-    const quaternion = Cesium.Quaternion.fromRotationMatrix(matrix);
+    const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
     truckEntities[0].orientation = new Cesium.ConstantPositionProperty(quaternion);
 
     // Cesium.Matrix3.fromQuaternion
