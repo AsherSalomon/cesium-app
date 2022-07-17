@@ -266,17 +266,20 @@ function createVehicle(pos, quat) {
 		q = tm.getRotation();
 		// chassisMesh.position.set(p.x(), p.y(), p.z());
 		// chassisMesh.quaternion.set(q.x(), q.y(), q.z(), q.w());
-    const position = truckEntity.position.getValue(truckEntity.now());
-    position.x = p.x();
-    position.y = p.y();
-    position.z = p.z();
+
+    // const position = truckEntity.position.getValue(truckEntity.now());
+    // position.x = p.x();
+    // position.y = p.y();
+    // position.z = p.z();
+    const position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
     truckEntity.position = new Cesium.ConstantPositionProperty(position);
 
-    const quaternion = truckEntity.orientation.getValue(truckEntity.now());
-    quaternion.x = q.x();
-    quaternion.y = q.y();
-    quaternion.z = q.z();
-    quaternion.w = q.w();
+    // const quaternion = truckEntity.orientation.getValue(truckEntity.now());
+    // quaternion.x = q.x();
+    // quaternion.y = q.y();
+    // quaternion.z = q.z();
+    // quaternion.w = q.w();
+    const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
     truckEntity.orientation = new Cesium.ConstantPositionProperty(quaternion);
   }
 
