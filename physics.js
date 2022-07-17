@@ -7,7 +7,9 @@ let truckEntity;
 const terrainBodies = {};
 
 // - Global variables -
-var DISABLE_DEACTIVATION = 4;
+const DISABLE_DEACTIVATION = 4;
+
+let gravityOn = false;
 
 // Physics variables
 let collisionConfiguration;
@@ -19,8 +21,8 @@ let physicsWorld;
 const syncList = [];
 
 // Keybord actions
-var actions = {};
-var keysActions = {
+const actions = {};
+const keysActions = {
 	"KeyW":'acceleration',
 	"KeyS":'braking',
 	"KeyA":'left',
@@ -67,13 +69,15 @@ export function update(delta) {
 
 	// physicsWorld.setGravity( new Ammo.btVector3( 0, -9.82, 0 ) );
 
-  // const position = truckEntity.position.getValue(truckEntity.now());
-  // const normal = new Ammo.btVector3(position.x, position.y, position.z);
-  // normal.normalize();
-  // normal.op_mul(-9.82);
-	// physicsWorld.setGravity( normal );
-
-	physicsWorld.setGravity( new Ammo.btVector3(0, 0, 0) );
+  if (gravityOn) {
+    const position = truckEntity.position.getValue(truckEntity.now());
+    const normal = new Ammo.btVector3(position.x, position.y, position.z);
+    normal.normalize();
+    normal.op_mul(-9.82);
+    physicsWorld.setGravity( normal );
+  } else {
+  	physicsWorld.setGravity( new Ammo.btVector3(0, 0, 0) );
+  }
 
 	for (let i = 0; i < syncList.length; i++) { syncList[i](delta); }
 	physicsWorld.stepSimulation( delta, 10 );
@@ -291,6 +295,9 @@ function createVehicle(pos, quat) {
 }
 
 export function createTerrain(positions, indices, tileName) {
+  console.log('hi');
+  // gravityOn = true;
+
   // https://stackoverflow.com/questions/59665854/ammo-js-custom-mesh-collision-with-sphere
   const mesh = new Ammo.btTriangleMesh();
   const vertices = new Array(positions.length);
