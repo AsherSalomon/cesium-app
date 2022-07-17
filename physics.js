@@ -69,8 +69,8 @@ export function update(delta) {
   const position = truckEntity.position.getValue(truckEntity.now());
   const normal = new Ammo.btVector3(position.x, position.y, position.z);
   normal.normalize();
-  // normal *= -9.82;
-	physicsWorld.setGravity( normal * -9.82 );
+  normal.op_mul(-9.82);
+	physicsWorld.setGravity( normal );
 
 	for (let i = 0; i < syncList.length; i++) { syncList[i](delta); }
 	physicsWorld.stepSimulation( delta, 10 );
@@ -307,7 +307,7 @@ export function createTerrain(positions, indices, tileName) {
 
 	const transform = new Ammo.btTransform();
 	transform.setIdentity();
-	transform.setOrigin(new Ammo.btVector3());
+	transform.setOrigin(new Ammo.btVector3(0, 0, 0));
 	transform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
 	const motionState = new Ammo.btDefaultMotionState(transform);
 
