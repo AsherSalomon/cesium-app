@@ -295,8 +295,7 @@ function createVehicle(pos, quat) {
 }
 
 export function createTerrain(positions, indices, tileName) {
-  // console.log('hi');
-  gravityOn = true;
+  // gravityOn = true;
 
   // https://stackoverflow.com/questions/59665854/ammo-js-custom-mesh-collision-with-sphere
   const mesh = new Ammo.btTriangleMesh();
