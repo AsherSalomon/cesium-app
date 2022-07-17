@@ -170,7 +170,7 @@ function createVehicle(pos, quat) {
 	const transform = new Ammo.btTransform();
 	transform.setIdentity();
 	transform.setOrigin(new Ammo.btVector3(pos.x, pos.y, pos.z));
-	transform.setRotation(new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w));
+	transform.setRotation(new Ammo.btQuaternion(-quat.x, -quat.y, -quat.z, quat.w));
 	const motionState = new Ammo.btDefaultMotionState(transform);
 	const localInertia = new Ammo.btVector3(0, 0, 0);
 	geometry.calculateLocalInertia(massVehicle, localInertia);
