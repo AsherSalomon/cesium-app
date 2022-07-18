@@ -308,7 +308,7 @@ function createVehicle(pos, quat) {
 		// chassisMesh.quaternion.set(q.x(), q.y(), q.z(), q.w());
 
     const position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
-    Cesium.Cartesian3.add(position, originOffset, originOffset);
+    Cesium.Cartesian3.add(originOffset, position, position);
     truckEntities[0].position = new Cesium.ConstantPositionProperty(position);
 
     const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
