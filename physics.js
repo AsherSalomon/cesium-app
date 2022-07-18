@@ -171,7 +171,8 @@ function createVehicle(pos, quat) {
   const angle = Cesium.Quaternion.computeAngle(quat);
   const axis = Cesium.Quaternion.computeAxis(quat);
   const btAxis = new Ammo.btVector3(axis.x, axis.y, axis.z);
-  const initQuaternion = new Ammo.btQuaternion(btAxis, angle);
+  const initQuaternion = new Ammo.btQuaternion(0, 0, 0, 1);
+  initQuaternion.setRotation(btAxis, angle);
 
 	const transform = new Ammo.btTransform();
 	transform.setIdentity();
