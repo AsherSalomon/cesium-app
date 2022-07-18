@@ -167,17 +167,10 @@ function createVehicle(pos, quat) {
 	// Chassis
 	const geometry = new Ammo.btBoxShape(new Ammo.btVector3(chassisWidth * .5, chassisHeight * .5, chassisLength * .5));
 
-  // const angle = Cesium.Quaternion.computeAngle(quat);
-  // const axis = Cesium.Quaternion.computeAxis(quat, new Cesium.Cartesian3());
-  // const btAxis = new Ammo.btVector3(axis.x, axis.y, axis.z);
-  // const initQuaternion = new Ammo.btQuaternion(0, 0, 0, 1);
-  // initQuaternion.setRotation(btAxis, angle);
-
 	const transform = new Ammo.btTransform();
 	transform.setIdentity();
 	transform.setOrigin(new Ammo.btVector3(pos.x, pos.y, pos.z));
 	transform.setRotation(new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w));
-	// transform.setRotation(initQuaternion);
 
 	const motionState = new Ammo.btDefaultMotionState(transform);
 	const localInertia = new Ammo.btVector3(0, 0, 0);
@@ -299,10 +292,6 @@ function createVehicle(pos, quat) {
       truckEntities[i + 1].position = new Cesium.ConstantPositionProperty(position);
 
       const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
-      // const angle = q.getAngle();
-      // const btAxis = q.getAxis();
-      // const axis = new Cesium.Cartesian3(btAxis.x(), btAxis.y(), btAxis.z());
-      // const quaternion = Cesium.Quaternion.fromAxisAngle(axis, angle);
       truckEntities[i + 1].orientation = new Cesium.ConstantPositionProperty(quaternion);
 		}
 
@@ -316,14 +305,8 @@ function createVehicle(pos, quat) {
     truckEntities[0].position = new Cesium.ConstantPositionProperty(position);
 
     const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
-    // const angle = q.getAngle();
-    // const btAxis = q.getAxis();
-    // const axis = new Cesium.Cartesian3(btAxis.x(), btAxis.y(), btAxis.z());
-    // const quaternion = Cesium.Quaternion.fromAxisAngle(axis, angle);
     truckEntities[0].orientation = new Cesium.ConstantPositionProperty(quaternion);
 
-    // Cesium.Matrix3.fromQuaternion
-    // Cesium.Quaternion.fromRotationMatrix
   }
 
 	syncList.push(sync);
