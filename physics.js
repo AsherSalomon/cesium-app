@@ -131,19 +131,6 @@ function createObjects() {
 
 }
 
-function computeAxis(quaternion) {
-  const w = quaternion.w;
-  if (Math.abs(w - 1.0) < 0.000001) {
-    result.x = result.y = result.z = 0;
-    return result;
-  }
-  const scalar = 1.0 / Math.sqrt(1.0 - w * w);
-  result.x = quaternion.x * scalar;
-  result.y = quaternion.y * scalar;
-  result.z = quaternion.z * scalar;
-  return result;
-};
-
 function createVehicle(pos, quat) {
 
 	// Vehicle contants
@@ -181,7 +168,7 @@ function createVehicle(pos, quat) {
 	const geometry = new Ammo.btBoxShape(new Ammo.btVector3(chassisWidth * .5, chassisHeight * .5, chassisLength * .5));
 
   const angle = Cesium.Quaternion.computeAngle(quat);
-  const axis = computeAxis(quat);
+  const axis = Cesium.Quaternion.computeAxis(quat, new Cesium.Cartesian3());
   const btAxis = new Ammo.btVector3(axis.x, axis.y, axis.z);
   const initQuaternion = new Ammo.btQuaternion(0, 0, 0, 1);
   initQuaternion.setRotation(btAxis, angle);
