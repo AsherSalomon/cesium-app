@@ -173,7 +173,6 @@ function createVehicle(pos, quat) {
 	// transform.setOrigin(new Ammo.btVector3(pos.x, pos.y, pos.z));
 	transform.setOrigin(new Ammo.btVector3(0, 0, 0));
   originOffset = new Cesium.Cartesian3(pos.x, pos.y, pos.z);
-  // Cesium.Quaternion.inverse(quat, quat);
 	transform.setRotation(new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w));
 	// transform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
 
@@ -298,7 +297,6 @@ function createVehicle(pos, quat) {
       truckEntities[i + 1].position = new Cesium.ConstantPositionProperty(position);
 
       const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
-      // Cesium.Quaternion.inverse(quaternion, quaternion);
       truckEntities[i + 1].orientation = new Cesium.ConstantPositionProperty(quaternion);
 		}
 
@@ -312,8 +310,14 @@ function createVehicle(pos, quat) {
     Cesium.Cartesian3.add(position, originOffset, position);
     truckEntities[0].position = new Cesium.ConstantPositionProperty(position);
 
-    const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
-    // Cesium.Quaternion.inverse(quaternion, quaternion);
+    let heading, pitch, roll;
+    q.getEulerZYX(heading, pitch, roll);
+
+    // const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
+    const quaternion = Cesium.Transforms.headingPitchRollQuaternion(
+      new Cesium.Cartesian3(0, 0, 0),
+      new Cesium.HeadingPitchRoll(heading, pitch, roll);
+    );
     truckEntities[0].orientation = new Cesium.ConstantPositionProperty(quaternion);
 
   }
