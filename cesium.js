@@ -199,8 +199,7 @@ function addTile(quadtreeTile){
       const verticesLength = vertices.length;
       const positions = new Array(verticesLength);
       for (let i = 0; i < verticesLength; i ++) {
-        // positions[i] = getPosition(encoding, 3, projection, vertices, i);
-        globeSurfaceTile.getPosition(encoding, 3, projection, vertices, i, positions[i]);
+        positions[i] = getPosition(encoding, 3, projection, vertices, i);
       }
       const tileName = quadtreeTile._x +'_'+ quadtreeTile._y +'_'+ quadtreeTile._level;
       createTerrain(positions, indices, tileName);
