@@ -294,7 +294,7 @@ function createVehicle(pos, quat) {
 			// wheelMeshes[i].quaternion.set(q.x(), q.y(), q.z(), q.w());
 
       const position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
-      Cesium.Cartesian3.add(originOffset, position, position);
+      Cesium.Cartesian3.add(position, originOffset, position);
       truckEntities[i + 1].position = new Cesium.ConstantPositionProperty(position);
 
       const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
@@ -309,7 +309,7 @@ function createVehicle(pos, quat) {
 		// chassisMesh.quaternion.set(q.x(), q.y(), q.z(), q.w());
 
     const position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
-    Cesium.Cartesian3.add(originOffset, position, position);
+    Cesium.Cartesian3.add(position, originOffset, position);
     truckEntities[0].position = new Cesium.ConstantPositionProperty(position);
 
     const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
@@ -329,6 +329,7 @@ export function createTerrain(positions, indices, tileName) {
   const mesh = new Ammo.btTriangleMesh();
   const vertices = new Array(positions.length);
   for (let i = 0; i < positions.length; i++) {
+    Cesium.Cartesian3.subtract(positions[i], originOffset, positions[i]);
     vertices[i] = new Ammo.btVector3(positions[i].x, positions[i].y, positions[i].z);
   }
   const indicesLength = indices.length;
