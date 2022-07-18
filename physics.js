@@ -5,6 +5,7 @@
 
 let truckEntities;
 const terrainBodies = {};
+let originOffset;
 
 // - Global variables -
 const DISABLE_DEACTIVATION = 4;
@@ -169,7 +170,9 @@ function createVehicle(pos, quat) {
 
 	const transform = new Ammo.btTransform();
 	transform.setIdentity();
-	transform.setOrigin(new Ammo.btVector3(pos.x, pos.y, pos.z));
+	// transform.setOrigin(new Ammo.btVector3(pos.x, pos.y, pos.z));
+	transform.setOrigin(new Ammo.btVector3(0, 0, 0));
+  originOffset = new Cesium.Cartesian3(pos.x, pos.y, pos.z);
   Cesium.Quaternion.inverse(quat, quat);
 	// transform.setRotation(new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w));
 	transform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
@@ -305,6 +308,7 @@ function createVehicle(pos, quat) {
 		// chassisMesh.quaternion.set(q.x(), q.y(), q.z(), q.w());
 
     const position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
+    Cesium.Cartesian3.add(position, originOffset, originOffset);
     truckEntities[0].position = new Cesium.ConstantPositionProperty(position);
 
     const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
