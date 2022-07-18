@@ -188,7 +188,7 @@ function createVehicle(pos, quat) {
 	const tuning = new Ammo.btVehicleTuning();
 	const rayCaster = new Ammo.btDefaultVehicleRaycaster(physicsWorld);
 	const vehicle = new Ammo.btRaycastVehicle(tuning, body, rayCaster);
-	vehicle.setCoordinateSystem(2, 0, 1);
+	vehicle.setCoordinateSystem(0, 1, 2);
 	physicsWorld.addAction(vehicle);
 
 	// Wheels
@@ -317,7 +317,7 @@ function createVehicle(pos, quat) {
 }
 
 export function createTerrain(positions, indices, tileName) {
-  // gravityOn = true;
+  gravityOn = true;
 
   // https://stackoverflow.com/questions/59665854/ammo-js-custom-mesh-collision-with-sphere
   const mesh = new Ammo.btTriangleMesh();
