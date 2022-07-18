@@ -5,7 +5,7 @@ export const truckEntities = [];
 let selectedTile = {cartesian2: {x: 0, y: 0}, level: 0}
 const tileList = [];
 
-const initPosition = [-71.303343, 44.269824, 1916.7 - 33.9];
+const initPosition = [-71.303343, 44.269824, 1916.7 - 32.9];
 
 export function init() {
   Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyZmZjMzQzNi01MGI3LTRiY2ItODE3ZC00OGM3ZjBkZjQxNzUiLCJpZCI6MTAwNDY2LCJpYXQiOjE2NTcyNDAzODl9.ij6tW00jwNgBeDuzMgzMRzS82kQLKucEyLgPhQQs3a4';
@@ -75,8 +75,8 @@ export function update() {
 
   let newTileList = [];
   viewer.scene.globe._surface.forEachLoadedTile(function(quadtreeTile) {
-    const conditionX = Math.abs(quadtreeTile._x - selectedTile.cartesian2.x) <= 0; // 1
-    const conditionY = Math.abs(quadtreeTile._y - selectedTile.cartesian2.y) <= 0; // 1
+    const conditionX = Math.abs(quadtreeTile._x - selectedTile.cartesian2.x) <= 1;
+    const conditionY = Math.abs(quadtreeTile._y - selectedTile.cartesian2.y) <= 1;
     const conditionL = quadtreeTile._level == selectedTile.level;
     if (conditionX && conditionY && conditionL) {
       newTileList.push(quadtreeTile);
