@@ -171,7 +171,8 @@ function createVehicle(pos, quat) {
 	transform.setIdentity();
 	transform.setOrigin(new Ammo.btVector3(pos.x, pos.y, pos.z));
   Cesium.Quaternion.inverse(quat, quat);
-	transform.setRotation(new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w));
+	// transform.setRotation(new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w));
+	transform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
 
 	const motionState = new Ammo.btDefaultMotionState(transform);
 	const localInertia = new Ammo.btVector3(0, 0, 0);
