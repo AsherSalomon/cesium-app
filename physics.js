@@ -167,17 +167,17 @@ function createVehicle(pos, quat) {
 	// Chassis
 	const geometry = new Ammo.btBoxShape(new Ammo.btVector3(chassisWidth * .5, chassisHeight * .5, chassisLength * .5));
 
-  const angle = Cesium.Quaternion.computeAngle(quat);
-  const axis = Cesium.Quaternion.computeAxis(quat, new Cesium.Cartesian3());
-  const btAxis = new Ammo.btVector3(axis.x, axis.y, axis.z);
-  const initQuaternion = new Ammo.btQuaternion(0, 0, 0, 1);
+  // const angle = Cesium.Quaternion.computeAngle(quat);
+  // const axis = Cesium.Quaternion.computeAxis(quat, new Cesium.Cartesian3());
+  // const btAxis = new Ammo.btVector3(axis.x, axis.y, axis.z);
+  // const initQuaternion = new Ammo.btQuaternion(0, 0, 0, 1);
   // initQuaternion.setRotation(btAxis, angle);
 
 	const transform = new Ammo.btTransform();
 	transform.setIdentity();
 	transform.setOrigin(new Ammo.btVector3(pos.x, pos.y, pos.z));
-	// transform.setRotation(new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w));
-	transform.setRotation(initQuaternion);
+	transform.setRotation(new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w));
+	// transform.setRotation(initQuaternion);
 
 	const motionState = new Ammo.btDefaultMotionState(transform);
 	const localInertia = new Ammo.btVector3(0, 0, 0);
