@@ -298,11 +298,11 @@ function createVehicle(pos, quat) {
       const position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
       truckEntities[i + 1].position = new Cesium.ConstantPositionProperty(position);
 
-      // const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
-      const angle = q.getAngle();
-      const btAxis = q.getAxis();
-      const axis = new Cesium.Cartesian3(btAxis.x(), btAxis.y(), btAxis.z());
-      const quaternion = Cesium.Quaternion.fromAxisAngle(axis, angle);
+      const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
+      // const angle = q.getAngle();
+      // const btAxis = q.getAxis();
+      // const axis = new Cesium.Cartesian3(btAxis.x(), btAxis.y(), btAxis.z());
+      // const quaternion = Cesium.Quaternion.fromAxisAngle(axis, angle);
       truckEntities[i + 1].orientation = new Cesium.ConstantPositionProperty(quaternion);
 		}
 
@@ -315,11 +315,11 @@ function createVehicle(pos, quat) {
     const position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
     truckEntities[0].position = new Cesium.ConstantPositionProperty(position);
 
-    // const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
-    const angle = q.getAngle();
-    const btAxis = q.getAxis();
-    const axis = new Cesium.Cartesian3(btAxis.x(), btAxis.y(), btAxis.z());
-    const quaternion = Cesium.Quaternion.fromAxisAngle(axis, angle);
+    const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
+    // const angle = q.getAngle();
+    // const btAxis = q.getAxis();
+    // const axis = new Cesium.Cartesian3(btAxis.x(), btAxis.y(), btAxis.z());
+    // const quaternion = Cesium.Quaternion.fromAxisAngle(axis, angle);
     truckEntities[0].orientation = new Cesium.ConstantPositionProperty(quaternion);
 
     // Cesium.Matrix3.fromQuaternion
