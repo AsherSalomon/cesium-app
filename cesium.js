@@ -109,7 +109,7 @@ function createModel(url) {
     position: position,
     orientation: orientation,
     model: {
-      uri: url,
+      uri: url, // Cesium.ModelGraphics
       minimumPixelSize: 0,
       maximumScale: 20000,
     },
