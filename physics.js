@@ -292,39 +292,35 @@ function createVehicle(pos, quat) {
 			tm = vehicle.getWheelTransformWS(i);
 			p = tm.getOrigin();
 			q = tm.getRotation();
-			// wheelMeshes[i].position.set(p.x(), p.y(), p.z());
-			// wheelMeshes[i].quaternion.set(q.x(), q.y(), q.z(), q.w());
 
       const position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
       Cesium.Cartesian3.add(position, originOffset, position);
-      truckEntities[i + 1].position = new Cesium.ConstantPositionProperty(position);
+      truckEntities[i + 1].position = position;
 
-      const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
-      truckEntities[i + 1].orientation = new Cesium.ConstantPositionProperty(quaternion);
+      // const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
+      const euler = QEConvert.toEulerAngles(q.x(), q.y(), q.z(), q.w());
+      const quaternion = Cesium.Transforms.headingPitchRollQuaternion(
+        new Cesium.Cartesian3(0, 0, 0),
+        new Cesium.HeadingPitchRoll(euler.yaw, euler.pitch, euler.roll)
+      );
+      truckEntities[i + 1].orientation = quaternion;
 		}
 
 		tm = vehicle.getChassisWorldTransform();
 		p = tm.getOrigin();
 		q = tm.getRotation();
-		// chassisMesh.position.set(p.x(), p.y(), p.z());
-		// chassisMesh.quaternion.set(q.x(), q.y(), q.z(), q.w());
 
     const position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
     Cesium.Cartesian3.add(position, originOffset, position);
-    // truckEntities[0].position = new Cesium.ConstantPositionProperty(position);
     truckEntities[0].position = position;
 
 
     // const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
-    // let heading, pitch, roll;
-    // q.getEulerZYX(heading, pitch, roll);
-    let euler = QEConvert.toEulerAngles(q.x(), q.y(), q.z(), q.w());
+    const euler = QEConvert.toEulerAngles(q.x(), q.y(), q.z(), q.w());
     const quaternion = Cesium.Transforms.headingPitchRollQuaternion(
       new Cesium.Cartesian3(0, 0, 0),
-      // new Cesium.HeadingPitchRoll(heading, pitch, roll)
       new Cesium.HeadingPitchRoll(euler.yaw, euler.pitch, euler.roll)
     );
-    // truckEntities[0].orientation = new Cesium.ConstantPositionProperty(quaternion);
     truckEntities[0].orientation = quaternion;
     // !!! ConstantPositionProperty ? no its not a position !!!
 
