@@ -173,6 +173,7 @@ function createVehicle(pos, quat) {
 	// transform.setOrigin(new Ammo.btVector3(pos.x, pos.y, pos.z));
 	transform.setOrigin(new Ammo.btVector3(0, 0, 0));
   originOffset = new Cesium.Cartesian3(pos.x, pos.y, pos.z);
+  Quaternion.fromAxisAngle(Cartesian3.UNIT_X, Math.PI / 2, quat)
 	transform.setRotation(new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w));
 	// transform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
 
