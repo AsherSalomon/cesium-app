@@ -307,12 +307,13 @@ function createVehicle(pos, quat) {
     truckEntities[0].position = position;
 
     const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
-    const matrix3 = new Cesium.Matrix3();
-    Cesium.Matrix3.fromQuaternion(quaternion, matrix3);
-    const cartesian3 = new Cesium.Matrix3();
-    Cesium.Matrix3.multiplyByVector(matrix3, Cesium.Cartesian3.UNIT_X, cartesian3);
+    // const matrix3 = new Cesium.Matrix3();
+    // Cesium.Matrix3.fromQuaternion(quaternion, matrix3);
+    // const cartesian3 = new Cesium.Matrix3();
+    // Cesium.Matrix3.multiplyByVector(matrix3, Cesium.Cartesian3.UNIT_X, cartesian3);
     const quaternionB = new Cesium.Quaternion(0, 0, 0, 1);
-    Cesium.Quaternion.fromAxisAngle(cartesian3, Math.PI / 2, quaternionB);
+    // Cesium.Quaternion.fromAxisAngle(cartesian3, Math.PI / 2, quaternionB);
+    Cesium.Quaternion.fromAxisAngle(Cesium.Cartesian3.UNIT_X, Math.PI / 2, quaternionB);
     Cesium.Quaternion.multiply(quaternion, quaternionB, quaternion);
     truckEntities[0].orientation = quaternion;
 
