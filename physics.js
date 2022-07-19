@@ -2,6 +2,9 @@
 // https://github.com/kripken/ammo.js/blob/main/examples/webgl_demo_vehicle/index.html
 
 // import * as controls from './controls.js';
+import * as QEConvert from './quaternionEulerConvert.js';
+// QEConvert.toQuaternion(yaw, pitch, roll)
+// QEConvert.toEulerAngles(x, y, z, w)
 
 let truckEntities;
 const terrainBodies = {};
@@ -314,10 +317,12 @@ function createVehicle(pos, quat) {
     const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
     // let heading, pitch, roll;
     // q.getEulerZYX(heading, pitch, roll);
-    // const quaternion = Cesium.Transforms.headingPitchRollQuaternion(
-    //   new Cesium.Cartesian3(0, 0, 0),
-    //   new Cesium.HeadingPitchRoll(heading, pitch, roll)
-    // );
+    let euler = QEConvert.toEulerAngles(q.x(), q.y(), q.z(), q.w());
+    const quaternion = Cesium.Transforms.headingPitchRollQuaternion(
+      new Cesium.Cartesian3(0, 0, 0),
+      // new Cesium.HeadingPitchRoll(heading, pitch, roll)
+      new Cesium.HeadingPitchRoll(euler.yaw, euler.pitch, euler.roll)
+    );
     truckEntities[0].orientation = new Cesium.ConstantPositionProperty(quaternion);
 
   }
