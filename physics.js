@@ -173,7 +173,6 @@ function createVehicle(pos, quat) {
 	// transform.setOrigin(new Ammo.btVector3(pos.x, pos.y, pos.z));
 	transform.setOrigin(new Ammo.btVector3(0, 0, 0));
   originOffset = new Cesium.Cartesian3(pos.x, pos.y, pos.z);
-  // Cesium.Quaternion.fromAxisAngle(Cesium.Cartesian3.UNIT_X, Math.PI / 2, quat);
 	transform.setRotation(new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w));
 	// transform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
 
@@ -307,8 +306,14 @@ function createVehicle(pos, quat) {
     Cesium.Cartesian3.add(position, originOffset, position);
     truckEntities[0].position = position;
 
-
     const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
+    const matrix3 = new Cesium.Matrix3();
+    Cesium.Matrix3.fromQuaternion(quaternion, matrix3);
+    const cartesian3 = new Cesium.Matrix3();
+    Cesium.Matrix3.multiplyByVector(matrix3, Cesium.Cartesian3.UNIT_X, cartesian3);
+    const quaternionB = new Cesium.Quaternion(0, 0, 0, 1);
+    Cesium.Quaternion.fromAxisAngle(cartesian3, Math.PI / 2, quaternionB);
+    Quaternion.multiply(quaternion, quaternionB, quaternion);
     truckEntities[0].orientation = quaternion;
 
   }
