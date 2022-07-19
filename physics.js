@@ -301,7 +301,7 @@ function createVehicle(pos, quat) {
       const euler = QEConvert.toEulerAngles(q.x(), q.y(), q.z(), q.w());
       const quaternion = Cesium.Transforms.headingPitchRollQuaternion(
         new Cesium.Cartesian3(0, 0, 0),
-        new Cesium.HeadingPitchRoll(euler.yaw, euler.pitch, -euler.roll)
+        new Cesium.HeadingPitchRoll(euler.yaw, euler.pitch, euler.roll)
       );
       truckEntities[i + 1].orientation = quaternion;
 		}
@@ -319,7 +319,7 @@ function createVehicle(pos, quat) {
     const euler = QEConvert.toEulerAngles(q.x(), q.y(), q.z(), q.w());
     const quaternion = Cesium.Transforms.headingPitchRollQuaternion(
       new Cesium.Cartesian3(0, 0, 0),
-      new Cesium.HeadingPitchRoll(euler.yaw, euler.pitch, -euler.roll)
+      new Cesium.HeadingPitchRoll(euler.yaw, euler.pitch, euler.roll)
     );
     truckEntities[0].orientation = quaternion;
 
