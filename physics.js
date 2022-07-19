@@ -311,10 +311,11 @@ function createVehicle(pos, quat) {
 
     const position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
     Cesium.Cartesian3.add(position, originOffset, position);
-    truckEntities[0].position = new Cesium.ConstantPositionProperty(position);
+    // truckEntities[0].position = new Cesium.ConstantPositionProperty(position);
+    truckEntities[0].position = position;
 
 
-    const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
+    // const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
     // let heading, pitch, roll;
     // q.getEulerZYX(heading, pitch, roll);
     let euler = QEConvert.toEulerAngles(q.x(), q.y(), q.z(), q.w());
@@ -323,7 +324,9 @@ function createVehicle(pos, quat) {
       // new Cesium.HeadingPitchRoll(heading, pitch, roll)
       new Cesium.HeadingPitchRoll(euler.yaw, euler.pitch, euler.roll)
     );
-    truckEntities[0].orientation = new Cesium.ConstantPositionProperty(quaternion);
+    // truckEntities[0].orientation = new Cesium.ConstantPositionProperty(quaternion);
+    truckEntities[0].orientation = quaternion;
+    // !!! ConstantPositionProperty ? no its not a position !!!
 
   }
 
