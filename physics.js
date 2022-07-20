@@ -124,7 +124,7 @@ function createVehicle(pos, quat) {
 	const chassisWidth = 2.032;
 	const chassisHeight = .8;
 	const chassisLength = 6.761;
-	const massVehicle = 378.75;
+	const massVehicle = 800; // 3787.5;
 
 	const wheelAxisPositionBack = -2.07;
 	const wheelRadiusBack = 0.432;
