@@ -131,7 +131,7 @@ function updateTileList(newTileList) {
       }
     }
     if (oldTileInNewList == false) {
-      viewer.entities.remove(tileList[i].entity); // rectangle
+      // viewer.entities.remove(tileList[i].entity); // rectangle
 
       removeTile(tileList[i]);
       tileList.splice(i, 1);
@@ -147,12 +147,12 @@ function updateTileList(newTileList) {
       }
     }
     if (newTileInOldList == false) {
-      newTileList[i].entity = viewer.entities.add({ // rectangle
-        rectangle: {
-          coordinates: newTileList[i]._rectangle,
-        },
-        material: Cesium.Color.GREEN.withAlpha(0.5),
-      });
+      // newTileList[i].entity = viewer.entities.add({ // rectangle
+      //   rectangle: {
+      //     coordinates: newTileList[i]._rectangle,
+      //   },
+      //   material: Cesium.Color.GREEN.withAlpha(0.5),
+      // });
 
       // addTile(newTileList[i]);
       tileList.push(newTileList[i]);
