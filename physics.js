@@ -321,7 +321,7 @@ function createVehicle(pos, quat) {
 
     v = body.getLinearVelocity();
     const position = new Cesium.Cartesian3(
-      p.x() - v.x(), p.y() - v.y(), p.z() - .z()
+      p.x() - v.x(), p.y() - v.y(), p.z() - v.z()
     );
     Cesium.Cartesian3.add(position, originOffset, position);
     truckEntities[0].position = position;
