@@ -27,7 +27,8 @@ const keysActions = {
 	"KeyW":'acceleration',
 	"KeyS":'braking',
 	"KeyA":'left',
-	"KeyD":'right'
+	"KeyD":'right',
+	"Space":'restore'
 };
 
 export function init(newTruck) {
@@ -137,7 +138,7 @@ function createVehicle(pos, quat) {
 	// Vehicle contants
 
 	const chassisWidth = 2.032;
-	const chassisHeight = .6;
+	const chassisHeight = .8;
 	const chassisLength = 6.761;
 	const massVehicle = 378.75;
 
@@ -276,6 +277,10 @@ function createVehicle(pos, quat) {
 				}
 			}
 		}
+
+		if (actions.restore) {
+
+    }
 
 		vehicle.applyEngineForce(engineForce, BACK_LEFT);
 		vehicle.applyEngineForce(engineForce, BACK_RIGHT);
