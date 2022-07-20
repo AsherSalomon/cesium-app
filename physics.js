@@ -27,8 +27,7 @@ const keysActions = {
 	"KeyW":'acceleration',
 	"KeyS":'braking',
 	"KeyA":'left',
-	"KeyD":'right',
-	"Space":'restore'
+	"KeyD":'right'
 };
 
 export function init(newTruck) {
@@ -102,28 +101,13 @@ function keydown(e) {
 		e.stopPropagation();
 		return false;
 	}
-  if (e.code == 'KeyE') {
-    getIdentityQuaternionAtLatLon();
+  if (e.code == 'KeyR') {
+    reset();
   }
 }
 
-function getIdentityQuaternionAtLatLon() {
-  let initPosition = [-71.303343, 44.269824, 1916.7 - 34.9];
-  const position = Cesium.Cartesian3.fromDegrees(
-    initPosition[0],
-    initPosition[1],
-    initPosition[2]
-  );
-  const heading = Cesium.Math.toRadians(54);
-  const pitch = 0;
-  const roll = 0;
-  const hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll);
-  const orientation = Cesium.Transforms.headingPitchRollQuaternion(
-    position,
-    hpr
-  );
-  console.log(orientation);
-  // return ;
+function reset() {
+
 }
 
 function createObjects() {
