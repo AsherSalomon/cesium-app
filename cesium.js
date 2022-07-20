@@ -85,6 +85,11 @@ export function update() {
   updateTileList(newTileList);
   tryToAddTiles();
 
+  // viewer.camera.look(axis, angle)
+  //   truckEntities[0]
+  // viewer.camera.rotateLeft
+  viewer.camera.rotateRight(Math.PI / 1024);
+
 }
 
 function createModel(url) {
