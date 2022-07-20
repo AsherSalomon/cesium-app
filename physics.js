@@ -141,15 +141,15 @@ function createVehicle(pos, quat) {
 	const chassisLength = 6.761;
 	const massVehicle = 3787.5;
 
-	const wheelAxisPositionBack = -2.2;
+	const wheelAxisPositionBack = -2.05;
 	const wheelRadiusBack = 0.432;
 	const wheelWidthBack = 0.245;
 	const wheelHalfTrackBack = 0.8;
-	const wheelAxisHeightBack = .3;
+	const wheelAxisHeightBack = .4;
 
-	const wheelAxisFrontPosition = 1.5;
+	const wheelAxisFrontPosition = 1.405;
 	const wheelHalfTrackFront = 0.8;
-	const wheelAxisHeightFront = .3;
+	const wheelAxisHeightFront = .4;
 	const wheelRadiusFront = 0.432;
 	const wheelWidthFront = 0.245;
 
