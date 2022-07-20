@@ -128,7 +128,7 @@ function createVehicle(pos, quat) {
 	const massVehicle = 800; // 3787.5;
 
 	const wheelAxisPositionBack = -2.07;
-	const wheelRadiusBack = 0.432;
+	const wheelRadiusBack = 0.35;
 	const wheelWidthBack = 0.245;
 	const wheelHalfTrackBack = 0.8;
 	const wheelAxisHeightBack = 0.3;
@@ -136,7 +136,7 @@ function createVehicle(pos, quat) {
 	const wheelAxisFrontPosition = 1.46;
 	const wheelHalfTrackFront = 0.8;
 	const wheelAxisHeightFront = 0.3;
-	const wheelRadiusFront = 0.432;
+	const wheelRadiusFront = 0.35;
 	const wheelWidthFront = 0.245;
 
 	const friction = 1000;
