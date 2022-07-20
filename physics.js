@@ -146,7 +146,7 @@ function createVehicle(pos, quat) {
 	const rollInfluence = 0.2;
 
 	const steeringIncrement = .01;
-	const steeringClamp = .33;
+	const steeringClamp = .5;
 	const maxEngineForce = 2000;
 	const maxBreakingForce = 50;
 
@@ -234,12 +234,13 @@ function createVehicle(pos, quat) {
 			if (speed < -1)
 				breakingForce = maxBreakingForce;
 			else engineForce = maxEngineForce;
-		}
-		if (actions.braking) {
+		} else if (actions.braking) {
 			if (speed > 1)
 				breakingForce = maxBreakingForce;
 			else engineForce = -maxEngineForce / 2;
-		}
+		} else if (Math.abs(speed) < 1) {
+      breakingForce = maxBreakingForce;
+    }
 		if (actions.left) {
 			if (vehicleSteering < steeringClamp)
 				vehicleSteering += steeringIncrement;
