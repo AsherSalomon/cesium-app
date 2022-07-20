@@ -29,6 +29,7 @@ const keysActions = {
 	"KeyA":'left',
 	"KeyD":'right'
 };
+let parkingBrake = false;
 
 export function init(newTruck) {
   truckEntities = newTruck;
@@ -232,15 +233,18 @@ function createVehicle(pos, quat) {
     let dtFactor = dt / 0.0167;
 
 		if (actions.acceleration) {
+      parkingBrake = false;
 			if (speed < -1)
 				breakingForce = maxBreakingForce * dtFactor;
 			else engineForce = maxEngineForce * dtFactor;
 		} else if (actions.braking) {
+      parkingBrake = false;
 			if (speed > 1)
 				breakingForce = maxBreakingForce * dtFactor;
 			else engineForce = -maxEngineForce / 2 * dtFactor;
-		} else if (Math.abs(speed) < 1) {
+		} else if (Math.abs(speed) < 1 || parkingBrake) {
       breakingForce = maxBreakingForce * dtFactor;
+      parkingBrake = true;
     }
 		if (actions.left) {
 			if (vehicleSteering < steeringClamp)
