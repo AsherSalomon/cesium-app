@@ -177,6 +177,8 @@ function createVehicle(pos, quat) {
   const quatB = new Cesium.Quaternion(0, 0, 0, 1);
   Cesium.Quaternion.fromAxisAngle(Cesium.Cartesian3.UNIT_X, Math.PI / 2, quatB);
   Cesium.Quaternion.multiply(quat, quatB, quat);
+  Cesium.Quaternion.fromAxisAngle(Cesium.Cartesian3.UNIT_Y, Math.PI, quatB);
+  Cesium.Quaternion.multiply(quat, quatB, quat);
 	transform.setRotation(new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w));
 	// transform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
 
