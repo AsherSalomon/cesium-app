@@ -229,33 +229,34 @@ function createVehicle(pos, quat) {
 
 		breakingForce = 0;
 		engineForce = 0;
+    let dtFactor = dt / 0.0167;
 
 		if (actions.acceleration) {
 			if (speed < -1)
-				breakingForce = maxBreakingForce;
-			else engineForce = maxEngineForce;
+				breakingForce = maxBreakingForce * dtFactor;
+			else engineForce = maxEngineForce * dtFactor;
 		} else if (actions.braking) {
 			if (speed > 1)
-				breakingForce = maxBreakingForce;
-			else engineForce = -maxEngineForce / 2;
+				breakingForce = maxBreakingForce * dtFactor;
+			else engineForce = -maxEngineForce / 2 * dtFactor;
 		} else if (Math.abs(speed) < 1) {
-      breakingForce = maxBreakingForce;
+      breakingForce = maxBreakingForce * dtFactor;
     }
 		if (actions.left) {
 			if (vehicleSteering < steeringClamp)
-				vehicleSteering += steeringIncrement;
+				vehicleSteering += steeringIncrement * dtFactor;
 		}
 		else {
 			if (actions.right) {
 				if (vehicleSteering > -steeringClamp)
-					vehicleSteering -= steeringIncrement;
+					vehicleSteering -= steeringIncrement * dtFactor;
 			}
 			else {
 				if (vehicleSteering < -steeringIncrement)
-					vehicleSteering += steeringIncrement;
+					vehicleSteering += steeringIncrement * dtFactor;
 				else {
 					if (vehicleSteering > steeringIncrement)
-						vehicleSteering -= steeringIncrement;
+						vehicleSteering -= steeringIncrement * dtFactor;
 					else {
 						vehicleSteering = 0;
 					}
