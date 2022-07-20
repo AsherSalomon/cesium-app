@@ -145,11 +145,11 @@ function createVehicle(pos, quat) {
 	const wheelRadiusBack = 0.432;
 	const wheelWidthBack = 0.245;
 	const wheelHalfTrackBack = 0.8;
-	const wheelAxisHeightBack = .4;
+	const wheelAxisHeightBack = .3;
 
 	const wheelAxisFrontPosition = 1.405;
 	const wheelHalfTrackFront = 0.8;
-	const wheelAxisHeightFront = .4;
+	const wheelAxisHeightFront = .3;
 	const wheelRadiusFront = 0.432;
 	const wheelWidthFront = 0.245;
 
