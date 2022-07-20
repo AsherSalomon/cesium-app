@@ -156,7 +156,7 @@ function createVehicle(pos, quat) {
 	const transform = new Ammo.btTransform();
 	transform.setIdentity();
 	// transform.setOrigin(new Ammo.btVector3(pos.x, pos.y, pos.z));
-	transform.setOrigin(new Ammo.btVector3(-1, 0, 0));
+	transform.setOrigin(new Ammo.btVector3(0, 0, 0));
   originOffset = new Cesium.Cartesian3(pos.x, pos.y, pos.z);
 
   const quatB = new Cesium.Quaternion(0, 0, 0, 1);
