@@ -318,7 +318,7 @@ function createVehicle(pos, quat) {
 		tm = vehicle.getChassisWorldTransform();
 		p = tm.getOrigin();
 		q = tm.getRotation();
-    v = tm.getLinearVelocity();
+    v = body.getLinearVelocity();
 
     const position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
     const velocity = new Cesium.Cartesian3(v.x(), v.y(), v.z());
