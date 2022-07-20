@@ -302,7 +302,7 @@ function createVehicle(pos, quat) {
 
 
       const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
-      if (i == 0 || i == 2) {
+      if (i == 0 || i == 3) {
         const quaternionB = new Cesium.Quaternion(0, 0, 0, 1);
         Cesium.Quaternion.fromAxisAngle(Cesium.Cartesian3.UNIT_Y, Math.PI, quaternionB);
         Cesium.Quaternion.multiply(quaternion, quaternionB, quaternion);
