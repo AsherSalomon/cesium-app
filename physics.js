@@ -147,7 +147,7 @@ function createVehicle(pos, quat) {
 	const wheelHalfTrackBack = 1;
 	const wheelAxisHeightBack = .3;
 
-	const wheelAxisFrontPosition = 1.2;
+	const wheelAxisFrontPosition = 1.4;
 	const wheelHalfTrackFront = 1;
 	const wheelAxisHeightFront = .3;
 	const wheelRadiusFront = 0.432;
