@@ -74,7 +74,7 @@ export function update(delta) {
     const position = truckEntities[0].position.getValue(truckEntities.now());
     const normal = new Ammo.btVector3(position.x, position.y, position.z);
     normal.normalize();
-    normal.op_mul(-0.982);
+    normal.op_mul(-9.82);
     physicsWorld.setGravity( normal );
   } else {
   	physicsWorld.setGravity( new Ammo.btVector3(0, 0, 0) );
@@ -139,7 +139,7 @@ function createVehicle(pos, quat) {
 	const chassisWidth = 2.032;
 	const chassisHeight = .6;
 	const chassisLength = 6.761;
-	const massVehicle = 3787.5;
+	const massVehicle = 378.75;
 
 	const wheelAxisPositionBack = -2.07;
 	const wheelRadiusBack = 0.432;
