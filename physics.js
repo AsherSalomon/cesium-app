@@ -318,12 +318,12 @@ function createVehicle(pos, quat) {
 		tm = vehicle.getChassisWorldTransform();
 		p = tm.getOrigin();
 		q = tm.getRotation();
-    v = body.getLinearVelocity();
+    // v = body.getLinearVelocity();
 
     const position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
-    const velocity = new Cesium.Cartesian3(v.x(), v.y(), v.z());
-    Cesium.Cartesian3.multiplyByScalar(velocity, 0.1, velocity);
-    Cesium.Cartesian3.subtract(position, velocity, position);
+    // const velocity = new Cesium.Cartesian3(v.x(), v.y(), v.z());
+    // Cesium.Cartesian3.multiplyByScalar(velocity, 0.1, velocity);
+    // Cesium.Cartesian3.subtract(position, velocity, position);
     Cesium.Cartesian3.add(position, originOffset, position);
     truckEntities[0].position = position;
 
