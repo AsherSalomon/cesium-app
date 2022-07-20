@@ -74,7 +74,7 @@ export function update(delta) {
     const position = truckEntities[0].position.getValue(truckEntities.now());
     const normal = new Ammo.btVector3(position.x, position.y, position.z);
     normal.normalize();
-    normal.op_mul(-9.82);
+    normal.op_mul(-0.982);
     physicsWorld.setGravity( normal );
   } else {
   	physicsWorld.setGravity( new Ammo.btVector3(0, 0, 0) );
