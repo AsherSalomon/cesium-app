@@ -139,7 +139,7 @@ function createVehicle(pos, quat) {
 	const wheelWidthFront = 0.245;
 
 	const friction = 1000;
-	const suspensionStiffness = 200.;
+	const suspensionStiffness = 2000.;
 	const suspensionDamping = 2.3;
 	const suspensionCompression = 4.4;
 	const suspensionRestLength = 0.8;
