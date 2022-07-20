@@ -145,10 +145,10 @@ function createVehicle(pos, quat) {
 	const suspensionRestLength = 0.8;
 	const rollInfluence = 0.2;
 
-	const steeringIncrement = .02;
-	const steeringClamp = .25;
+	const steeringIncrement = .001;
+	const steeringClamp = .33;
 	const maxEngineForce = 2000;
-	const maxBreakingForce = 100;
+	const maxBreakingForce = 50;
 
 	// Chassis
 	const geometry = new Ammo.btBoxShape(new Ammo.btVector3(chassisWidth * .5, chassisHeight * .5, chassisLength * .5));
