@@ -293,7 +293,7 @@ function createVehicle(pos, quat) {
 		vehicle.setSteeringValue(vehicleSteering, FRONT_LEFT);
 		vehicle.setSteeringValue(vehicleSteering, FRONT_RIGHT);
 
-		let tm, p, q, i;
+		let tm, p, q, v, i;
 		const n = vehicle.getNumWheels();
 		for (i = 0; i < n; i++) {
 			vehicle.updateWheelTransform(i, true);
@@ -319,7 +319,10 @@ function createVehicle(pos, quat) {
 		p = tm.getOrigin();
 		q = tm.getRotation();
 
-    const position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
+    v = body.getLinearVelocity();
+    const position = new Cesium.Cartesian3(
+      p.x() - v.x(), p.y() - v.y(), p.z() - .z()
+    );
     Cesium.Cartesian3.add(position, originOffset, position);
     truckEntities[0].position = position;
 
