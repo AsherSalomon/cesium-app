@@ -342,8 +342,8 @@ export function createTerrain(positions, indices, tileName) {
     vertices[i] = new Ammo.btVector3(positions[i].x, positions[i].y, positions[i].z);
   }
   const mesh = new Ammo.btTriangleMesh();
-  mesh.preallocateVertices(indices.length);
-  mesh.preallocateIndices(indices.length);
+  // mesh.preallocateVertices(indices.length); // not a function
+  // mesh.preallocateIndices(indices.length);
   const indicesLength = indices.length;
   for (let i = 0; i < indicesLength; i += 3) {
     mesh.addTriangle(
