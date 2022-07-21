@@ -335,12 +335,15 @@ export function createTerrain(positions, indices, tileName) {
   gravityOn = true;
 
   // https://stackoverflow.com/questions/59665854/ammo-js-custom-mesh-collision-with-sphere
-  const mesh = new Ammo.btTriangleMesh();
+
   const vertices = new Array(positions.length);
   for (let i = 0; i < positions.length; i++) {
     Cesium.Cartesian3.subtract(positions[i], originOffset, positions[i]);
     vertices[i] = new Ammo.btVector3(positions[i].x, positions[i].y, positions[i].z);
   }
+  const mesh = new Ammo.btTriangleMesh();
+  mesh.preallocateVertices(indices.length);
+  mesh.preallocateIndices(indices.length);
   const indicesLength = indices.length;
   for (let i = 0; i < indicesLength; i += 3) {
     mesh.addTriangle(
