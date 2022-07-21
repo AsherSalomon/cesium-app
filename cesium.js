@@ -94,7 +94,7 @@ export function update() {
     const crossProduct = new Cesium.Cartesian3();
     Cesium.Cartesian3.cross(viewer.camera.directionWC, vehicleDirection, crossProduct);
     const dotProduct = Cesium.Cartesian3.dot(viewer.camera.upWC, crossProduct);
-    viewer.camera.rotateRight(dotProduct * Math.PI / 1024);
+    viewer.camera.rotateRight(dotProduct * Math.PI / 256);
   }
 
 }
