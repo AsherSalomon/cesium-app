@@ -86,7 +86,7 @@ export function update() {
   tryToAddTiles();
 
   if (viewer.trackedEntity == truckEntities[0]) {
-    const vehicleDirection = new Cesium.Cartesian3(1, 0, 0);
+    const vehicleDirection = new Cesium.Cartesian3(0, 1, 0);
     const quaternion = truckEntities[0].orientation.getValue(truckEntities.now());
     const matrix3 = new Cesium.Matrix3();
     Cesium.Matrix3.fromQuaternion(quaternion, matrix3);
