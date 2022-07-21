@@ -85,10 +85,17 @@ export function update() {
   updateTileList(newTileList);
   tryToAddTiles();
 
-  // viewer.camera.look(axis, angle)
-  //   truckEntities[0]
-  // viewer.camera.rotateLeft
-  viewer.camera.rotateRight(Math.PI / 1024);
+  if (viewer.trackedEntity == truckEntities[0]) {
+    const vehicleDirection = new Cesium.Cartesian3(1, 0, 0);
+    const quaternion = truckEntities[0].orientation.getValue(truckEntities.now());
+    const matrix3 = new Cesium.Matrix3();
+    Cesium.Matrix3.fromQuaternion(quaternion, matrix3);
+    Cesium.Matrix3.multiplyByVector(matrix3, vehicleDirection, vehicleDirection);
+    const crossProduct = new Cesium.Cartesian3();
+    Cesium.Cartesian3.cross(viewer.camera.directionWC, vehicleDirection, crossProduct);
+    const dotProduct = Cesium.Cartesian3.dot(viewer.camera.upWC, crossProduct);
+    viewer.camera.rotateRight(dotProduct * Math.PI / 1024);
+  }
 
 }
 
