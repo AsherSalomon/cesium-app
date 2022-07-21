@@ -373,8 +373,6 @@ export function createTerrain(positions, indices, tileName) {
 
 export function removeTerrain(tileName) {
   physicsWorld.removeRigidBody(terrainBodies[tileName]);
-  terrainBodies[tileName].MotionState.Dispose();
-  terrainBodies[tileName].Dispose();
   delete terrainBodies[tileName];
 
 }
