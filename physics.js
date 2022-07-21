@@ -373,6 +373,7 @@ export function createTerrain(positions, indices, tileName) {
 
 export function removeTerrain(tileName) {
   physicsWorld.removeRigidBody(terrainBodies[tileName]);
+  console.log(typeof terrainBodies[tileName]);
   delete terrainBodies[tileName];
 
 }
