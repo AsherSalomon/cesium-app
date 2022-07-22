@@ -364,10 +364,10 @@ export function createTerrain(positions, indices, tileName) {
   const shape = new Ammo.btBvhTriangleMeshShape(mesh, true);
   const localInertia = new Ammo.btVector3(0, 0, 0);
   const rbInfo = new Ammo.btRigidBodyConstructionInfo(0, motionState, shape, localInertia);
+  const terrainBody = new Ammo.btRigidBody(rbInfo);
   Ammo.destroy(motionState);
   Ammo.destroy(shape);
   Ammo.destroy(localInertia);
-  const terrainBody = new Ammo.btRigidBody(rbInfo);
   Ammo.destroy(rbInfo);
 
   terrainBodies[tileName] = terrainBody;
