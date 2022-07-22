@@ -330,6 +330,14 @@ function createVehicle(pos, quat) {
 
 }
 
+class destroyableterrain {
+  constructor() {
+  }
+  destroy() {
+
+  }
+}
+
 export function createTerrain(positions, indices, tileName) {
   gravityOn = true;
 
@@ -355,11 +363,11 @@ export function createTerrain(positions, indices, tileName) {
   // https://forum.playcanvas.com/t/solved-ammo-script-error-abort-oom/13465
   // try to lower polly count.
 
-	const transform = new Ammo.btTransform();
-	transform.setIdentity();
-	transform.setOrigin(new Ammo.btVector3(0, 0, 0));
-	transform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
-	const motionState = new Ammo.btDefaultMotionState(transform);
+  const transform = new Ammo.btTransform();
+  transform.setIdentity();
+  transform.setOrigin(new Ammo.btVector3(0, 0, 0));
+  transform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
+  const motionState = new Ammo.btDefaultMotionState(transform);
   Ammo.destroy(transform);
 
   const shape = new Ammo.btBvhTriangleMeshShape(mesh, true);
@@ -367,7 +375,7 @@ export function createTerrain(positions, indices, tileName) {
   const rbInfo = new Ammo.btRigidBodyConstructionInfo(0, motionState, shape, localInertia);
   const terrainBody = new Ammo.btRigidBody(rbInfo);
   Ammo.destroy(rbInfo);
-
+  
   terrainBodies[tileName] = terrainBody;
   physicsWorld.addRigidBody(terrainBody);
 
