@@ -100,9 +100,6 @@ export function update() {
   // Cesium.ScreenSpaceCameraController.adjustHeightForTerrain(
   //   viewer.scene.screenSpaceCameraController
   // );
-  const temp = viewer.trackedEntity;
-  viewer.trackedEntity = undefined;
-  viewer.trackedEntity = temp;
 
 }
 
