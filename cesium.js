@@ -97,9 +97,9 @@ export function update() {
     viewer.camera.rotateRight(dotProduct * Math.PI / 256);
   }
 
-  Cesium.ScreenSpaceCameraController.adjustHeightForTerrain(
-    viewer.scene.screenSpaceCameraController
-  );
+  // Cesium.ScreenSpaceCameraController.adjustHeightForTerrain(
+  //   viewer.scene.screenSpaceCameraController
+  // );
 
 }
 
