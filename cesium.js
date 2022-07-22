@@ -100,6 +100,8 @@ export function update() {
   // Cesium.ScreenSpaceCameraController.adjustHeightForTerrain(
   //   viewer.scene.screenSpaceCameraController
   // );
+  viewer.trackedEntity = undefined;
+  viewer.trackedEntity = entity;
 
 }
 
