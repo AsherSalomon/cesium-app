@@ -125,7 +125,7 @@ function adjustHeightForTerrain(controller) {
   let transform;
   let mag;
   if (!Cesium.Matrix4.equals(camera.transform, Cesium.Matrix4.IDENTITY)) {
-    transform = Cesium.Matrix4.clone(camera.transform, scratchAdjustHeightTransform);
+    transform = Cesium.Matrix4.clone(camera.transform, new Cesium.Matrix4());
     mag = Cesium.Cartesian3.magnitude(camera.position);
     camera._setTransform(Cesium.Matrix4.IDENTITY);
   }
