@@ -144,7 +144,7 @@ function adjustHeightForTerrain(controller) {
       const height = globeHeight + controller.minimumZoomDistance;
       if (cartographic.height < height) {
         cartographic.height = height;
-        if (mode === SceneMode.SCENE3D) {
+        if (mode === Cesium.SceneMode.SCENE3D) {
           ellipsoid.cartographicToCartesian(cartographic, camera.position);
         } else {
           projection.project(cartographic, camera.position);
