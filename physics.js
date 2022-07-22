@@ -330,63 +330,61 @@ function createVehicle(pos, quat) {
 
 }
 
-class destroyableterrain {
-  constructor() {
+class DestroyableTerrain {
+  constructor(positions, indices) {
+    // https://stackoverflow.com/questions/59665854/ammo-js-custom-mesh-collision-with-sphere
+    this.mesh = new Ammo.btTriangleMesh(false, false);
+    this.vertices = new Array(positions.length);
+    for (let i = 0; i < positions.length; i++) {
+      Cesium.Cartesian3.subtract(positions[i], originOffset, positions[i]);
+      vertices[i] = new Ammo.btVector3(positions[i].x, positions[i].y, positions[i].z);
+    }
+    const indicesLength = indices.length;
+    for (let i = 0; i < indicesLength; i += 3) {
+      this.mesh.addTriangle(
+        this.vertices[indices[i]],
+        this.vertices[indices[i + 1]],
+        this.vertices[indices[i + 2]]
+      );
+    }
+
+    // high poly count causes
+    // "Uncaught RuntimeError: abort(OOM). Build with -s ASSERTIONS=1 for more info."
+    // "at FB.addTriangle"
+    // https://forum.playcanvas.com/t/solved-ammo-script-error-abort-oom/13465
+    // try to lower polly count.
+
+    const transform = new Ammo.btTransform();
+    transform.setIdentity();
+    transform.setOrigin(new Ammo.btVector3(0, 0, 0));
+    transform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
+    this.motionState = new Ammo.btDefaultMotionState(transform);
+    Ammo.destroy(transform);
+
+    this.shape = new Ammo.btBvhTriangleMeshShape(mesh, true);
+    this.localInertia = new Ammo.btVector3(0, 0, 0);
+    const rbInfo = new Ammo.btRigidBodyConstructionInfo(0, this.motionState, this.shape, this.localInertia);
+    this.terrainBody = new Ammo.btRigidBody(this.rbInfo);
+    Ammo.destroy(rbInfo);
+
+    physicsWorld.addRigidBody(this.terrainBody);
   }
   destroy() {
-
+    physicsWorld.removeRigidBody(this.terrainBody);
+    // https://github.com/kripken/ammo.js/issues/355
+    Ammo.destroy(this.terrainBody);
   }
 }
 
 export function createTerrain(positions, indices, tileName) {
   gravityOn = true;
 
-  // https://stackoverflow.com/questions/59665854/ammo-js-custom-mesh-collision-with-sphere
-
-  const mesh = new Ammo.btTriangleMesh(false, false);
-  const vertices = new Array(positions.length);
-  for (let i = 0; i < positions.length; i++) {
-    Cesium.Cartesian3.subtract(positions[i], originOffset, positions[i]);
-    vertices[i] = new Ammo.btVector3(positions[i].x, positions[i].y, positions[i].z);
-  }
-  const indicesLength = indices.length;
-  for (let i = 0; i < indicesLength; i += 3) {
-    mesh.addTriangle(
-      vertices[indices[i]],
-      vertices[indices[i + 1]],
-      vertices[indices[i + 2]]
-    );
-  }
-  vertices = undefined;
-  
-  // high poly count causes
-  // "Uncaught RuntimeError: abort(OOM). Build with -s ASSERTIONS=1 for more info."
-  // "at FB.addTriangle"
-  // https://forum.playcanvas.com/t/solved-ammo-script-error-abort-oom/13465
-  // try to lower polly count.
-
-  const transform = new Ammo.btTransform();
-  transform.setIdentity();
-  transform.setOrigin(new Ammo.btVector3(0, 0, 0));
-  transform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
-  const motionState = new Ammo.btDefaultMotionState(transform);
-  Ammo.destroy(transform);
-
-  const shape = new Ammo.btBvhTriangleMeshShape(mesh, true);
-  const localInertia = new Ammo.btVector3(0, 0, 0);
-  const rbInfo = new Ammo.btRigidBodyConstructionInfo(0, motionState, shape, localInertia);
-  const terrainBody = new Ammo.btRigidBody(rbInfo);
-  Ammo.destroy(rbInfo);
-
-  terrainBodies[tileName] = terrainBody;
-  physicsWorld.addRigidBody(terrainBody);
+  terrainBodies[tileName] = new DestroyableTerrain(positions, indices);
 
 }
 
 export function removeTerrain(tileName) {
-  physicsWorld.removeRigidBody(terrainBodies[tileName]);
-  // https://github.com/kripken/ammo.js/issues/355
-  Ammo.destroy(terrainBodies[tileName]);
+  terrainBodies[tileName].destroy();
   delete terrainBodies[tileName];
 
 }
