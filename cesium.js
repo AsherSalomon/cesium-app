@@ -140,7 +140,7 @@ function adjustHeightForTerrain(controller) {
   let heightUpdated = false;
   if (cartographic.height < controller._minimumCollisionTerrainHeight) {
     const globeHeight = controller._scene.globeHeight;
-    if (defined(globeHeight)) {
+    if (Cesium.defined(globeHeight)) {
       const height = globeHeight + controller.minimumZoomDistance;
       if (cartographic.height < height) {
         cartographic.height = height;
