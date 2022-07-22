@@ -110,13 +110,13 @@ function adjustHeightForTerrain(controller) {
   const mode = scene.mode;
   const globe = scene.globe;
 
-  // if (
-  //   !defined(globe) ||
-  //   mode === SceneMode.SCENE2D ||
-  //   mode === SceneMode.MORPHING
-  // ) {
-  //   return;
-  // }
+  if (
+    !defined(globe) ||
+    mode === Cesium.SceneMode.SCENE2D ||
+    mode === Cesium.SceneMode.MORPHING
+  ) {
+    return;
+  }
 
   const camera = scene.camera;
   const ellipsoid = globe.ellipsoid;
@@ -124,14 +124,14 @@ function adjustHeightForTerrain(controller) {
 
   let transform;
   let mag;
-  if (!Matrix4.equals(camera.transform, Matrix4.IDENTITY)) {
-    transform = Matrix4.clone(camera.transform, scratchAdjustHeightTransform);
-    mag = Cartesian3.magnitude(camera.position);
-    camera._setTransform(Matrix4.IDENTITY);
+  if (!Cesium.Matrix4.equals(camera.transform, Cesium.Matrix4.IDENTITY)) {
+    transform = Cesium.Matrix4.clone(camera.transform, scratchAdjustHeightTransform);
+    mag = Cesium.Cartesian3.magnitude(camera.position);
+    camera._setTransform(Cesium.Matrix4.IDENTITY);
   }
 
   const cartographic = scratchAdjustHeightCartographic;
-  if (mode === SceneMode.SCENE3D) {
+  if (mode === Cesium.SceneMode.SCENE3D) {
     ellipsoid.cartesianToCartographic(camera.position, cartographic);
   } else {
     projection.unproject(camera.position, cartographic);
