@@ -364,7 +364,7 @@ class DestroyableTerrain {
     this.shape = new Ammo.btBvhTriangleMeshShape(this.mesh, true);
     this.localInertia = new Ammo.btVector3(0, 0, 0);
     const rbInfo = new Ammo.btRigidBodyConstructionInfo(0, this.motionState, this.shape, this.localInertia);
-    this.terrainBody = new Ammo.btRigidBody(this.rbInfo);
+    this.terrainBody = new Ammo.btRigidBody(rbInfo);
     Ammo.destroy(rbInfo);
 
     physicsWorld.addRigidBody(this.terrainBody);
