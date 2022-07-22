@@ -337,7 +337,7 @@ class DestroyableTerrain {
     this.vertices = new Array(positions.length);
     for (let i = 0; i < positions.length; i++) {
       Cesium.Cartesian3.subtract(positions[i], originOffset, positions[i]);
-      vertices[i] = new Ammo.btVector3(positions[i].x, positions[i].y, positions[i].z);
+      this.vertices[i] = new Ammo.btVector3(positions[i].x, positions[i].y, positions[i].z);
     }
     const indicesLength = indices.length;
     for (let i = 0; i < indicesLength; i += 3) {
@@ -361,7 +361,7 @@ class DestroyableTerrain {
     this.motionState = new Ammo.btDefaultMotionState(transform);
     Ammo.destroy(transform);
 
-    this.shape = new Ammo.btBvhTriangleMeshShape(mesh, true);
+    this.shape = new Ammo.btBvhTriangleMeshShape(this.mesh, true);
     this.localInertia = new Ammo.btVector3(0, 0, 0);
     const rbInfo = new Ammo.btRigidBodyConstructionInfo(0, this.motionState, this.shape, this.localInertia);
     this.terrainBody = new Ammo.btRigidBody(this.rbInfo);
