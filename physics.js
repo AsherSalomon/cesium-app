@@ -248,22 +248,22 @@ function createVehicle(pos, quat) {
       breakingForce = maxBreakingForce;
       parkingBrake = true;
     }
-    let dtFactor = dt / 0.0167;
+    const steeringSpeed = Math.abs(speed) * dt / 0.0167 * steeringIncrement;
 		if (actions.left) {
 			if (vehicleSteering < steeringClamp)
-				vehicleSteering += steeringIncrement * dtFactor;
+				vehicleSteering += steeringSpeed;
 		}
 		else {
 			if (actions.right) {
 				if (vehicleSteering > -steeringClamp)
-					vehicleSteering -= steeringIncrement * dtFactor;
+					vehicleSteering -= steeringSpeed;
 			}
 			else {
 				if (vehicleSteering < -steeringIncrement)
-					vehicleSteering += steeringIncrement * dtFactor;
+					vehicleSteering += steeringSpeed;
 				else {
 					if (vehicleSteering > steeringIncrement)
-						vehicleSteering -= steeringIncrement * dtFactor;
+						vehicleSteering -= steeringSpeed;
 					else {
 						vehicleSteering = 0;
 					}
