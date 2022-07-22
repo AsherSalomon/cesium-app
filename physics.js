@@ -357,6 +357,8 @@ export function createTerrain(positions, indices, tileName) {
       vertices[indices[i + 2]]
     );
   }
+  vertices = undefined;
+  
   // high poly count causes
   // "Uncaught RuntimeError: abort(OOM). Build with -s ASSERTIONS=1 for more info."
   // "at FB.addTriangle"
@@ -375,7 +377,7 @@ export function createTerrain(positions, indices, tileName) {
   const rbInfo = new Ammo.btRigidBodyConstructionInfo(0, motionState, shape, localInertia);
   const terrainBody = new Ammo.btRigidBody(rbInfo);
   Ammo.destroy(rbInfo);
-  
+
   terrainBodies[tileName] = terrainBody;
   physicsWorld.addRigidBody(terrainBody);
 
