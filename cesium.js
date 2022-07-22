@@ -97,10 +97,78 @@ export function update() {
     viewer.camera.rotateRight(dotProduct * Math.PI / 256);
   }
 
-  // Cesium.ScreenSpaceCameraController.adjustHeightForTerrain(
-  //   viewer.scene.screenSpaceCameraController
-  // );
+  adjustHeightForTerrain(
+    viewer.scene.screenSpaceCameraController
+  );
 
+}
+
+function adjustHeightForTerrain(controller) {
+  controller._adjustedHeightForTerrain = true;
+
+  const scene = controller._scene;
+  const mode = scene.mode;
+  const globe = scene.globe;
+
+  if (
+    !defined(globe) ||
+    mode === SceneMode.SCENE2D ||
+    mode === SceneMode.MORPHING
+  ) {
+    return;
+  }
+
+  const camera = scene.camera;
+  const ellipsoid = globe.ellipsoid;
+  const projection = scene.mapProjection;
+
+  let transform;
+  let mag;
+  if (!Matrix4.equals(camera.transform, Matrix4.IDENTITY)) {
+    transform = Matrix4.clone(camera.transform, scratchAdjustHeightTransform);
+    mag = Cartesian3.magnitude(camera.position);
+    camera._setTransform(Matrix4.IDENTITY);
+  }
+
+  const cartographic = scratchAdjustHeightCartographic;
+  if (mode === SceneMode.SCENE3D) {
+    ellipsoid.cartesianToCartographic(camera.position, cartographic);
+  } else {
+    projection.unproject(camera.position, cartographic);
+  }
+
+  let heightUpdated = false;
+  if (cartographic.height < controller._minimumCollisionTerrainHeight) {
+    const globeHeight = controller._scene.globeHeight;
+    if (defined(globeHeight)) {
+      const height = globeHeight + controller.minimumZoomDistance;
+      if (cartographic.height < height) {
+        cartographic.height = height;
+        if (mode === SceneMode.SCENE3D) {
+          ellipsoid.cartographicToCartesian(cartographic, camera.position);
+        } else {
+          projection.project(cartographic, camera.position);
+        }
+        heightUpdated = true;
+      }
+    }
+  }
+
+  if (defined(transform)) {
+    camera._setTransform(transform);
+    if (heightUpdated) {
+      Cartesian3.normalize(camera.position, camera.position);
+      Cartesian3.negate(camera.position, camera.direction);
+      Cartesian3.multiplyByScalar(
+        camera.position,
+        Math.max(mag, controller.minimumZoomDistance),
+        camera.position
+      );
+      Cartesian3.normalize(camera.direction, camera.direction);
+      Cartesian3.cross(camera.direction, camera.up, camera.right);
+      Cartesian3.cross(camera.right, camera.direction, camera.up);
+    }
+  }
 }
 
 function createModel(url) {
