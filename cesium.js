@@ -247,8 +247,11 @@ function updateTileList(newTileList) {
 
 function tryToAddTiles() {
   for (let i = 0; i < tileList.length; i++) {
-    if (tileList[i].entities == undefined && tileList[i].renderable) {
-      console.log(tileList[i].needsLoading);
+    if (
+      tileList[i].entities == undefined &&
+      tileList[i].renderable &&
+      tileList[i].needsLoading == false
+    ) {
       addTile(tileList[i]);
     }
   }
