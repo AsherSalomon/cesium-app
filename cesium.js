@@ -111,7 +111,7 @@ function adjustHeightForTerrain(controller) {
   const globe = scene.globe;
 
   if (
-    !defined(globe) ||
+    !Cesium.defined(globe) ||
     mode === SceneMode.SCENE2D ||
     mode === SceneMode.MORPHING
   ) {
