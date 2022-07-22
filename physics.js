@@ -72,20 +72,20 @@ export function update(delta) {
 	// physicsWorld.setGravity( new Ammo.btVector3( 0, -9.82, 0 ) );
 
 
-  if (Object.keys(terrainBodies).length > 0) {
-    if (gravityOn) {
-      const position = truckEntities[0].position.getValue(truckEntities.now());
-      const normal = new Ammo.btVector3(position.x, position.y, position.z);
-      normal.normalize();
-      normal.op_mul(-9.82);
-      physicsWorld.setGravity( normal );
-    } else {
-    	physicsWorld.setGravity( new Ammo.btVector3(0, 0, 0) );
-    }
-
-  	for (let i = 0; i < syncList.length; i++) { syncList[i](delta); }
-  	physicsWorld.stepSimulation( delta, 10 );
+  // if (Object.keys(terrainBodies).length > 0) {
+  // }
+  if (gravityOn) {
+    const position = truckEntities[0].position.getValue(truckEntities.now());
+    const normal = new Ammo.btVector3(position.x, position.y, position.z);
+    normal.normalize();
+    normal.op_mul(-9.82);
+    physicsWorld.setGravity( normal );
+  } else {
+  	physicsWorld.setGravity( new Ammo.btVector3(0, 0, 0) );
   }
+
+	for (let i = 0; i < syncList.length; i++) { syncList[i](delta); }
+	physicsWorld.stepSimulation( delta, 10 );
 
 }
 
@@ -364,7 +364,11 @@ export function createTerrain(positions, indices, tileName) {
   const shape = new Ammo.btBvhTriangleMeshShape(mesh, true);
   const localInertia = new Ammo.btVector3(0, 0, 0);
   const rbInfo = new Ammo.btRigidBodyConstructionInfo(0, motionState, shape, localInertia);
+  Ammo.destroy(motionState);
+  Ammo.destroy(shape);
+  Ammo.destroy(localInertia);
   const terrainBody = new Ammo.btRigidBody(rbInfo);
+  Ammo.destroy(rbInfo);
 
   terrainBodies[tileName] = terrainBody;
   physicsWorld.addRigidBody(terrainBody);
@@ -373,7 +377,8 @@ export function createTerrain(positions, indices, tileName) {
 
 export function removeTerrain(tileName) {
   physicsWorld.removeRigidBody(terrainBodies[tileName]);
-  console.log(Ammo.destroy(terrainBodies[tileName]));
+  // https://github.com/kripken/ammo.js/issues/355
+  Ammo.destroy(terrainBodies[tileName]);
   delete terrainBodies[tileName];
 
 }
