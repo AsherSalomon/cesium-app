@@ -235,7 +235,6 @@ function createVehicle(pos, quat) {
 		engineForce = 0;
 
 		if (actions.acceleration) {
-      gravityOn = true;
       parkingBrake = false;
 			if (speed < -1)
 				breakingForce = maxBreakingForce;
@@ -369,6 +368,7 @@ class DestroyableTerrain {
     Ammo.destroy(rbInfo);
 
     physicsWorld.addRigidBody(this.terrainBody);
+    console.log('fin');
 
   }
   destroy() {
@@ -379,6 +379,7 @@ class DestroyableTerrain {
 }
 
 export function createTerrain(positions, indices, tileName) {
+  gravityOn = true;
 
   terrainBodies[tileName] = new DestroyableTerrain(positions, indices);
 
