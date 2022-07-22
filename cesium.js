@@ -110,13 +110,13 @@ function adjustHeightForTerrain(controller) {
   const mode = scene.mode;
   const globe = scene.globe;
 
-  if (
-    !Cesium.defined(globe) ||
-    mode === SceneMode.SCENE2D ||
-    mode === SceneMode.MORPHING
-  ) {
-    return;
-  }
+  // if (
+  //   !defined(globe) ||
+  //   mode === SceneMode.SCENE2D ||
+  //   mode === SceneMode.MORPHING
+  // ) {
+  //   return;
+  // }
 
   const camera = scene.camera;
   const ellipsoid = globe.ellipsoid;
