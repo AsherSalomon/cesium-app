@@ -154,19 +154,19 @@ function adjustHeightForTerrain(controller) {
     }
   }
 
-  if (defined(transform)) {
+  if (Cesium.defined(transform)) {
     camera._setTransform(transform);
     if (heightUpdated) {
-      Cartesian3.normalize(camera.position, camera.position);
-      Cartesian3.negate(camera.position, camera.direction);
-      Cartesian3.multiplyByScalar(
+      Cesium.Cartesian3.normalize(camera.position, camera.position);
+      Cesium.Cartesian3.negate(camera.position, camera.direction);
+      Cesium.Cartesian3.multiplyByScalar(
         camera.position,
         Math.max(mag, controller.minimumZoomDistance),
         camera.position
       );
-      Cartesian3.normalize(camera.direction, camera.direction);
-      Cartesian3.cross(camera.direction, camera.up, camera.right);
-      Cartesian3.cross(camera.right, camera.direction, camera.up);
+      Cesium.Cartesian3.normalize(camera.direction, camera.direction);
+      Cesium.Cartesian3.cross(camera.direction, camera.up, camera.right);
+      Cesium.Cartesian3.cross(camera.right, camera.direction, camera.up);
     }
   }
 }
