@@ -232,7 +232,7 @@ function createVehicle(pos, quat) {
 
 		const speed = vehicle.getCurrentSpeedKmHour();
 
-    speedometer.innerHTML = Math.abs(speed * 0.621371).toFixed(1) + ' mph';
+    speedometer.innerHTML = Math.abs(speed * 0.621371).toFixed(0) + ' mph';
 
     // const bodyV = body.getLinearVelocity();
     // console.log(bodyV.x(), bodyV.y(), bodyV.z());
