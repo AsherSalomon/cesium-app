@@ -12,6 +12,8 @@ const DISABLE_DEACTIVATION = 4;
 
 let gravityOn = false;
 
+let speedometer;
+
 // Physics variables
 let collisionConfiguration;
 let dispatcher;
@@ -32,6 +34,8 @@ const keysActions = {
 let parkingBrake = false;
 
 export function init(newTruck) {
+	speedometer = document.getElementById( 'speedometer' );
+
   truckEntities = newTruck;
 
 	// Physics configuration
@@ -227,6 +231,8 @@ function createVehicle(pos, quat) {
 	function sync(dt) {
 
 		const speed = vehicle.getCurrentSpeedKmHour();
+
+    speedometer.innerHTML = (speed < 0 ? '(R) ' : '') + Math.abs(speed).toFixed(1) + ' km/h';
 
     // const bodyV = body.getLinearVelocity();
     // console.log(bodyV.x(), bodyV.y(), bodyV.z());
