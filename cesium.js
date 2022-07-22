@@ -100,9 +100,6 @@ export function update() {
   // Cesium.ScreenSpaceCameraController.adjustHeightForTerrain(
   //   viewer.scene.screenSpaceCameraController
   // );
-  viewer.scene.screenSpaceCameraController.adjustHeightForTerrain(
-    viewer.scene.screenSpaceCameraController
-  );
 
 }
 
