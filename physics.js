@@ -368,6 +368,8 @@ class DestroyableTerrain {
     Ammo.destroy(rbInfo);
 
     physicsWorld.addRigidBody(this.terrainBody);
+    
+    gravityOn = true;
   }
   destroy() {
     physicsWorld.removeRigidBody(this.terrainBody);
@@ -377,7 +379,6 @@ class DestroyableTerrain {
 }
 
 export function createTerrain(positions, indices, tileName) {
-  gravityOn = true;
 
   terrainBodies[tileName] = new DestroyableTerrain(positions, indices);
 
