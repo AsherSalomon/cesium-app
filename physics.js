@@ -259,10 +259,10 @@ function createVehicle(pos, quat) {
 					vehicleSteering -= steeringSpeed;
 			}
 			else {
-				if (vehicleSteering < -steeringIncrement)
+				if (vehicleSteering < -steeringSpeed)
 					vehicleSteering += steeringSpeed;
 				else {
-					if (vehicleSteering > steeringIncrement)
+					if (vehicleSteering > steeringSpeed)
 						vehicleSteering -= steeringSpeed;
 					else {
 						vehicleSteering = 0;
