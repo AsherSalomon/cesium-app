@@ -71,18 +71,21 @@ export function update(delta) {
 
 	// physicsWorld.setGravity( new Ammo.btVector3( 0, -9.82, 0 ) );
 
-  if (gravityOn) {
-    const position = truckEntities[0].position.getValue(truckEntities.now());
-    const normal = new Ammo.btVector3(position.x, position.y, position.z);
-    normal.normalize();
-    normal.op_mul(-9.82);
-    physicsWorld.setGravity( normal );
-  } else {
-  	physicsWorld.setGravity( new Ammo.btVector3(0, 0, 0) );
-  }
 
-	for (let i = 0; i < syncList.length; i++) { syncList[i](delta); }
-	physicsWorld.stepSimulation( delta, 10 );
+  if (Object.keys(terrainBodies).length > 0) {
+    if (gravityOn) {
+      const position = truckEntities[0].position.getValue(truckEntities.now());
+      const normal = new Ammo.btVector3(position.x, position.y, position.z);
+      normal.normalize();
+      normal.op_mul(-9.82);
+      physicsWorld.setGravity( normal );
+    } else {
+    	physicsWorld.setGravity( new Ammo.btVector3(0, 0, 0) );
+    }
+
+  	for (let i = 0; i < syncList.length; i++) { syncList[i](delta); }
+  	physicsWorld.stepSimulation( delta, 10 );
+  }
 
 }
 
@@ -124,7 +127,7 @@ function createVehicle(pos, quat) {
 
 	const chassisWidth = 2.032;
 	const chassisHeight = .8;
-	const chassisLength = 6.761;
+	const chassisLength = 6.761 * 0.8;
 	const massVehicle = 800; // 3787.5;
 
 	const wheelAxisPositionBack = -2.07;
@@ -230,22 +233,22 @@ function createVehicle(pos, quat) {
 
 		breakingForce = 0;
 		engineForce = 0;
-    let dtFactor = dt / 0.0167;
 
 		if (actions.acceleration) {
       parkingBrake = false;
 			if (speed < -1)
-				breakingForce = maxBreakingForce * dtFactor;
-			else engineForce = maxEngineForce * dtFactor;
+				breakingForce = maxBreakingForce;
+			else engineForce = maxEngineForce;
 		} else if (actions.braking) {
       parkingBrake = false;
 			if (speed > 1)
-				breakingForce = maxBreakingForce * dtFactor;
-			else engineForce = -maxEngineForce / 2 * dtFactor;
+				breakingForce = maxBreakingForce;
+			else engineForce = -maxEngineForce / 2;
 		} else if (Math.abs(speed) < 1 || parkingBrake) {
-      breakingForce = maxBreakingForce * dtFactor;
+      breakingForce = maxBreakingForce;
       parkingBrake = true;
     }
+    let dtFactor = dt / 0.0167;
 		if (actions.left) {
 			if (vehicleSteering < steeringClamp)
 				vehicleSteering += steeringIncrement * dtFactor;
@@ -267,10 +270,6 @@ function createVehicle(pos, quat) {
 				}
 			}
 		}
-
-		if (actions.restore) {
-
-    }
 
 		vehicle.applyEngineForce(engineForce, BACK_LEFT);
 		vehicle.applyEngineForce(engineForce, BACK_RIGHT);
