@@ -368,12 +368,16 @@ class DestroyableTerrain {
     Ammo.destroy(rbInfo);
 
     physicsWorld.addRigidBody(this.terrainBody);
-    console.log('fin');
 
   }
   destroy() {
     physicsWorld.removeRigidBody(this.terrainBody);
     // https://github.com/kripken/ammo.js/issues/355
+    Ammo.destroy(this.mesh);
+    delete this.vertices;
+    Ammo.destroy(this.motionState);
+    Ammo.destroy(this.shape);
+    Ammo.destroy(this.localInertia);
     Ammo.destroy(this.terrainBody);
   }
 }
