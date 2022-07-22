@@ -130,7 +130,7 @@ function adjustHeightForTerrain(controller) {
     camera._setTransform(Cesium.Matrix4.IDENTITY);
   }
 
-  const cartographic = scratchAdjustHeightCartographic;
+  const cartographic = new Cesium.Cartographic();;
   if (mode === Cesium.SceneMode.SCENE3D) {
     ellipsoid.cartesianToCartographic(camera.position, cartographic);
   } else {
