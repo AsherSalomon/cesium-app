@@ -248,7 +248,7 @@ function createVehicle(pos, quat) {
       breakingForce = maxBreakingForce;
       parkingBrake = true;
     }
-    const steeringSpeed = Math.abs(speed) * dt / 0.0167 * steeringIncrement;
+    const steeringSpeed = steeringIncrement * dt / 0.0167 / Math.abs(speed);
 		if (actions.left) {
 			if (vehicleSteering < steeringClamp)
 				vehicleSteering += steeringSpeed;
