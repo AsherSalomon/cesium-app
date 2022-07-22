@@ -235,6 +235,7 @@ function createVehicle(pos, quat) {
 		engineForce = 0;
 
 		if (actions.acceleration) {
+      gravityOn = true;
       parkingBrake = false;
 			if (speed < -1)
 				breakingForce = maxBreakingForce;
@@ -368,8 +369,7 @@ class DestroyableTerrain {
     Ammo.destroy(rbInfo);
 
     physicsWorld.addRigidBody(this.terrainBody);
-    
-    gravityOn = true;
+
   }
   destroy() {
     physicsWorld.removeRigidBody(this.terrainBody);
