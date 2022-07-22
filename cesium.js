@@ -101,9 +101,6 @@ export function update() {
   //   viewer.scene.screenSpaceCameraController
   // );
 
-  const position = truckEntities[0].position.getValue(truckEntities.now());
-  viewer.camera.lookAt(position);
-
 }
 
 function createModel(url) {
