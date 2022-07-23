@@ -11,6 +11,7 @@ let originOffset;
 const DISABLE_DEACTIVATION = 4;
 
 let gravityOn = false;
+const gravity = 9.82;
 
 let speedometer;
 
@@ -83,7 +84,7 @@ export function update(delta) {
     const position = truckEntities[0].position.getValue(truckEntities.now());
     const normal = new Ammo.btVector3(position.x, position.y, position.z);
     normal.normalize();
-    normal.op_mul(-9.82);
+    normal.op_mul(-gravity);
     physicsWorld.setGravity( normal );
   } else {
   	physicsWorld.setGravity( new Ammo.btVector3(0, 0, 0) );
@@ -334,7 +335,7 @@ function createVehicle(pos, quat) {
       aboveVehicle = new Ammo.btVector3(aboveVehicle.x, aboveVehicle.y, aboveVehicle.z);
       Cesium.Cartesian3.add(position, originOffset, position);
       Cesium.Cartesian3.normalize(position, position);
-      const resetForce = 100;
+      const resetForce = massVehicle * gravity;
       Cesium.Cartesian3.multiplyByScalar(position, resetForce, position);
       position = new Ammo.btVector3(position.x, position.y, position.z);
       body.applyForce(position, aboveVehicle);
