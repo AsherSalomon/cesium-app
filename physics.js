@@ -331,7 +331,7 @@ function createVehicle(pos, quat) {
       Cesium.Matrix3.fromQuaternion(quaternion, matrix);
       Cesium.Matrix3.multiplyByVector(matrix3, aboveVehicle, aboveVehicle);
       Cesium.Cartesian3.add(aboveVehicle, position, aboveVehicle);
-      let aboveVehicle = new btVector3(aboveVehicle.x, aboveVehicle.y, aboveVehicle.z);
+      aboveVehicle = new btVector3(aboveVehicle.x, aboveVehicle.y, aboveVehicle.z);
       Cesium.Cartesian3.normalize(position, position);
       const resetForce = 1;
       Cesium.Cartesian3.multiplyByScalar(position, resetForce, position);
