@@ -332,8 +332,8 @@ function createVehicle(pos, quat) {
       Cesium.Matrix3.multiplyByVector(matrix3, aboveVehicle, aboveVehicle);
       Cesium.Cartesian3.add(aboveVehicle, position, aboveVehicle);
       aboveVehicle = new Ammo.btVector3(aboveVehicle.x, aboveVehicle.y, aboveVehicle.z);
-      Cesium.Cartesian3.normalize(position, position);
       Cesium.Cartesian3.add(position, originOffset, position);
+      Cesium.Cartesian3.normalize(position, position);
       const resetForce = 100;
       Cesium.Cartesian3.multiplyByScalar(position, resetForce, position);
       position = new Ammo.btVector3(position.x, position.y, position.z);
