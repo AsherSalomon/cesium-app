@@ -336,7 +336,7 @@ function createVehicle(pos, quat) {
       const resetForce = 1;
       Cesium.Cartesian3.multiplyByScalar(position, resetForce, position);
       position = new Ammo.btVector3(position.x, position.y, position.z);
-      body.applyForc(position, aboveVehicle);
+      body.applyForce(position, aboveVehicle);
     }
 
   }
