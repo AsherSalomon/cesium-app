@@ -149,8 +149,8 @@ function createVehicle(pos, quat) {
 
 	const friction = 1000;
 	const suspensionStiffness = 20; // 94.7; // 20.0;
-	const suspensionDamping = 10.9; /// 2.3;
-	const suspensionCompression = 20.8; // 4.4;
+	const suspensionDamping = 2.3; // 10.9; // 2.3;
+	const suspensionCompression = 4.4; // 20.8; // 4.4;
 	const suspensionRestLength = 0.8;
 	const rollInfluence = 0.2;
 
