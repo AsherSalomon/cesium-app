@@ -262,7 +262,7 @@ function createVehicle(pos, quat) {
       parkingBrake = false;
 			if (speed > 1)
 				breakingForce = maxBreakingForce;
-			else engineForce = -maxEngineForce / 2;
+			else engineForce = -maxEngineForce; //  / 2
 		} else if (Math.abs(speed) < 1 || parkingBrake) {
       breakingForce = maxBreakingForce;
       parkingBrake = true;
