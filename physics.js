@@ -93,7 +93,7 @@ export function update(delta) {
   }
 
 	for (let i = 0; i < syncList.length; i++) { syncList[i](delta); }
-	physicsWorld.stepSimulation(delta, 10000, 0);
+	physicsWorld.stepSimulation(delta, 1000000);
 
 }
 
