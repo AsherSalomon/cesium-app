@@ -363,6 +363,7 @@ function createVehicle(pos, quat) {
         Cesium.Cartesian3.multiplyByScalar(position, terrainForce, position);
         position = new Ammo.btVector3(position.x, position.y, position.z);
         const bodyCenter = new Cesium.Cartesian3(0, 0, 0);
+        body.clearForces();
         body.applyForce(position, bodyCenter);
       }
     });
