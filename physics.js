@@ -152,7 +152,7 @@ function createVehicle(pos, quat) {
 	const suspensionDamping = 2.3; // 10.9; // 2.3;
 	const suspensionCompression = 4.4; // 20.8; // 4.4;
 	const suspensionRestLength = 0.8;
-	const rollInfluence = 1; // 0.2;
+	const rollInfluence = 0; // 0.2;
 
 	const steeringIncrement = .2;
 	const steeringClamp = .5;
