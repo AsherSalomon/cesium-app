@@ -216,6 +216,10 @@ function createVehicle(pos, quat) {
 		wheelInfo.set_m_frictionSlip(friction);
 		wheelInfo.set_m_rollInfluence(rollInfluence);
 
+    if (index == 0) {
+      console.log(wheelInfo.m_maxSuspensionForce);
+    }
+
 		// wheelMeshes[index] = createWheelMesh(radius, width);
 	}
 
