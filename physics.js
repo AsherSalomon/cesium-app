@@ -351,7 +351,14 @@ function createVehicle(pos, quat) {
     const positions = [Cesium.Cartographic.fromCartesian(position, ellipsoid)];
     const promise = Cesium.sampleTerrainMostDetailed(terrainProvider, positions);
     Promise.resolve(promise).then(function(updatedPositions) {
-      const height = positions[0].height;
+      const terrainHeight = positions[0].height;
+      position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
+      Cesium.Cartesian3.add(position, originOffset, position);
+      const cartographic = Cesium.Cartographic.fromCartesian(position, ellipsoid);
+      const bodyHeight = cartographic.height;
+      if (bodyHeight < terrainHeight) {
+        console.log(terrainHeight - bodyHeight);
+      }
     });
 
   }
