@@ -152,7 +152,7 @@ function createVehicle(pos, quat) {
 	const suspensionDamping = 2.3; // 10.9; // 2.3;
 	const suspensionCompression = 4.4; // 20.8; // 4.4;
 	const suspensionRestLength = 0.8;
-	const rollInfluence = 0; // 0.2;
+	const rollInfluence = 0.2;
 
 	const steeringIncrement = .2;
 	const steeringClamp = .5;
@@ -220,17 +220,17 @@ function createVehicle(pos, quat) {
 		wheelInfo.set_m_frictionSlip(friction);
 		wheelInfo.set_m_rollInfluence(rollInfluence);
 
-    wheelInfo.set_m_maxSuspensionForce(1000000); // improves underworld problem
-    if (index == 0) {
-      console.log(wheelInfo.m_suspensionRestLength);
-      console.log(wheelInfo.m_maxSuspensionTravelCm);
-      console.log(wheelInfo.m_wheelRadius);
-      console.log(wheelInfo.m_suspensionStiffness);
-      console.log(wheelInfo.m_wheelsDampingCompression);
-      console.log(wheelInfo.m_wheelsDampingRelaxation);
-      console.log(wheelInfo.m_frictionSlip);
-      console.log(wheelInfo.m_maxSuspensionForce);
-    }
+    wheelInfo.set_m_maxSuspensionForce(1000000000); // improves underworld problem
+    // if (index == 0) {
+    //   console.log(wheelInfo.m_suspensionRestLength);
+    //   console.log(wheelInfo.m_maxSuspensionTravelCm);
+    //   console.log(wheelInfo.m_wheelRadius);
+    //   console.log(wheelInfo.m_suspensionStiffness);
+    //   console.log(wheelInfo.m_wheelsDampingCompression);
+    //   console.log(wheelInfo.m_wheelsDampingRelaxation);
+    //   console.log(wheelInfo.m_frictionSlip);
+    //   console.log(wheelInfo.m_maxSuspensionForce);
+    // }
 
 		// wheelMeshes[index] = createWheelMesh(radius, width);
 	}
