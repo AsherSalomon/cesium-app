@@ -344,15 +344,15 @@ function createVehicle(pos, quat) {
       Ammo.destroy(position);
     }
 
-    // const provider = viewer.scene.globe.terrainProvider;
-    // const positions = [
-    //     Cesium.Cartographic.fromCartesian(cartesian, ellipsoid, result)
-    // ];
-    // const promise = Cesium.sampleTerrainMostDetailed(terrainProvider, positions);
-    // Promise.resolve(promise).then(function(updatedPositions) {
-    //     // positions[0].height and positions[1].height have been updated.
-    //     // updatedPositions is just a reference to positions.
-    // });
+    position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
+    Cesium.Cartesian3.add(position, originOffset, position);
+    const terrainProvider = viewer.scene.globe.terrainProvider;
+    const ellipsoid = provider.tilingScheme.projection.ellipsoid;
+    const positions = [Cesium.Cartographic.fromCartesian(position, ellipsoid)];
+    const promise = Cesium.sampleTerrainMostDetailed(terrainProvider, positions);
+    Promise.resolve(promise).then(function(updatedPositions) {
+      console.log(positions[0].height);
+    });
 
   }
 
