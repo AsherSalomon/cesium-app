@@ -382,7 +382,7 @@ function createVehicle(pos, quat) {
         // body.clearForces();
         // body.applyForce(position, bodyCenter);
 
-        const restore = terrainHeight - bodyHeight;
+        const restore = (terrainHeight - bodyHeight) * 2;
         Cesium.Cartesian3.normalize(position, position);
         Cesium.Cartesian3.multiplyByScalar(position, restore, position);
         Cesium.Cartesian3.add(position, new Cesium.Cartesian3(p.x(), p.y(), p.z()), position);
