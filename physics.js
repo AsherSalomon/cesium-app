@@ -220,7 +220,7 @@ function createVehicle(pos, quat) {
 		wheelInfo.set_m_frictionSlip(friction);
 		wheelInfo.set_m_rollInfluence(rollInfluence);
 
-    wheelInfo.set_m_maxSuspensionForce(1000000000); // improves underworld problem
+    wheelInfo.set_m_maxSuspensionForce(1000000); // improves underworld problem
     // if (index == 0) {
     //   console.log(wheelInfo.m_suspensionRestLength);
     //   console.log(wheelInfo.m_maxSuspensionTravelCm);
@@ -342,7 +342,7 @@ function createVehicle(pos, quat) {
     Cesium.Quaternion.multiply(quaternion, quaternionB, quaternion);
     truckEntities[0].orientation = quaternion;
 
-    if (actions.reset) {
+    if (actions.reset && gravityOn) {
       let aboveVehicle = new Cesium.Cartesian3(0, 1, 0);
       position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
       quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
