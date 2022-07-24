@@ -217,6 +217,7 @@ function createVehicle(pos, quat) {
 		wheelInfo.set_m_rollInfluence(rollInfluence);
 
     wheelInfo.set_m_maxSuspensionForce(1000000); // improves underworld problem
+    wheelInfo.set_m_maxSuspensionTravelCm(10000); // improves underworld problem
     if (index == 0) {
       console.log(wheelInfo.m_maxSuspensionTravelCm);
     }
