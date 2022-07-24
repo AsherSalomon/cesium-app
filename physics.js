@@ -373,14 +373,14 @@ function createVehicle(pos, quat) {
       const cartographic = Cesium.Cartographic.fromCartesian(position, ellipsoid);
       const bodyHeight = cartographic.height;
       if (bodyHeight < terrainHeight) {
-        const terrainSpringRate = massVehicle * gravity * 10;
-        const terrainForce = (terrainHeight - bodyHeight) * terrainSpringRate;
-        Cesium.Cartesian3.normalize(position, position);
-        Cesium.Cartesian3.multiplyByScalar(position, terrainForce, position);
-        position = new Ammo.btVector3(position.x, position.y, position.z);
-        const bodyCenter = new Cesium.Cartesian3(0, 0, 0);
-        body.clearForces();
-        body.applyForce(position, bodyCenter);
+        // const terrainSpringRate = massVehicle * gravity * 10;
+        // const terrainForce = (terrainHeight - bodyHeight) * terrainSpringRate;
+        // Cesium.Cartesian3.normalize(position, position);
+        // Cesium.Cartesian3.multiplyByScalar(position, terrainForce, position);
+        // position = new Ammo.btVector3(position.x, position.y, position.z);
+        // const bodyCenter = new Cesium.Cartesian3(0, 0, 0);
+        // body.clearForces();
+        // body.applyForce(position, bodyCenter);
 
         const restore = terrainHeight - bodyHeight;
         Cesium.Cartesian3.normalize(position, position);
