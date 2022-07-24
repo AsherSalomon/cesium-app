@@ -133,7 +133,7 @@ function createVehicle(pos, quat) {
 	const chassisWidth = 2.032;
 	const chassisHeight = .8;
 	const chassisLength = 6.761 * 0.8;
-	const massVehicle = 800; // 3787.5;
+	const massVehicle = 3787.5; // 800;
 
 	const wheelAxisPositionBack = -2.07;
 	const wheelRadiusBack = 0.35;
@@ -148,9 +148,9 @@ function createVehicle(pos, quat) {
 	const wheelWidthFront = 0.245;
 
 	const friction = 1000;
-	const suspensionStiffness = 20.0;
-	const suspensionDamping = 2.3;
-	const suspensionCompression = 4.4;
+	const suspensionStiffness = 94.7; // 20.0;
+	const suspensionDamping = 10.9; /// 2.3;
+	const suspensionCompression = 20.8; // 4.4;
 	const suspensionRestLength = 0.8;
 	const rollInfluence = 0.2;
 
