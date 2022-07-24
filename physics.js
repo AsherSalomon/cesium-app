@@ -215,6 +215,7 @@ function createVehicle(pos, quat) {
 		wheelInfo.set_m_wheelsDampingCompression(suspensionCompression);
 		wheelInfo.set_m_frictionSlip(friction);
 		wheelInfo.set_m_rollInfluence(rollInfluence);
+    wheelInfo.set_m_maxSuspensionForce(1000000);
 
     if (index == 0) {
       console.log(wheelInfo.m_maxSuspensionForce);
