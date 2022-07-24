@@ -14,7 +14,7 @@ function init() {
 	// console.log('waiting...');
 	setTimeout(function() {
 		// console.log('physics.init');
-	  physics.init(cesium.truckEntities);
+	  physics.init(cesium.truckEntities, cesium.viewer);
 		cesium.getPhysicsFunctions(physics.createTerrain, physics.removeTerrain);
 		waitingForPhysicsInit = false;
 	}, 1 * 1000);
