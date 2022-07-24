@@ -1,5 +1,5 @@
 
-let viewer;
+export let viewer;
 export const truckEntities = [];
 
 let selectedTile = {cartesian2: {x: 0, y: 0}, level: 0}
