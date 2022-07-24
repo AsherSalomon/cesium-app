@@ -2,6 +2,7 @@
 // https://github.com/kripken/ammo.js/blob/main/examples/webgl_demo_vehicle/index.html
 
 // import * as controls from './controls.js';
+let viewer;
 
 let truckEntities;
 const terrainBodies = {};
@@ -35,10 +36,11 @@ const keysActions = {
 };
 let parkingBrake = false;
 
-export function init(newTruck) {
-	speedometer = document.getElementById( 'speedometer' );
-
+export function init(newTruck, newViewer) {
   truckEntities = newTruck;
+  viewer = newViewer;
+
+	speedometer = document.getElementById( 'speedometer' );
 
 	// Physics configuration
 	collisionConfiguration = new Ammo.btDefaultCollisionConfiguration();
@@ -331,7 +333,6 @@ function createVehicle(pos, quat) {
       const matrix3 = new Cesium.Matrix3();
       Cesium.Matrix3.fromQuaternion(quaternion, matrix3);
       Cesium.Matrix3.multiplyByVector(matrix3, aboveVehicle, aboveVehicle);
-      // Cesium.Cartesian3.add(aboveVehicle, position, aboveVehicle);
       aboveVehicle = new Ammo.btVector3(aboveVehicle.x, aboveVehicle.y, aboveVehicle.z);
       Cesium.Cartesian3.add(position, originOffset, position);
       Cesium.Cartesian3.normalize(position, position);
@@ -342,6 +343,16 @@ function createVehicle(pos, quat) {
       Ammo.destroy(aboveVehicle);
       Ammo.destroy(position);
     }
+
+    // const provider = viewer.scene.globe.terrainProvider;
+    // const positions = [
+    //     Cesium.Cartographic.fromCartesian(cartesian, ellipsoid, result)
+    // ];
+    // const promise = Cesium.sampleTerrainMostDetailed(terrainProvider, positions);
+    // Promise.resolve(promise).then(function(updatedPositions) {
+    //     // positions[0].height and positions[1].height have been updated.
+    //     // updatedPositions is just a reference to positions.
+    // });
 
   }
 
