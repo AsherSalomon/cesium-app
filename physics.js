@@ -217,9 +217,15 @@ function createVehicle(pos, quat) {
 		wheelInfo.set_m_rollInfluence(rollInfluence);
 
     wheelInfo.set_m_maxSuspensionForce(1000000); // improves underworld problem
-    wheelInfo.set_m_maxSuspensionTravelCm(10000); // improves underworld problem
     if (index == 0) {
+      console.log(wheelInfo.m_suspensionRestLength);
       console.log(wheelInfo.m_maxSuspensionTravelCm);
+      console.log(wheelInfo.m_wheelRadius);
+      console.log(wheelInfo.m_suspensionStiffness);
+      console.log(wheelInfo.m_wheelsDampingCompression);
+      console.log(wheelInfo.m_wheelsDampingRelaxation);
+      console.log(wheelInfo.m_frictionSlip);
+      console.log(wheelInfo.m_maxSuspensionForce);
     }
 
 		// wheelMeshes[index] = createWheelMesh(radius, width);
