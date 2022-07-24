@@ -349,7 +349,7 @@ function createVehicle(pos, quat) {
     const terrainProvider = viewer.scene.globe.terrainProvider;
     const ellipsoid = provider.tilingScheme.projection.ellipsoid;
     const positions = [Cesium.Cartographic.fromCartesian(position, ellipsoid)];
-    console.log(positions[0].height);
+    // console.log(positions[0].height);
     const promise = Cesium.sampleTerrainMostDetailed(terrainProvider, positions);
     Promise.resolve(promise).then(function(updatedPositions) {
       console.log(positions[0].height);
