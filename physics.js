@@ -156,8 +156,8 @@ function createVehicle(pos, quat) {
 
 	const steeringIncrement = .2;
 	const steeringClamp = .5;
-	const maxEngineForce = 2000;
-	const maxBreakingForce = 50;
+	const maxEngineForce = 9468; // 2000;
+	const maxBreakingForce = 236; // 50;
 
 	// Chassis
 	const geometry = new Ammo.btBoxShape(new Ammo.btVector3(chassisWidth * .5, chassisHeight * .5, chassisLength * .5));
