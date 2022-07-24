@@ -56,6 +56,7 @@ export function init(newTruck, newViewer) {
 
 }
 
+let frameCount = 0;
 export function update(delta) {
   // const leftRight = controls.right - controls.left;
   // const upDown = controls.down - controls.up;
@@ -92,8 +93,11 @@ export function update(delta) {
   	physicsWorld.setGravity( new Ammo.btVector3(0, 0, 0) );
   }
 
-	for (let i = 0; i < syncList.length; i++) { syncList[i](delta); }
-	physicsWorld.stepSimulation(delta, 10);
+  frameCount++;
+  if (frameCount % 10 == 0) {
+  	for (let i = 0; i < syncList.length; i++) { syncList[i](delta); }
+  	physicsWorld.stepSimulation(delta, 10);
+  }
 
 }
 
