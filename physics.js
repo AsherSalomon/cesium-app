@@ -58,31 +58,6 @@ export function init(newTruck, newViewer) {
 
 let frameCount = 0;
 export function update(delta) {
-  // const leftRight = controls.right - controls.left;
-  // const upDown = controls.down - controls.up;
-  // const forwardBackward = controls.forward - controls.backward;
-
-  // const position = truckEntities[0].position.getValue(truckEntities.now());
-  // // position.x += leftRight;
-  // // position.y += upDown;
-  // // position.z += forwardBackward;
-  // // position.x = ;
-  // // position.y = ;
-  // // position.z = ;
-  // truckEntities[0].position = new Cesium.ConstantPositionProperty(position);
-  //
-  // const quaternion = truckEntities[0].orientation.getValue(truckEntities.now());
-  // // quaternion.x = ;
-  // // quaternion.y = ;
-  // // quaternion.z = ;
-  // // quaternion.w = ;
-  // truckEntities[0].orientation = new Cesium.ConstantPositionProperty(quaternion);
-
-	// physicsWorld.setGravity( new Ammo.btVector3( 0, -9.82, 0 ) );
-
-
-  // if (Object.keys(terrainBodies).length > 0) {
-  // }
   if (gravityOn) {
     const position = truckEntities[0].position.getValue(truckEntities.now());
     const normal = new Ammo.btVector3(position.x, position.y, position.z);
