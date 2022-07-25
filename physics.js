@@ -334,6 +334,7 @@ function createVehicle(pos, quat) {
     Cesium.Cartesian3.subtract(position, velocity, position);
     Cesium.Cartesian3.add(position, originOffset, position);
     truckEntities[0].position = position;
+    truckEntities[5].position = position;
 
     let quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
     const quaternionB = new Cesium.Quaternion(0, 0, 0, 1);
@@ -342,6 +343,7 @@ function createVehicle(pos, quat) {
     Cesium.Quaternion.fromAxisAngle(Cesium.Cartesian3.UNIT_Z, Math.PI, quaternionB);
     Cesium.Quaternion.multiply(quaternion, quaternionB, quaternion);
     truckEntities[0].orientation = quaternion;
+    truckEntities[5].orientation = position;
 
     if (actions.reset && gravityOn) {
       let aboveVehicle = new Cesium.Cartesian3(0, 1, 0);
