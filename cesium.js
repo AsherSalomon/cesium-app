@@ -57,6 +57,8 @@ export function init() {
   }});
   truckEntities.now = function() { return viewer.clock.currentTime; }
 
+  viewer.trackedEntity = truckEntities[5];
+
 }
 
 function getColor(colorName, alpha) {
@@ -209,7 +211,7 @@ function createModel(url) {
       maximumScale: 20000,
     },
   });
-  viewer.trackedEntity = entity;
+  // viewer.trackedEntity = entity;
 
   return entity;
 
