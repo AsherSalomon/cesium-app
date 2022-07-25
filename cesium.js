@@ -31,6 +31,8 @@ export function init() {
   viewer.scene.globe.depthTestAgainstTerrain = true;
   viewer.scene.moon = new Cesium.Moon();
 
+  viewer.scene.globe._surface._debug.wireframe = true;
+
   viewer.scene.primitives.add(Cesium.createOsmBuildings());
 
   viewer.camera.flyTo({
