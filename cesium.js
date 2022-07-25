@@ -205,13 +205,7 @@ function createModel(url) {
     orientation: orientation,
     model: {
       uri: url, // Cesium.ModelGraphics
-      // minimumPixelSize: 0,
-      // maximumScale: 20000,
     },
-    color: getColor('Red', 0.5),
-    colorBlendMode: Cesium.ColorBlendMode["Highlight".toUpperCase()],
-    colorBlendAmount: parseFloat("Replace"),
-    colorBlendAmountEnabled: true,
   });
   viewer.trackedEntity = entity;
 
