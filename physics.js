@@ -161,6 +161,7 @@ function createVehicle(pos, quat) {
 
 	// Chassis
 	const geometry = new Ammo.btBoxShape(new Ammo.btVector3(chassisWidth * .5, chassisHeight * .5, chassisLength * .5));
+  // const geometry = new Ammo.btSphereShape();
 
 	const transform = new Ammo.btTransform();
 	transform.setIdentity();
@@ -360,36 +361,36 @@ function createVehicle(pos, quat) {
       Ammo.destroy(position);
     }
 
-    position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
-    Cesium.Cartesian3.add(position, originOffset, position);
-    const terrainProvider = viewer.scene.globe.terrainProvider;
-    const ellipsoid = terrainProvider.tilingScheme.projection.ellipsoid;
-    const positions = [Cesium.Cartographic.fromCartesian(position, ellipsoid)];
-    const promise = Cesium.sampleTerrainMostDetailed(terrainProvider, positions);
-    Promise.resolve(promise).then(function(updatedPositions) {
-      const terrainHeight = positions[0].height;
-      position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
-      Cesium.Cartesian3.add(position, originOffset, position);
-      const cartographic = Cesium.Cartographic.fromCartesian(position, ellipsoid);
-      const bodyHeight = cartographic.height;
-      if (bodyHeight < terrainHeight) {
-        // const terrainSpringRate = massVehicle * gravity * 10;
-        // const terrainForce = (terrainHeight - bodyHeight) * terrainSpringRate;
-        // Cesium.Cartesian3.normalize(position, position);
-        // Cesium.Cartesian3.multiplyByScalar(position, terrainForce, position);
-        // position = new Ammo.btVector3(position.x, position.y, position.z);
-        // const bodyCenter = new Cesium.Cartesian3(0, 0, 0);
-        // body.clearForces();
-        // body.applyForce(position, bodyCenter);
-
-        const restore = (terrainHeight - bodyHeight) * 2;
-        Cesium.Cartesian3.normalize(position, position);
-        Cesium.Cartesian3.multiplyByScalar(position, restore, position);
-        Cesium.Cartesian3.add(position, new Cesium.Cartesian3(p.x(), p.y(), p.z()), position);
-        position = new Ammo.btVector3(position.x, position.y, position.z);
-        tm.setOrigin(position);
-      }
-    });
+    // position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
+    // Cesium.Cartesian3.add(position, originOffset, position);
+    // const terrainProvider = viewer.scene.globe.terrainProvider;
+    // const ellipsoid = terrainProvider.tilingScheme.projection.ellipsoid;
+    // const positions = [Cesium.Cartographic.fromCartesian(position, ellipsoid)];
+    // const promise = Cesium.sampleTerrainMostDetailed(terrainProvider, positions);
+    // Promise.resolve(promise).then(function(updatedPositions) {
+    //   const terrainHeight = positions[0].height;
+    //   position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
+    //   Cesium.Cartesian3.add(position, originOffset, position);
+    //   const cartographic = Cesium.Cartographic.fromCartesian(position, ellipsoid);
+    //   const bodyHeight = cartographic.height;
+    //   if (bodyHeight < terrainHeight) {
+    //     // const terrainSpringRate = massVehicle * gravity * 10;
+    //     // const terrainForce = (terrainHeight - bodyHeight) * terrainSpringRate;
+    //     // Cesium.Cartesian3.normalize(position, position);
+    //     // Cesium.Cartesian3.multiplyByScalar(position, terrainForce, position);
+    //     // position = new Ammo.btVector3(position.x, position.y, position.z);
+    //     // const bodyCenter = new Cesium.Cartesian3(0, 0, 0);
+    //     // body.clearForces();
+    //     // body.applyForce(position, bodyCenter);
+    //
+    //     const restore = (terrainHeight - bodyHeight) * 2;
+    //     Cesium.Cartesian3.normalize(position, position);
+    //     Cesium.Cartesian3.multiplyByScalar(position, restore, position);
+    //     Cesium.Cartesian3.add(position, new Cesium.Cartesian3(p.x(), p.y(), p.z()), position);
+    //     position = new Ammo.btVector3(position.x, position.y, position.z);
+    //     tm.setOrigin(position);
+    //   }
+    // });
 
   }
 
@@ -420,6 +421,13 @@ class DestroyableTerrain {
     // "at FB.addTriangle"
     // https://forum.playcanvas.com/t/solved-ammo-script-error-abort-oom/13465
     // try to lower polly count.
+
+    // perhapse use a btConvexHullShape
+    // with a btCompoundShape
+    // or a btConcaveShape
+    // or a btBvhTriangleMeshShape
+
+    // or a btHeightfieldTerrainShape
 
     const transform = new Ammo.btTransform();
     transform.setIdentity();
