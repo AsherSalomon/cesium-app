@@ -453,13 +453,13 @@ export function createTerrain(positions, indices, tileName) {
   gravityOn = true;
 
   terrainBodies[tileName] = new DestroyableTerrain(positions, indices);
-  console.log(Object.keys(terrainBodies).length, 'terrainBodies');
+  // console.log(Object.keys(terrainBodies).length, 'terrainBodies');
 
 }
 
 export function removeTerrain(tileName) {
   terrainBodies[tileName].destroy();
   delete terrainBodies[tileName];
-  console.log(Object.keys(terrainBodies).length, 'terrainBodies');
+  // console.log(Object.keys(terrainBodies).length, 'terrainBodies');
 
 }
