@@ -53,15 +53,10 @@ export function init() {
   }
   truckEntities[5] = viewer.entities.add({model: {
     uri: '1984_Ford_F350_hull.glb',
-    color: getColor('Red', 0.5)
+    color: Cesium.Color.FUCHSIA
   }});
   truckEntities.now = function() { return viewer.clock.currentTime; }
 
-}
-
-function getColor(colorName, alpha) {
-  const color = Cesium.Color[colorName.toUpperCase()];
-  return Cesium.Color.fromAlpha(color, parseFloat(alpha));
 }
 
 let createTerrain;
