@@ -208,6 +208,7 @@ function createModel(url) {
       // minimumPixelSize: 0,
       // maximumScale: 20000,
     },
+    color: getColor('Red', 0.5)
   });
   viewer.trackedEntity = entity;
 
