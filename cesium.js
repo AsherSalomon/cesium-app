@@ -57,8 +57,6 @@ export function init() {
   }});
   truckEntities.now = function() { return viewer.clock.currentTime; }
 
-  viewer.trackedEntity = truckEntities[5];
-
 }
 
 function getColor(colorName, alpha) {
@@ -207,11 +205,11 @@ function createModel(url) {
     orientation: orientation,
     model: {
       uri: url, // Cesium.ModelGraphics
-      minimumPixelSize: 0,
-      maximumScale: 20000,
+      // minimumPixelSize: 0,
+      // maximumScale: 20000,
     },
   });
-  // viewer.trackedEntity = entity;
+  viewer.trackedEntity = entity;
 
   return entity;
 
