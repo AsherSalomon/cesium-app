@@ -59,6 +59,11 @@ export function init() {
 
 }
 
+function getColor(colorName, alpha) {
+  const color = Cesium.Color[colorName.toUpperCase()];
+  return Cesium.Color.fromAlpha(color, parseFloat(alpha));
+}
+
 let createTerrain;
 let removeTerrain;
 export function getPhysicsFunctions(getCreateTerrain, getRemoveTerrain) {
