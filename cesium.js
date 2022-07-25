@@ -211,6 +211,7 @@ function createModel(url) {
     color: getColor('Red', 0.5),
     colorBlendMode: Cesium.ColorBlendMode["Highlight".toUpperCase()],
     colorBlendAmount: parseFloat("Replace"),
+    colorBlendAmountEnabled: true,
   });
   viewer.trackedEntity = entity;
 
