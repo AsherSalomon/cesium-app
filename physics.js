@@ -155,7 +155,12 @@ function createVehicle(pos, quat) {
 	const motionState = new Ammo.btDefaultMotionState(transform);
 	const localInertia = new Ammo.btVector3(0, 0, 0);
 	geometry.calculateLocalInertia(massVehicle, localInertia);
-	const body = new Ammo.btRigidBody(new Ammo.btRigidBodyConstructionInfo(massVehicle, motionState, geometry, localInertia));
+
+  const compoundShape = new Ammo.btCompoundShape();
+  compoundShape.addChildShape(transform, geometry);
+
+	// const body = new Ammo.btRigidBody(new Ammo.btRigidBodyConstructionInfo(massVehicle, motionState, geometry, localInertia));
+	const body = new Ammo.btRigidBody(new Ammo.btRigidBodyConstructionInfo(massVehicle, motionState, compoundShape, localInertia));
 	body.setActivationState(DISABLE_DEACTIVATION);
 	physicsWorld.addRigidBody(body);
 	// var chassisMesh = createChassisMesh(chassisWidth, chassisHeight, chassisLength);
