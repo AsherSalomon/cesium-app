@@ -75,6 +75,7 @@ export function update() {
     const cartographic = ellipsoid.cartesianToCartographic(position);
     const level = provider.availability.computeMaximumLevelAtPosition(cartographic);
     const cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, level);
+    console.log(provider.tilingScheme);
     selectedTile.cartesian2 = cartesian2;
     selectedTile.level = level;
   }
