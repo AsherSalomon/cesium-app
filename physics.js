@@ -135,8 +135,8 @@ function createVehicle(pos, quat) {
 	const maxBreakingForce = 236; // 50;
 
 	// Chassis
-	const geometry = new Ammo.btBoxShape(new Ammo.btVector3(chassisWidth * .5, chassisHeight * .5, chassisLength * .5));
-  // const geometry = new Ammo.btSphereShape();
+	// const geometry = new Ammo.btBoxShape(new Ammo.btVector3(chassisWidth * .5, chassisHeight * .5, chassisLength * .5));
+  const geometry = new Ammo.btSphereShape(chassisHeight * .5);
 
 	const transform = new Ammo.btTransform();
 	transform.setIdentity();
@@ -438,13 +438,13 @@ export function createTerrain(positions, indices, tileName) {
   gravityOn = true;
 
   terrainBodies[tileName] = new DestroyableTerrain(positions, indices);
-  console.log(Object.keys(terrainBodies).length, 'terrainBodies');
+  // console.log(Object.keys(terrainBodies).length, 'terrainBodies');
 
 }
 
 export function removeTerrain(tileName) {
   terrainBodies[tileName].destroy();
   delete terrainBodies[tileName];
-  console.log(Object.keys(terrainBodies).length, 'terrainBodies');
+  // console.log(Object.keys(terrainBodies).length, 'terrainBodies');
 
 }
