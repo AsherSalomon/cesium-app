@@ -144,7 +144,7 @@ function createVehicle(pos, quat) {
     new Ammo.btVector3(chassisWidth * .5 - ch5, 0, -(chassisLength * .5 - ch5)),
     new Ammo.btVector3(-(chassisWidth * .5) - ch5, 0, chassisLength * .5 - ch5),
     new Ammo.btVector3(-(chassisWidth * .5) - ch5, 0, -(chassisLength * .5 - ch5))],
-    [chassisHeight * .5, chassisHeight * .5, chassisHeight * .5, chassisHeight * .5],
+    [chassisWidth * .5, chassisWidth * .5, chassisWidth * .5, chassisWidth * .5],
     4
   );
 
