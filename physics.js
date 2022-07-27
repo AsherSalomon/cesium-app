@@ -148,7 +148,7 @@ function createVehicle(pos, quat) {
   let transform3 = new Ammo.btTransform();
   function addSphere(x, y, z) {
     const sphereShape = new Ammo.btSphereShape(chassisHeight * .5);
-  	sphereShape.calculateLocalInertia(1, localInertia);// gave it 1kg mass
+  	sphereShape.calculateLocalInertia(massVehicle / 4, localInertia);
     transform3 = new Ammo.btTransform();
   	transform3.setIdentity();
   	transform3.setOrigin(new Ammo.btVector3(x, y, z));
