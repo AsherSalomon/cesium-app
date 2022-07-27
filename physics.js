@@ -136,7 +136,24 @@ function createVehicle(pos, quat) {
 
 	// Chassis
 	const geometry = new Ammo.btBoxShape(new Ammo.btVector3(chassisWidth * .5, chassisHeight * .5, chassisLength * .5));
-  // const geometry = new Ammo.btSphereShape(chassisWidth * .5);
+
+	const localInertia = new Ammo.btVector3(0, 0, 0);
+	geometry.calculateLocalInertia(massVehicle, localInertia);
+
+  const compoundShape = new Ammo.btCompoundShape();
+	const transform2 = new Ammo.btTransform();
+	transform2.setIdentity();
+  compoundShape.addChildShape(transform2, geometry);
+
+  let transform3 = new Ammo.btTransform();
+  function addSphere(x, y, z) {
+    const sphereShape = new Ammo.btSphereShape(chassisHeight * .5);
+  	sphereShape.calculateLocalInertia(1, localInertia);// gave it 1kg mass
+    transform3 = new Ammo.btTransform();
+  	transform3.setIdentity();
+  	transform3.setOrigin(new Ammo.btVector3(x, y, z));
+    compoundShape.addChildShape(transform3, geometry);
+  }
 
 	const transform = new Ammo.btTransform();
 	transform.setIdentity();
@@ -150,16 +167,7 @@ function createVehicle(pos, quat) {
   Cesium.Quaternion.fromAxisAngle(Cesium.Cartesian3.UNIT_Y, Math.PI, quatB);
   Cesium.Quaternion.multiply(quat, quatB, quat);
 	transform.setRotation(new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w));
-	// transform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
-
 	const motionState = new Ammo.btDefaultMotionState(transform);
-	const localInertia = new Ammo.btVector3(0, 0, 0);
-	geometry.calculateLocalInertia(massVehicle, localInertia);
-
-  const compoundShape = new Ammo.btCompoundShape();
-	const transform2 = new Ammo.btTransform();
-	transform2.setIdentity();
-  compoundShape.addChildShape(transform2, geometry);
 
 	// const body = new Ammo.btRigidBody(new Ammo.btRigidBodyConstructionInfo(massVehicle, motionState, geometry, localInertia));
 	const body = new Ammo.btRigidBody(new Ammo.btRigidBodyConstructionInfo(massVehicle, motionState, compoundShape, localInertia));
