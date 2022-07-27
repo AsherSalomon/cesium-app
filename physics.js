@@ -136,7 +136,7 @@ function createVehicle(pos, quat) {
 
 	// Chassis
 	// const geometry = new Ammo.btBoxShape(new Ammo.btVector3(chassisWidth * .5, chassisHeight * .5, chassisLength * .5));
-  const geometry = new Ammo.btSphereShape(chassisHeight * .5);
+  const geometry = new Ammo.btSphereShape(chassisHeight);
 
 	const localInertia = new Ammo.btVector3(0, 0, 0);
 	geometry.calculateLocalInertia(massVehicle, localInertia);
