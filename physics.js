@@ -155,7 +155,8 @@ function createVehicle(pos, quat) {
     compoundShape.addChildShape(transform3, geometry);
   }
   const ch5 = chassisHeight * .5;
-  addSphere(chassisLength * .5 - ch5, 0, chassisWidth * .5 - ch5);
+  // addSphere(chassisLength * .5 - ch5, 0, chassisWidth * .5 - ch5);
+  addSphere(0, 0, 0);
 
 	const transform = new Ammo.btTransform();
 	transform.setIdentity();
