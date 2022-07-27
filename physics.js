@@ -135,37 +135,32 @@ function createVehicle(pos, quat) {
 	const maxBreakingForce = 236; // 50;
 
 	// Chassis
-	// const geometry = new Ammo.btBoxShape(new Ammo.btVector3(chassisWidth * .5, chassisHeight * .5, chassisLength * .5));
-  //
-	const localInertia = new Ammo.btVector3(0, 0, 0);
-	// geometry.calculateLocalInertia(massVehicle, localInertia);
-  //
-  const compoundShape = new Ammo.btCompoundShape();
-	// const transform2 = new Ammo.btTransform();
-	// transform2.setIdentity();
-  // compoundShape.addChildShape(transform2, geometry);
+	const geometry = new Ammo.btBoxShape(new Ammo.btVector3(chassisWidth * .5, chassisHeight * .5, chassisLength * .5));
 
-  let transform3 = new Ammo.btTransform();
-  function addSphere(x, y, z) {
-    const sphereShape = new Ammo.btSphereShape(chassisHeight * .5);
-  	sphereShape.calculateLocalInertia(massVehicle / 4, localInertia);
-    transform3 = new Ammo.btTransform();
-  	transform3.setIdentity();
-  	transform3.setOrigin(new Ammo.btVector3(x, y, z));
-    compoundShape.addChildShape(transform3, sphereShape);
-  }
-  const ch5 = chassisHeight * .5;
-  addSphere(chassisWidth * .5 - ch5, 0, chassisLength * .5 - ch5);
-  addSphere(chassisWidth * .5 - ch5, 0, -(chassisLength * .5 - ch5));
-  addSphere(-(chassisWidth * .5) - ch5, 0, chassisLength * .5 - ch5);
-  addSphere(-(chassisWidth * .5) - ch5, 0, -(chassisLength * .5 - ch5));
-	const transform4 = new Ammo.btTransform();
-	transform4.setIdentity();
-  compoundShape.calculatePrincipalAxisTransform(
-    [massVehicle / 4, massVehicle / 4, massVehicle / 4, massVehicle / 4],
-    transform4,
-    localInertia
-  );
+	const localInertia = new Ammo.btVector3(0, 0, 0);
+	geometry.calculateLocalInertia(massVehicle, localInertia);
+
+  const compoundShape = new Ammo.btCompoundShape();
+	const transform2 = new Ammo.btTransform();
+	transform2.setIdentity();
+  compoundShape.addChildShape(transform2, geometry);
+
+  // let transform3 = new Ammo.btTransform();
+  // function addSphere(x, y, z) {
+  //   const sphereShape = new Ammo.btSphereShape(chassisHeight * .5);
+  // 	sphereShape.calculateLocalInertia(massVehicle / 4, localInertia);
+  //   transform3 = new Ammo.btTransform();
+  // 	transform3.setIdentity();
+  // 	transform3.setOrigin(new Ammo.btVector3(x, y, z));
+  //   compoundShape.addChildShape(transform3, sphereShape);
+  // }
+  // const ch5 = chassisHeight * .5;
+  // addSphere(chassisWidth * .5 - ch5, 0, chassisLength * .5 - ch5);
+  // addSphere(chassisWidth * .5 - ch5, 0, -(chassisLength * .5 - ch5));
+  // addSphere(-(chassisWidth * .5) - ch5, 0, chassisLength * .5 - ch5);
+  // addSphere(-(chassisWidth * .5) - ch5, 0, -(chassisLength * .5 - ch5));
+	// const transform4 = new Ammo.btTransform();
+	// transform4.setIdentity();
 
 	const transform = new Ammo.btTransform();
 	transform.setIdentity();
@@ -181,8 +176,8 @@ function createVehicle(pos, quat) {
 	transform.setRotation(new Ammo.btQuaternion(quat.x, quat.y, quat.z, quat.w));
 	const motionState = new Ammo.btDefaultMotionState(transform);
 
-	// const body = new Ammo.btRigidBody(new Ammo.btRigidBodyConstructionInfo(massVehicle, motionState, geometry, localInertia));
-	const body = new Ammo.btRigidBody(new Ammo.btRigidBodyConstructionInfo(massVehicle, motionState, compoundShape, localInertia));
+	const body = new Ammo.btRigidBody(new Ammo.btRigidBodyConstructionInfo(massVehicle, motionState, geometry, localInertia));
+	// const body = new Ammo.btRigidBody(new Ammo.btRigidBodyConstructionInfo(massVehicle, motionState, compoundShape, localInertia));
 	body.setActivationState(DISABLE_DEACTIVATION);
 	physicsWorld.addRigidBody(body);
 	// var chassisMesh = createChassisMesh(chassisWidth, chassisHeight, chassisLength);
