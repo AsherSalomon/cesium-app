@@ -147,7 +147,7 @@ function createVehicle(pos, quat) {
 
   let transform3 = new Ammo.btTransform();
   function addSphere(x, y, z) {
-    const sphereShape = new Ammo.btSphereShape(chassisLength * .5);
+    const sphereShape = new Ammo.btSphereShape(chassisWidth * .5);
   	sphereShape.calculateLocalInertia(massVehicle / 4, localInertia);
     transform3 = new Ammo.btTransform();
   	transform3.setIdentity();
@@ -155,7 +155,7 @@ function createVehicle(pos, quat) {
     compoundShape.addChildShape(transform3, sphereShape);
   }
   const ch5 = chassisHeight * .5;
-  addSphere(0, chassisLength * .5 - ch5, chassisWidth * .5 - ch5);
+  addSphere(0, chassisWidth * .5 - ch5, chassisLength * .5 - ch5);
 
 	const transform = new Ammo.btTransform();
 	transform.setIdentity();
