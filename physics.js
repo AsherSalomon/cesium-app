@@ -147,16 +147,15 @@ function createVehicle(pos, quat) {
 
   let transform3 = new Ammo.btTransform();
   function addSphere(x, y, z) {
-    const sphereShape = new Ammo.btSphereShape(chassisLength * .5);
+    const sphereShape = new Ammo.btSphereShape(chassisHeight * .5);
   	sphereShape.calculateLocalInertia(massVehicle / 4, localInertia);
     transform3 = new Ammo.btTransform();
   	transform3.setIdentity();
   	transform3.setOrigin(new Ammo.btVector3(x, y, z));
-    compoundShape.addChildShape(transform3, geometry);
+    compoundShape.addChildShape(transform3, sphereShape);
   }
   const ch5 = chassisHeight * .5;
-  // addSphere(chassisLength * .5 - ch5, 0, chassisWidth * .5 - ch5);
-  addSphere(0, 0, 0);
+  addSphere(chassisLength * .5 - ch5, 0, chassisWidth * .5 - ch5);
 
 	const transform = new Ammo.btTransform();
 	transform.setIdentity();
