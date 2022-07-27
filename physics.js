@@ -156,6 +156,7 @@ function createVehicle(pos, quat) {
   }
   const ch5 = chassisHeight * .5;
   addSphere(chassisLength * .5 - ch5, 0, chassisWidth * .5 - ch5);
+  addSphere(-(chassisLength * .5 - ch5), 0, chassisWidth * .5 - ch5);
 
 	const transform = new Ammo.btTransform();
 	transform.setIdentity();
