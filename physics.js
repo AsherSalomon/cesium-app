@@ -159,6 +159,7 @@ function createVehicle(pos, quat) {
   addSphere(chassisWidth * .5 - ch5, 0, -(chassisLength * .5 - ch5));
   addSphere(-(chassisWidth * .5) - ch5, 0, chassisLength * .5 - ch5);
   addSphere(-(chassisWidth * .5) - ch5, 0, -(chassisLength * .5 - ch5));
+  compoundShape.calculateLocalInertia(massVehicle, localInertia);
 
 	const transform = new Ammo.btTransform();
 	transform.setIdentity();
