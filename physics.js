@@ -157,7 +157,9 @@ function createVehicle(pos, quat) {
 	geometry.calculateLocalInertia(massVehicle, localInertia);
 
   const compoundShape = new Ammo.btCompoundShape();
-  compoundShape.addChildShape(new Ammo.btTransform(), geometry);
+	const transform2 = new Ammo.btTransform();
+	transform2.setIdentity();
+  compoundShape.addChildShape(transform2, geometry);
 
 	// const body = new Ammo.btRigidBody(new Ammo.btRigidBodyConstructionInfo(massVehicle, motionState, geometry, localInertia));
 	const body = new Ammo.btRigidBody(new Ammo.btRigidBodyConstructionInfo(massVehicle, motionState, compoundShape, localInertia));
