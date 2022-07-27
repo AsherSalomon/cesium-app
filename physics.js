@@ -140,7 +140,7 @@ function createVehicle(pos, quat) {
 	const localInertia = new Ammo.btVector3(0, 0, 0);
 	// geometry.calculateLocalInertia(massVehicle, localInertia);
   //
-  // const compoundShape = new Ammo.btCompoundShape();
+  const compoundShape = new Ammo.btCompoundShape();
 	// const transform2 = new Ammo.btTransform();
 	// transform2.setIdentity();
   // compoundShape.addChildShape(transform2, geometry);
