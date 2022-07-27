@@ -113,11 +113,13 @@ function createVehicle(pos, quat) {
 	const wheelAxisPositionBack = -2.07;
 	const wheelRadiusBack = 0.35;
 	const wheelWidthBack = 0.245;
-	const wheelHalfTrackBack = 0.8;
+	const wheelHalfTrackBack = 1;
+	// const wheelHalfTrackBack = 0.8;
 	const wheelAxisHeightBack = 0.3;
 
 	const wheelAxisFrontPosition = 1.46;
-	const wheelHalfTrackFront = 0.8;
+	const wheelHalfTrackFront = 1;
+	// const wheelHalfTrackFront = 0.8;
 	const wheelAxisHeightFront = 0.3;
 	const wheelRadiusFront = 0.35;
 	const wheelWidthFront = 0.245;
@@ -135,7 +137,7 @@ function createVehicle(pos, quat) {
 	const maxBreakingForce = 236; // 50;
 
 	// Chassis
-	// const geometry = new Ammo.btBoxShape(new Ammo.btVector3(chassisWidth * .5, chassisHeight * .5, chassisLength * .5));
+	const geometry = new Ammo.btBoxShape(new Ammo.btVector3(chassisWidth * .5, chassisHeight * .5, chassisLength * .5));
   // const geometry = new Ammo.btSphereShape(chassisHeight);
   // const geometry = new Ammo.btCapsuleShapeZ(chassisHeight * .5, chassisLength);
   // const ch5 = chassisHeight * .5;
@@ -147,7 +149,6 @@ function createVehicle(pos, quat) {
   //   [chassisHeight * .5, chassisHeight * .5, chassisHeight * .5, chassisHeight * .5],
   //   4
   // );
-	const geometry = new Ammo.btBoxShape(new Ammo.btVector3(chassisWidth * .5, chassisHeight * .5, wheelAxisPositionBack));
 
 	const localInertia = new Ammo.btVector3(0, 0, 0);
 	geometry.calculateLocalInertia(massVehicle, localInertia);
