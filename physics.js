@@ -135,20 +135,20 @@ function createVehicle(pos, quat) {
 	const maxBreakingForce = 236; // 50;
 
 	// Chassis
-	const geometry = new Ammo.btBoxShape(new Ammo.btVector3(chassisWidth * .5, chassisHeight * .5, chassisLength * .5));
-
-	const localInertia = new Ammo.btVector3(0, 0, 0);
-	geometry.calculateLocalInertia(massVehicle, localInertia);
-
-  const compoundShape = new Ammo.btCompoundShape();
-	const transform2 = new Ammo.btTransform();
-	transform2.setIdentity();
-  compoundShape.addChildShape(transform2, geometry);
+	// const geometry = new Ammo.btBoxShape(new Ammo.btVector3(chassisWidth * .5, chassisHeight * .5, chassisLength * .5));
+  //
+	// const localInertia = new Ammo.btVector3(0, 0, 0);
+	// geometry.calculateLocalInertia(massVehicle, localInertia);
+  //
+  // const compoundShape = new Ammo.btCompoundShape();
+	// const transform2 = new Ammo.btTransform();
+	// transform2.setIdentity();
+  // compoundShape.addChildShape(transform2, geometry);
 
   let transform3 = new Ammo.btTransform();
   function addSphere(x, y, z) {
     const sphereShape = new Ammo.btSphereShape(chassisHeight * 0.5);
-  	sphereShape.calculateLocalInertia(massVehicle * 4, localInertia);
+  	sphereShape.calculateLocalInertia(massVehicle / 4, localInertia);
     transform3 = new Ammo.btTransform();
   	transform3.setIdentity();
   	transform3.setOrigin(new Ammo.btVector3(x, y, z));
