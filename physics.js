@@ -138,6 +138,7 @@ function createVehicle(pos, quat) {
 	// const geometry = new Ammo.btBoxShape(new Ammo.btVector3(chassisWidth * .5, chassisHeight * .5, chassisLength * .5));
   // const geometry = new Ammo.btSphereShape(chassisHeight);
   // const geometry = new Ammo.btCapsuleShapeZ(chassisHeight * .5, chassisLength);
+  const ch5 = chassisHeight * .5;
   const geometry = new Ammo.btMultiSphereShape(
     [new Ammo.btVector3(chassisWidth * .5 - ch5, 0, chassisLength * .5 - ch5),
     new Ammo.btVector3(chassisWidth * .5 - ch5, 0, -(chassisLength * .5 - ch5)),
