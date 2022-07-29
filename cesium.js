@@ -126,7 +126,7 @@ export function update() {
 
 }
 
-document.getElementById("body").addEventListener('drag', function() {
+document.getElementById("cesiumContainer").addEventListener('drag', function() {
   console.log('drag');
 });
 
