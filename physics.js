@@ -439,6 +439,13 @@ class DestroyableTerrain {
 
     // or a btHeightfieldTerrainShape
 
+    // scratch all that
+    // just use btConvexHullShape.addPoint
+
+    // the car shape could be a btBulletWorldImporter from .bullet in blender
+    // https://gamedev.stackexchange.com/questions/146527/build-a-convex-hull-from-a-given-mesh-in-bullet
+    // https://xissburg.com/post/export-bullet-from-blender/
+
     const transform = new Ammo.btTransform();
     transform.setIdentity();
     transform.setOrigin(new Ammo.btVector3(0, 0, 0));
