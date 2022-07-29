@@ -126,6 +126,10 @@ export function update() {
 
 }
 
+document.getElementById("cesiumContainer").addEventListener('drag', function() {
+  console.log('drag');
+});
+
 function adjustHeightForTerrain(controller) {
   controller._adjustedHeightForTerrain = true;
 
