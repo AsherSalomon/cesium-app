@@ -409,7 +409,7 @@ function createVehicle(pos, quat) {
 }
 
 class DestroyableTerrain {
-  constructor(positions, indices) {
+  constructor(positions, indices, skirtHeight) {
     // https://stackoverflow.com/questions/59665854/ammo-js-custom-mesh-collision-with-sphere
     this.mesh = new Ammo.btTriangleMesh(false, false);
     this.vertices = new Array(positions.length);
@@ -425,26 +425,6 @@ class DestroyableTerrain {
         this.vertices[indices[i + 2]]
       );
     }
-
-    // high poly count causes
-    // "Uncaught RuntimeError: abort(OOM). Build with -s ASSERTIONS=1 for more info."
-    // "at FB.addTriangle"
-    // https://forum.playcanvas.com/t/solved-ammo-script-error-abort-oom/13465
-    // try to lower polly count.
-
-    // perhapse use a btConvexHullShape
-    // with a btCompoundShape
-    // or a btConcaveShape
-    // or a btBvhTriangleMeshShape
-
-    // or a btHeightfieldTerrainShape
-
-    // scratch all that
-    // just use btConvexHullShape.addPoint
-
-    // the car shape could be a btBulletWorldImporter from .bullet in blender
-    // https://gamedev.stackexchange.com/questions/146527/build-a-convex-hull-from-a-given-mesh-in-bullet
-    // https://xissburg.com/post/export-bullet-from-blender/
 
     const transform = new Ammo.btTransform();
     transform.setIdentity();
@@ -477,7 +457,7 @@ class DestroyableTerrain {
 export function createTerrain(positions, indices, skirtHeight, tileName) {
   gravityOn = true;
 
-  terrainBodies[tileName] = new DestroyableTerrain(positions, indices);
+  terrainBodies[tileName] = new DestroyableTerrain(positions, indices, skirtHeight);
   // console.log(Object.keys(terrainBodies).length, 'terrainBodies');
 
 }
@@ -488,3 +468,9 @@ export function removeTerrain(tileName) {
   // console.log(Object.keys(terrainBodies).length, 'terrainBodies');
 
 }
+
+// use btConvexHullShape.addPoint
+
+// the car shape could be a btBulletWorldImporter from .bullet in blender
+// https://gamedev.stackexchange.com/questions/146527/build-a-convex-hull-from-a-given-mesh-in-bullet
+// https://xissburg.com/post/export-bullet-from-blender/
