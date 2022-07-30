@@ -408,7 +408,7 @@ function createVehicle(pos, quat) {
 
 }
 
-class DestroyableTerrain {
+class DestroyableTerrainA {
   constructor(positions, indices, skirtHeight) {
     // https://stackoverflow.com/questions/59665854/ammo-js-custom-mesh-collision-with-sphere
     this.mesh = new Ammo.btTriangleMesh(false, false);
@@ -454,31 +454,40 @@ class DestroyableTerrain {
   }
 }
 
-// class DestroyableTerrain {
-//   constructor(positions, indices, skirtHeight) {
-//     this.shapes = new Array(indices.length / 3);
-//     this.vertices = new Array(positions.length);
-//     for (let i = 0; i < positions.length; i++) {
-//       Cesium.Cartesian3.subtract(positions[i], originOffset, positions[i]);
-//       this.vertices[i] = new Ammo.btVector3(positions[i].x, positions[i].y, positions[i].z);
-//     }
-//     for (let i = 0; i < indices.length; i += 3) {
-//       // this.mesh.addTriangle(
-//       //   this.vertices[indices[i]],
-//       //   this.vertices[indices[i + 1]],
-//       //   this.vertices[indices[i + 2]]
-//       // );
-//       this.shapes[i / 3] = new btConvexHullShape();
-//       for (let j = 0; j < 3; j++) {
-//         this.shapes[i / 3].addPoint(this.vertices[indices[i + j]]);
-//       }
-//     }
-//   }
-//   destroy() {
-//     delete this.shapes;
-//     delete this.vertices;
-//   }
-// }
+class DestroyableTerrain {
+  constructor(positions, indices, skirtHeight) {
+    this.shapes = new Array(indices.length / 3);
+    this.vertices = new Array(positions.length);
+    this.skirtices = new Array(positions.length);
+    for (let i = 0; i < positions.length; i++) {
+      Cesium.Cartesian3.subtract(positions[i], originOffset, positions[i]);
+      this.vertices[i] = new Ammo.btVector3(positions[i].x, positions[i].y, positions[i].z);
+    }
+    const normal = originOffset.clone();
+    Cesium.Cartesian3.normalize(normal, normal);
+    Cesium.Cartesian3.multiplyByScalar(normal, skirtHeight, normal);
+    for (let i = 0; i < positions.length; i++) {
+      Cesium.Cartesian3.subtract(positions[i], normal, positions[i]);
+      this.skirtices[i] = new Ammo.btVector3(positions[i].x, positions[i].y, positions[i].z);
+    }
+    for (let i = 0; i < indices.length; i += 3) {
+      this.shapes[i / 3] = new btConvexHullShape();
+      for (let j = 0; j < 3; j++) {
+        this.shapes[i / 3].addPoint(this.vertices[indices[i + j]]);
+        this.shapes[i / 3].addPoint(this.skirtices[indices[i + j]]);
+      }
+    }
+  }
+  destroy() {
+    delete this.shapes;
+    for (let i = 0; i < positions.length; i++) {
+      Ammo.destroy(this.vertices[i]);
+      Ammo.destroy(this.skirtices[i]);
+    }
+    delete this.vertices;
+    delete this.skirtices;
+  }
+}
 
 export function createTerrain(positions, indices, skirtHeight, tileName) {
   gravityOn = true;
