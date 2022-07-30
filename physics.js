@@ -473,7 +473,7 @@ class DestroyableTerrain {
       this.skirtices[i] = new Ammo.btVector3(positions[i].x, positions[i].y, positions[i].z);
     }
     for (let i = 0; i < indices.length; i += 3) {
-      this.shapes[i / 3] = new btConvexHullShape();
+      this.shapes[i / 3] = new Ammo.btConvexHullShape();
       for (let j = 0; j < 3; j++) {
         this.shapes[i / 3].addPoint(this.vertices[indices[i + j]]);
         this.shapes[i / 3].addPoint(this.skirtices[indices[i + j]]);
