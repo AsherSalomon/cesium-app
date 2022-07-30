@@ -140,7 +140,7 @@ export function update() {
 
 let screenLog = document.querySelector('#screen-log');
 document.addEventListener('mousemove', function(e) {
-  console.log(e.clientX}, e.clientY);
+  console.log(e.clientX, e.clientY);
 });
 
 function adjustHeightForTerrain(controller) {
