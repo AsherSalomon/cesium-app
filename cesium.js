@@ -124,9 +124,9 @@ export function update() {
     // });
   }
 
-  adjustHeightForTerrain(
-    viewer.scene.screenSpaceCameraController
-  );
+  // adjustHeightForTerrain(
+  //   viewer.scene.screenSpaceCameraController
+  // );
 
 }
 
