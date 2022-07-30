@@ -408,49 +408,56 @@ function createVehicle(pos, quat) {
 
 }
 
+// class DestroyableTerrain {
+//   constructor(positions, indices, skirtHeight) {
+//     // https://stackoverflow.com/questions/59665854/ammo-js-custom-mesh-collision-with-sphere
+//     this.mesh = new Ammo.btTriangleMesh(false, false);
+//     this.vertices = new Array(positions.length);
+//     for (let i = 0; i < positions.length; i++) {
+//       Cesium.Cartesian3.subtract(positions[i], originOffset, positions[i]);
+//       this.vertices[i] = new Ammo.btVector3(positions[i].x, positions[i].y, positions[i].z);
+//     }
+//     const indicesLength = indices.length;
+//     for (let i = 0; i < indicesLength; i += 3) {
+//       this.mesh.addTriangle(
+//         this.vertices[indices[i]],
+//         this.vertices[indices[i + 1]],
+//         this.vertices[indices[i + 2]]
+//       );
+//     }
+//
+//     const transform = new Ammo.btTransform();
+//     transform.setIdentity();
+//     transform.setOrigin(new Ammo.btVector3(0, 0, 0));
+//     transform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
+//     this.motionState = new Ammo.btDefaultMotionState(transform);
+//     Ammo.destroy(transform);
+//
+//     this.shape = new Ammo.btBvhTriangleMeshShape(this.mesh, true);
+//     this.localInertia = new Ammo.btVector3(0, 0, 0);
+//     const rbInfo = new Ammo.btRigidBodyConstructionInfo(0, this.motionState, this.shape, this.localInertia);
+//     this.terrainBody = new Ammo.btRigidBody(rbInfo);
+//     Ammo.destroy(rbInfo);
+//
+//     physicsWorld.addRigidBody(this.terrainBody);
+//
+//   }
+//   destroy() {
+//     physicsWorld.removeRigidBody(this.terrainBody);
+//     // https://github.com/kripken/ammo.js/issues/355
+//     Ammo.destroy(this.mesh);
+//     delete this.vertices;
+//     Ammo.destroy(this.motionState);
+//     Ammo.destroy(this.shape);
+//     Ammo.destroy(this.localInertia);
+//     Ammo.destroy(this.terrainBody);
+//   }
+// }
+
 class DestroyableTerrain {
   constructor(positions, indices, skirtHeight) {
-    // https://stackoverflow.com/questions/59665854/ammo-js-custom-mesh-collision-with-sphere
-    this.mesh = new Ammo.btTriangleMesh(false, false);
-    this.vertices = new Array(positions.length);
-    for (let i = 0; i < positions.length; i++) {
-      Cesium.Cartesian3.subtract(positions[i], originOffset, positions[i]);
-      this.vertices[i] = new Ammo.btVector3(positions[i].x, positions[i].y, positions[i].z);
-    }
-    const indicesLength = indices.length;
-    for (let i = 0; i < indicesLength; i += 3) {
-      this.mesh.addTriangle(
-        this.vertices[indices[i]],
-        this.vertices[indices[i + 1]],
-        this.vertices[indices[i + 2]]
-      );
-    }
-
-    const transform = new Ammo.btTransform();
-    transform.setIdentity();
-    transform.setOrigin(new Ammo.btVector3(0, 0, 0));
-    transform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
-    this.motionState = new Ammo.btDefaultMotionState(transform);
-    Ammo.destroy(transform);
-
-    this.shape = new Ammo.btBvhTriangleMeshShape(this.mesh, true);
-    this.localInertia = new Ammo.btVector3(0, 0, 0);
-    const rbInfo = new Ammo.btRigidBodyConstructionInfo(0, this.motionState, this.shape, this.localInertia);
-    this.terrainBody = new Ammo.btRigidBody(rbInfo);
-    Ammo.destroy(rbInfo);
-
-    physicsWorld.addRigidBody(this.terrainBody);
-
   }
   destroy() {
-    physicsWorld.removeRigidBody(this.terrainBody);
-    // https://github.com/kripken/ammo.js/issues/355
-    Ammo.destroy(this.mesh);
-    delete this.vertices;
-    Ammo.destroy(this.motionState);
-    Ammo.destroy(this.shape);
-    Ammo.destroy(this.localInertia);
-    Ammo.destroy(this.terrainBody);
   }
 }
 
