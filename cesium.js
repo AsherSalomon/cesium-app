@@ -140,7 +140,8 @@ export function update() {
 
 let screenLog = document.querySelector('#screen-log');
 document.addEventListener('mousedown', function(e) {
-  console.log(e.clientX, e.clientY);
+  // console.log(e.clientX, e.clientY);
+  console.log('yup');
 });
 
 function adjustHeightForTerrain(controller) {
