@@ -408,7 +408,7 @@ function createVehicle(pos, quat) {
 
 }
 
-class DestroyableTerrainA {
+class DestroyableTerrain {
   constructor(positions, indices, skirtHeight) {
     // https://stackoverflow.com/questions/59665854/ammo-js-custom-mesh-collision-with-sphere
     this.mesh = new Ammo.btTriangleMesh(false, false);
@@ -456,7 +456,7 @@ class DestroyableTerrainA {
 
 }
 
-class DestroyableTerrain {
+class DestroyableTerrainB {
   constructor(positions, indices, skirtHeight) {
     this.shapes = new Array(indices.length / 3);
     this.vertices = new Array(positions.length);
