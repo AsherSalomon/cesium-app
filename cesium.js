@@ -122,6 +122,7 @@ export function update() {
     // console.log(document.getElementsByClassName("cesium-viewer")[0]);
     const element = document.getElementsByClassName("cesium-widget")[0];
     if (element != null && once) {
+      console.log('hi');
       element.addEventListener('drag', function() {
         console.log('drag');
         once = false;
