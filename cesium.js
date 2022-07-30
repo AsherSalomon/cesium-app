@@ -118,30 +118,14 @@ export function update() {
     Cesium.Cartesian3.cross(viewer.camera.directionWC, vehicleDirection, crossProduct);
     const dotProduct = Cesium.Cartesian3.dot(viewer.camera.upWC, crossProduct);
     viewer.camera.rotateRight(dotProduct * Math.PI / 256);
-    // console.log(document.getElementById("cesiumContainer"));
-    // console.log(document.getElementsByClassName("cesium-viewer")[0]);
-    // const element = document.getElementsByClassName("cesium-widget")[0];
-    // if (element != null && once) {
-    //   console.log('hi');
-    //   element.addEventListener('drag', function() {
-    //     console.log('drag');
-    //   });
-    //   once = false;
-    // }
   }
-
-  // adjustHeightForTerrain(
-  //   viewer.scene.screenSpaceCameraController
-  // );
 
 }
 
-// let once = true;
-
-let screenLog = document.querySelector('#screen-log');
-document.addEventListener('drag', function(e) {
-  console.log(e.clientX, e.clientY);
-});
+// let screenLog = document.querySelector('#screen-log');
+// document.addEventListener('mousemove', function(e) {
+//   console.log(e.clientX, e.clientY);
+// });
 
 function adjustHeightForTerrain(controller) {
   controller._adjustedHeightForTerrain = true;
