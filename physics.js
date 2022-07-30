@@ -175,9 +175,9 @@ function createVehicle(pos, quat) {
 
 	const transform = new Ammo.btTransform();
 	transform.setIdentity();
-	transform.setOrigin(new Ammo.btVector3(pos.x, pos.y, pos.z));
-	// transform.setOrigin(new Ammo.btVector3(0, 0, 0));
-  // originOffset = new Cesium.Cartesian3(pos.x, pos.y, pos.z);
+	// transform.setOrigin(new Ammo.btVector3(pos.x, pos.y, pos.z));
+	transform.setOrigin(new Ammo.btVector3(0, 0, 0));
+  originOffset = new Cesium.Cartesian3(pos.x, pos.y, pos.z);
 
   const quatB = new Cesium.Quaternion(0, 0, 0, 1);
   Cesium.Quaternion.fromAxisAngle(Cesium.Cartesian3.UNIT_X, Math.PI / 2, quatB);
@@ -319,7 +319,7 @@ function createVehicle(pos, quat) {
 			q = tm.getRotation();
 
       const position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
-      // Cesium.Cartesian3.add(position, originOffset, position);
+      Cesium.Cartesian3.add(position, originOffset, position);
       truckEntities[i + 1].position = position;
 
       const quaternion = new Cesium.Quaternion(q.x(), q.y(), q.z(), q.w());
@@ -340,7 +340,7 @@ function createVehicle(pos, quat) {
     const velocity = new Cesium.Cartesian3(v.x(), v.y(), v.z());
     Cesium.Cartesian3.multiplyByScalar(velocity, 0.013, velocity);
     Cesium.Cartesian3.subtract(position, velocity, position);
-    // Cesium.Cartesian3.add(position, originOffset, position);
+    Cesium.Cartesian3.add(position, originOffset, position);
     truckEntities[0].position = position;
     truckEntities[5].position = position;
 
@@ -361,7 +361,7 @@ function createVehicle(pos, quat) {
       Cesium.Matrix3.fromQuaternion(quaternion, matrix3);
       Cesium.Matrix3.multiplyByVector(matrix3, aboveVehicle, aboveVehicle);
       aboveVehicle = new Ammo.btVector3(aboveVehicle.x, aboveVehicle.y, aboveVehicle.z);
-      // Cesium.Cartesian3.add(position, originOffset, position);
+      Cesium.Cartesian3.add(position, originOffset, position);
       Cesium.Cartesian3.normalize(position, position);
       const resetForce = massVehicle * gravity;
       Cesium.Cartesian3.multiplyByScalar(position, resetForce, position);
@@ -372,7 +372,7 @@ function createVehicle(pos, quat) {
     }
 
     position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
-    // Cesium.Cartesian3.add(position, originOffset, position);
+    Cesium.Cartesian3.add(position, originOffset, position);
     const terrainProvider = viewer.scene.globe.terrainProvider;
     const ellipsoid = terrainProvider.tilingScheme.projection.ellipsoid;
     const positions = [Cesium.Cartographic.fromCartesian(position, ellipsoid)];
@@ -380,7 +380,7 @@ function createVehicle(pos, quat) {
     Promise.resolve(promise).then(function(updatedPositions) {
       const terrainHeight = positions[0].height;
       position = new Cesium.Cartesian3(p.x(), p.y(), p.z());
-      // Cesium.Cartesian3.add(position, originOffset, position);
+      Cesium.Cartesian3.add(position, originOffset, position);
       const cartographic = Cesium.Cartographic.fromCartesian(position, ellipsoid);
       const bodyHeight = cartographic.height;
       if (bodyHeight < terrainHeight) {
@@ -414,7 +414,7 @@ class DestroyableTerrain {
     this.mesh = new Ammo.btTriangleMesh(false, false);
     this.vertices = new Array(positions.length);
     for (let i = 0; i < positions.length; i++) {
-      // Cesium.Cartesian3.subtract(positions[i], originOffset, positions[i]);
+      Cesium.Cartesian3.subtract(positions[i], originOffset, positions[i]);
       this.vertices[i] = new Ammo.btVector3(positions[i].x, positions[i].y, positions[i].z);
     }
     const indicesLength = indices.length;
