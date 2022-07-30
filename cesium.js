@@ -119,10 +119,11 @@ export function update() {
     const dotProduct = Cesium.Cartesian3.dot(viewer.camera.upWC, crossProduct);
     viewer.camera.rotateRight(dotProduct * Math.PI / 256);
     // console.log(document.getElementById("cesiumContainer"));
-    console.log(document.getElementsByClassName("cesium-viewer")[0]);
-    // document.getElementById("cesium-widget").addEventListener('drag', function() {
-    //   console.log('drag');
-    // });
+    // console.log(document.getElementsByClassName("cesium-viewer")[0]);
+    const element = document.getElementsByClassName("cesium-viewer")[0];
+    element.addEventListener('drag', function() {
+      console.log('drag');
+    });
   }
 
   // adjustHeightForTerrain(
