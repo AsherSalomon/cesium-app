@@ -121,9 +121,11 @@ export function update() {
     // console.log(document.getElementById("cesiumContainer"));
     // console.log(document.getElementsByClassName("cesium-viewer")[0]);
     const element = document.getElementsByClassName("cesium-viewer")[0];
-    element.addEventListener('drag', function() {
-      console.log('drag');
-    });
+    if (element != null && element) {
+      element.addEventListener('drag', function() {
+        console.log('drag');
+      });
+    }
   }
 
   // adjustHeightForTerrain(
@@ -132,6 +134,7 @@ export function update() {
 
 }
 
+let once = true;
 
 function adjustHeightForTerrain(controller) {
   controller._adjustedHeightForTerrain = true;
