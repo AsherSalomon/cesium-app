@@ -442,6 +442,7 @@ class DestroyableTerrainA {
     physicsWorld.addRigidBody(this.terrainBody);
 
   }
+
   destroy() {
     physicsWorld.removeRigidBody(this.terrainBody);
     // https://github.com/kripken/ammo.js/issues/355
@@ -452,6 +453,7 @@ class DestroyableTerrainA {
     Ammo.destroy(this.localInertia);
     Ammo.destroy(this.terrainBody);
   }
+
 }
 
 class DestroyableTerrain {
@@ -477,16 +479,45 @@ class DestroyableTerrain {
         this.shapes[i / 3].addPoint(this.skirtices[indices[i + j]]);
       }
     }
+    const transform = new Ammo.btTransform();
+    transform.setIdentity();
+    transform.setOrigin(new Ammo.btVector3(0, 0, 0));
+    transform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
+    this.motionState = new Ammo.btDefaultMotionState(transform);
+    Ammo.destroy(transform);
+    this.localInertia = new Ammo.btVector3(0, 0, 0);
+
+    this.terrainBodies = new Array(this.shapes.length);
+    for (let i = 0; i < this.shapes.length; i++) {
+      const rbInfo = new Ammo.btRigidBodyConstructionInfo(0, this.motionState, this.shapes[i], this.localInertia);
+      this.terrainBodies[i] = new Ammo.btRigidBody(rbInfo);
+      Ammo.destroy(rbInfo);
+    }
+
   }
+
   destroy() {
     delete this.shapes;
-    for (let i = 0; i < positions.length; i++) {
+    for (let i = 0; i < this.vertices.length; i++) {
       Ammo.destroy(this.vertices[i]);
       Ammo.destroy(this.skirtices[i]);
     }
     delete this.vertices;
     delete this.skirtices;
+    for (let i = 0; i < this.shapes.length; i++) {
+      Ammo.destroy(this.shapes[i]);
+    }
+    delete this.shapes;
+    Ammo.destroy(this.motionState);
+    Ammo.destroy(this.localInertia);
+    delete this.motionState;
+    delete this.localInertia;
+    for (let i = 0; i < this.terrainBodies.length; i++) {
+      Ammo.destroy(this.terrainBodies[i]);
+    }
+    delete this.terrainBodies;
   }
+
 }
 
 export function createTerrain(positions, indices, skirtHeight, tileName) {
