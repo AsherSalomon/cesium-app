@@ -124,6 +124,7 @@ export function update() {
     if (element != null && element) {
       element.addEventListener('drag', function() {
         console.log('drag');
+        once = false;
       });
     }
   }
