@@ -120,14 +120,18 @@ export function update() {
     viewer.camera.rotateRight(dotProduct * Math.PI / 256);
     // console.log(document.getElementById("cesiumContainer"));
     // console.log(document.getElementsByClassName("cesium-viewer")[0]);
-    const element = document.getElementsByClassName("cesium-widget")[0];
-    if (element != null && once) {
-      console.log('hi');
-      element.addEventListener('drag', function() {
-        console.log('drag');
-      });
-      once = false;
-    }
+    // const element = document.getElementsByClassName("cesium-widget")[0];
+    // if (element != null && once) {
+    //   console.log('hi');
+    //   element.addEventListener('drag', function() {
+    //     console.log('drag');
+    //   });
+    //   once = false;
+    // }
+    let screenLog = document.querySelector('#screen-log');
+    document.addEventListener('mousemove', function(e) {
+      console.log(e.clientX}, e.clientY);
+    });
   }
 
   // adjustHeightForTerrain(
