@@ -304,7 +304,7 @@ function addTile(quadtreeTile){
       createTerrain(positions, indices, tileName);
 
       const skirtHeight = provider.getLevelMaximumGeometricError(quadtreeTile._level) * 5.0;
-      console.log(mesh.westSkirtHeight)
+      console.log(skirtHeight)
 
     }
   }
