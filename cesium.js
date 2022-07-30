@@ -128,10 +128,6 @@ export function update() {
     //   });
     //   once = false;
     // }
-    let screenLog = document.querySelector('#screen-log');
-    document.addEventListener('mousemove', function(e) {
-      console.log(e.clientX}, e.clientY);
-    });
   }
 
   // adjustHeightForTerrain(
@@ -140,7 +136,12 @@ export function update() {
 
 }
 
-let once = true;
+// let once = true;
+
+let screenLog = document.querySelector('#screen-log');
+document.addEventListener('mousemove', function(e) {
+  console.log(e.clientX}, e.clientY);
+});
 
 function adjustHeightForTerrain(controller) {
   controller._adjustedHeightForTerrain = true;
