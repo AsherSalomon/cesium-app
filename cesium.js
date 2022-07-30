@@ -127,7 +127,7 @@ export function update() {
 //   console.log(e.clientX, e.clientY);
 // });
 // window.addEventListener( 'keydown', keydown);
-window.addEventListener('drag', funciton() {
+window.addEventListener('drag', function() {
   console.log('drag');
 });
 
