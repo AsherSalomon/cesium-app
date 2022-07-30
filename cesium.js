@@ -300,11 +300,9 @@ function addTile(quadtreeTile){
       for (let i = 0; i < verticesLength; i ++) {
         positions[i] = getPosition(encoding, 3, projection, vertices, i);
       }
-      const tileName = quadtreeTile._x +'_'+ quadtreeTile._y +'_'+ quadtreeTile._level;
-      createTerrain(positions, indices, tileName);
-
       const skirtHeight = provider.getLevelMaximumGeometricError(quadtreeTile._level) * 5.0;
-      console.log(skirtHeight)
+      const tileName = quadtreeTile._x +'_'+ quadtreeTile._y +'_'+ quadtreeTile._level;
+      createTerrain(positions, indices, skirtHeight, tileName);
 
     }
   }
