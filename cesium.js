@@ -120,7 +120,7 @@ export function update() {
     viewer.camera.rotateRight(dotProduct * Math.PI / 256);
     // console.log(document.getElementById("cesiumContainer"));
     // console.log(document.getElementsByClassName("cesium-viewer")[0]);
-    const element = document.getElementsByClassName("cesium-viewer")[0];
+    const element = document.getElementsByClassName("cesium-widget")[0];
     if (element != null && once) {
       element.addEventListener('drag', function() {
         console.log('drag');
