@@ -494,14 +494,18 @@ class DestroyableTerrainB {
       Ammo.destroy(rbInfo);
 
       physicsWorld.addRigidBody(this.terrainBodies[i]);
+      counter++;
     }
+    console.log(counter);
 
   }
 
   destroy() {
     for (let i = 0; i < this.terrainBodies.length; i++) {
       physicsWorld.removeRigidBody(this.terrainBodies[i]);
+      counter--;
     }
+    console.log(counter);
 
     for (let i = 0; i < this.vertices.length; i++) {
       Ammo.destroy(this.vertices[i]);
@@ -524,6 +528,8 @@ class DestroyableTerrainB {
   }
 
 }
+
+let counter = 0;
 
 export function createTerrain(positions, indices, skirtHeight, tileName) {
   gravityOn = true;
