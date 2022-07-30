@@ -108,7 +108,7 @@ export function update() {
   updateTileList(newTileList);
   tryToAddTiles();
 
-  if (viewer.trackedEntity == truckEntities[0]) {
+  if (viewer.trackedEntity == truckEntities[0] && followTruck) {
     const vehicleDirection = new Cesium.Cartesian3(0, 1, 0);
     const quaternion = truckEntities[0].orientation.getValue(truckEntities.now());
     const matrix3 = new Cesium.Matrix3();
@@ -122,12 +122,12 @@ export function update() {
 
 }
 
-// let screenLog = document.querySelector('#screen-log');
+let followTruck = false;
 document.addEventListener('mousemove', function(e) {
-  console.log(e.clientX, e.clientY);
+  followTruck = false;
 });
 window.addEventListener( 'keydown', function(){
-  console.log('ok');
+  followTruck = true;
 });
 
 function adjustHeightForTerrain(controller) {
