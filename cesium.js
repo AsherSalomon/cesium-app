@@ -139,7 +139,7 @@ export function update() {
 // let once = true;
 
 let screenLog = document.querySelector('#screen-log');
-document.addEventListener('beforeinput', function(e) {
+document.addEventListener('drag', function(e) {
   console.log(e.clientX, e.clientY);
 });
 
