@@ -121,7 +121,7 @@ export function update() {
     // console.log(document.getElementById("cesiumContainer"));
     // console.log(document.getElementsByClassName("cesium-viewer")[0]);
     const element = document.getElementsByClassName("cesium-viewer")[0];
-    if (element != null && element) {
+    if (element != null && once) {
       element.addEventListener('drag', function() {
         console.log('drag');
         once = false;
