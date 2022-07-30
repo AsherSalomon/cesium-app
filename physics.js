@@ -503,7 +503,6 @@ class DestroyableTerrain {
       physicsWorld.removeRigidBody(this.terrainBodies[i]);
     }
 
-    delete this.shapes;
     for (let i = 0; i < this.vertices.length; i++) {
       Ammo.destroy(this.vertices[i]);
       Ammo.destroy(this.skirtices[i]);
