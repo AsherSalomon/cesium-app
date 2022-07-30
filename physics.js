@@ -492,11 +492,17 @@ class DestroyableTerrain {
       const rbInfo = new Ammo.btRigidBodyConstructionInfo(0, this.motionState, this.shapes[i], this.localInertia);
       this.terrainBodies[i] = new Ammo.btRigidBody(rbInfo);
       Ammo.destroy(rbInfo);
+
+      physicsWorld.addRigidBody(this.terrainBodies[i]);
     }
 
   }
 
   destroy() {
+    for (let i = 0; i < this.terrainBodies.length; i++) {
+      physicsWorld.removeRigidBody(this.terrainBodies[i]);
+    }
+
     delete this.shapes;
     for (let i = 0; i < this.vertices.length; i++) {
       Ammo.destroy(this.vertices[i]);
