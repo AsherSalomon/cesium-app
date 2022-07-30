@@ -126,9 +126,8 @@ export function update() {
 // document.addEventListener('mousemove', function(e) {
 //   console.log(e.clientX, e.clientY);
 // });
-// window.addEventListener( 'keydown', keydown);
-window.addEventListener('drag', function() {
-  console.log('drag');
+window.addEventListener( 'keydown', function(){
+  console.log('ok');
 });
 
 function adjustHeightForTerrain(controller) {
