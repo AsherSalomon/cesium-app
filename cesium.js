@@ -294,21 +294,6 @@ function addTile(quadtreeTile){
       const vertices = mesh.vertices;
       const indices = mesh.indices;
       const encoding = mesh.encoding;
-      // const indicesLength = indices.length;
-      // for (let i = 0; i < indicesLength; i += 3) {
-      //   const i0 = indices[i];
-      //   const i1 = indices[i + 1];
-      //   const i2 = indices[i + 2];
-      //
-      //   const v0 = getPosition(encoding, 3, projection, vertices, i0);
-      //   const v1 = getPosition(encoding, 3, projection, vertices, i1);
-      //   const v2 = getPosition(encoding, 3, projection, vertices, i2);
-      //
-      //   // quadtreeTile.entities.push(addPoint(v0));
-      //   // quadtreeTile.entities.push(addPoint(v1));
-      //   // quadtreeTile.entities.push(addPoint(v2));
-      //   // quadtreeTile.entities.push(addPolygon(v0, v1, v2));
-      // }
 
       const verticesLength = vertices.length;
       const positions = new Array(verticesLength);
@@ -317,6 +302,10 @@ function addTile(quadtreeTile){
       }
       const tileName = quadtreeTile._x +'_'+ quadtreeTile._y +'_'+ quadtreeTile._level;
       createTerrain(positions, indices, tileName);
+
+      const skirtHeight = provider.getLevelMaximumGeometricError(quadtreeTile._level) * 5.0;
+      console.log(mesh.westSkirtHeight)
+
     }
   }
 
