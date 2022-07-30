@@ -474,7 +474,7 @@ class DestroyableTerrain {
   }
 }
 
-export function createTerrain(positions, indices, tileName) {
+export function createTerrain(positions, indices, skirtHeight, tileName) {
   gravityOn = true;
 
   terrainBodies[tileName] = new DestroyableTerrain(positions, indices);
