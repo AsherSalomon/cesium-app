@@ -408,7 +408,7 @@ function createVehicle(pos, quat) {
 
 }
 
-class DestroyableTerrain {
+class DestroyableTerrainA {
   constructor(positions, indices, skirtHeight) {
     // https://stackoverflow.com/questions/59665854/ammo-js-custom-mesh-collision-with-sphere
     this.mesh = new Ammo.btTriangleMesh(false, false);
@@ -456,7 +456,7 @@ class DestroyableTerrain {
 
 }
 
-class DestroyableTerrainB {
+class DestroyableTerrain {
   constructor(positions, indices, skirtHeight) {
     this.shapes = new Array(indices.length / 3);
     this.vertices = new Array(positions.length);
@@ -494,18 +494,14 @@ class DestroyableTerrainB {
       Ammo.destroy(rbInfo);
 
       physicsWorld.addRigidBody(this.terrainBodies[i]);
-      counter++;
     }
-    console.log(counter);
 
   }
 
   destroy() {
     for (let i = 0; i < this.terrainBodies.length; i++) {
       physicsWorld.removeRigidBody(this.terrainBodies[i]);
-      counter--;
     }
-    console.log(counter);
 
     for (let i = 0; i < this.vertices.length; i++) {
       Ammo.destroy(this.vertices[i]);
@@ -528,8 +524,6 @@ class DestroyableTerrainB {
   }
 
 }
-
-let counter = 0;
 
 export function createTerrain(positions, indices, skirtHeight, tileName) {
   gravityOn = true;
