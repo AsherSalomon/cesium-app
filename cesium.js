@@ -125,8 +125,8 @@ export function update() {
       console.log('hi');
       element.addEventListener('drag', function() {
         console.log('drag');
-        once = false;
       });
+      once = false;
     }
   }
 
