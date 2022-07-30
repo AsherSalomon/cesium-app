@@ -123,9 +123,9 @@ export function update() {
 }
 
 // let screenLog = document.querySelector('#screen-log');
-// document.addEventListener('mousemove', function(e) {
-//   console.log(e.clientX, e.clientY);
-// });
+document.addEventListener('mousemove', function(e) {
+  console.log(e.clientX, e.clientY);
+});
 window.addEventListener( 'keydown', function(){
   console.log('ok');
 });
