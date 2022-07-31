@@ -100,8 +100,8 @@ export function update() {
   viewer.scene.globe._surface.forEachLoadedTile(function(quadtreeTile) {
     // const conditionX = Math.abs(quadtreeTile._x - selectedTile.cartesian2.x) <= 0;
     // const conditionY = Math.abs(quadtreeTile._y - selectedTile.cartesian2.y) <= 0;
-    const conditionX = Math.abs(quadtreeTile._x - selectedTile.cartesian2.x) <= 0.6;
-    const conditionY = Math.abs(quadtreeTile._y - selectedTile.cartesian2.y) <= 0.6;
+    const conditionX = Math.abs(quadtreeTile._x - selectedTile.cartesian2.x) <= 0.9;
+    const conditionY = Math.abs(quadtreeTile._y - selectedTile.cartesian2.y) <= 0.9;
     const conditionL = quadtreeTile._level == selectedTile.level;
     if (conditionX && conditionY && conditionL) {
       newTileList.push(quadtreeTile);
