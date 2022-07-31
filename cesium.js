@@ -89,8 +89,8 @@ export function update() {
     const ellipsoid = provider.tilingScheme.projection.ellipsoid;
     const cartographic = ellipsoid.cartesianToCartographic(position);
     const level = provider.availability.computeMaximumLevelAtPosition(cartographic);
-    const cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, level);
-    // const cartesian2 = positionToTileXYFraction(provider.tilingScheme, cartographic, level);
+    // const cartesian2 = provider.tilingScheme.positionToTileXY(cartographic, level);
+    const cartesian2 = positionToTileXYFraction(provider.tilingScheme, cartographic, level);
     // makes it load max 4 instead of max 9 tiles, trying to prevent OOM
     selectedTile.cartesian2 = cartesian2;
     selectedTile.level = level;
@@ -98,10 +98,10 @@ export function update() {
 
   let newTileList = [];
   viewer.scene.globe._surface.forEachLoadedTile(function(quadtreeTile) {
-    const conditionX = Math.abs(quadtreeTile._x - selectedTile.cartesian2.x) <= 0;
-    const conditionY = Math.abs(quadtreeTile._y - selectedTile.cartesian2.y) <= 0;
-    // const conditionX = Math.abs(quadtreeTile._x - selectedTile.cartesian2.x) <= 1;
-    // const conditionY = Math.abs(quadtreeTile._y - selectedTile.cartesian2.y) <= 1;
+    // const conditionX = Math.abs(quadtreeTile._x - selectedTile.cartesian2.x) <= 0;
+    // const conditionY = Math.abs(quadtreeTile._y - selectedTile.cartesian2.y) <= 0;
+    const conditionX = Math.abs(quadtreeTile._x - selectedTile.cartesian2.x) <= 1;
+    const conditionY = Math.abs(quadtreeTile._y - selectedTile.cartesian2.y) <= 1;
     const conditionL = quadtreeTile._level == selectedTile.level;
     if (conditionX && conditionY && conditionL) {
       newTileList.push(quadtreeTile);
