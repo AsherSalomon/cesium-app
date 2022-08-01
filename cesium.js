@@ -307,7 +307,7 @@ function addTile(quadtreeTile){
       }
       const skirtHeight = provider.getLevelMaximumGeometricError(quadtreeTile._level) * 5.0;
       const tileName = quadtreeTile._x +'_'+ quadtreeTile._y +'_'+ quadtreeTile._level;
-      createTerrain(positions, indices, skirtHeight, tileName);
+      // createTerrain(positions, indices, skirtHeight, tileName); // to do
 
     }
   }
@@ -322,7 +322,7 @@ function removeTile(quadtreeTile){
     // console.log('remove polygons');
     quadtreeTile.entities = undefined;
     const tileName = quadtreeTile._x +'_'+ quadtreeTile._y +'_'+ quadtreeTile._level;
-    removeTerrain(tileName);
+    // removeTerrain(tileName); // to do
   }
 
 }
