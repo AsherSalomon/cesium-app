@@ -8,7 +8,7 @@ animate();
 
 function init() {
   cesium.init();
-  physics.init();
+	physics.init(cesium.truckEntities, cesium.viewer);
 }
 
 function animate(timestamp) {
