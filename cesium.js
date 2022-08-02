@@ -81,7 +81,7 @@ function positionToTileXYFraction(tilingScheme, position, level) {
 export function update() {
   const provider = viewer.scene.globe.terrainProvider;
   if (provider.ready) {
-    const position = truckEntities[0].position.getValue(truckEntities.now());
+    const position = truckEntities[0].position.getValue(viewer.clock.currentTime);
     const ellipsoid = provider.tilingScheme.projection.ellipsoid;
     const cartographic = ellipsoid.cartesianToCartographic(position);
     const level = provider.availability.computeMaximumLevelAtPosition(cartographic);
