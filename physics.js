@@ -1,12 +1,13 @@
 
 let truckEntities, viewer;
+let position, quaternion;
 
 export function init(newTruck, newViewer) {
   truckEntities = newTruck;
   viewer = newViewer;
 
-  const position = truckEntities[0].position.getValue(truckEntities.now());
-  const quaternion = truckEntities[0].orientation.getValue(truckEntities.now());
+  position = truckEntities[0].position.getValue(truckEntities.now());
+  quaternion = truckEntities[0].orientation.getValue(truckEntities.now());
 
 }
 
