@@ -51,10 +51,6 @@ export function init() {
   for (let i = 1; i <= 4; i++) {
     truckEntities[i] = viewer.entities.add({model: {uri: '1984_Ford_F350_wheel.glb'}});
   }
-  truckEntities[5] = viewer.entities.add({model: {
-    uri: '1984_Ford_F350_hull.glb',
-    color: Cesium.Color.FUCHSIA
-  }});
   truckEntities.now = function() { return viewer.clock.currentTime; }
 
 }
@@ -346,30 +342,5 @@ function getPosition(encoding, mode, projection, vertices, index, result) {
   // }
 
   return position;
-
-}
-
-function addPoint(cartesian3) {
-  return viewer.entities.add({
-    position: cartesian3,
-    point: {
-      pixelSize: 1,
-      color: Cesium.Color.WHITE,
-    },
-  });
-
-}
-
-function addPolygon( v0, v1, v2 ) {
-  return viewer.entities.add({
-    // name: "Cyan vertical polygon with per-position heights and outline",
-    polygon: {
-      hierarchy: [v0, v1, v2],
-      // perPositionHeight: true,
-      material: Cesium.Color.GREEN.withAlpha(0.5),
-      // outline: true,
-      // outlineColor: Cesium.Color.BLACK,
-    },
-  });
 
 }
