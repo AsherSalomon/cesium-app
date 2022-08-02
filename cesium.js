@@ -51,7 +51,7 @@ export function init() {
   for (let i = 1; i <= 4; i++) {
     truckEntities[i] = viewer.entities.add({model: {uri: '1984_Ford_F350_wheel.glb'}});
   }
-  truckEntities.now = function() { return viewer.clock.currentTime; }
+  // truckEntities.now = function() { return viewer.clock.currentTime; }
 
 }
 
