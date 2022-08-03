@@ -74,20 +74,20 @@ class PhysicalEntity {
     this.entity.orientation = this.quaternion;
   }
 
-  set momentOfInertiaCuboid(w, h, d) {
+  setMomentOfInertiaCuboid(w, h, d) {
     this.momentOfInertia = new Cesium.Matrix3(
-      column0Row0, column1Row0, column2Row0,
-      column0Row1, column1Row1, column2Row1,
-      column0Row2, column1Row2, column2Row2
+      1 / 12 * this.mass * (h ** 2 + d ** 2), column1Row0, column2Row0,
+      column0Row1, 1 / 12 * this.mass * (w ** 2 + h ** 2), column2Row1,
+      column0Row2, column1Row2, 1 / 12 * this.mass * (w ** 2 + d ** 2)
     );
     Cesium.Matrix3.inverse(this.momentOfInertia, this.inverseMomentOfInertia);
   }
 
-  set momentOfInertiaCylinder(r, h) {
+  setMomentOfInertiaCylinder(r, h) {
     this.momentOfInertia = new Cesium.Matrix3(
-      column0Row0, column1Row0, column2Row0,
-      column0Row1, column1Row1, column2Row1,
-      column0Row2, column1Row2, column2Row2
+      1 / 12 * this.mass * (3 * r ** 2 + h ** 2), column1Row0, column2Row0,
+      column0Row1, 1 / 12 * this.mass * (3 * r ** 2 + h ** 2), column2Row1,
+      column0Row2, column1Row2, 1 / 2 * this.mass * r ** 2
     );
     Cesium.Matrix3.inverse(this.momentOfInertia, this.inverseMomentOfInertia);
   }
@@ -97,3 +97,4 @@ class PhysicalEntity {
 // https://gamedev.stackexchange.com/questions/140860/transform-inertia-tensor-using-quaternion
 // https://gamedev.stackexchange.com/questions/121021/is-adding-quaternions-a-useful-operation
 // https://www.euclideanspace.com/physics/dynamics/collision/threed/index.htm
+// https://en.wikipedia.org/wiki/List_of_moments_of_inertia#List_of_3D_inertia_tensors
