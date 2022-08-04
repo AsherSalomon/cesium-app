@@ -58,7 +58,7 @@ export function init() {
   viewer.screenSpaceEventHandler.setInputAction(function (mouse) {
     viewer.scene.pick(mouse.position);
     console.log(mouse.position);
-    const centerScreen = new Cesium.Cartision2(viewer.canvas.width / 2, viewer.canvas.height / 2);
+    const centerScreen = new Cesium.Cartesian2(viewer.canvas.width / 2, viewer.canvas.height / 2);
     // const ray = viewer.camera.getPickRay(mouse.position);
     console.log(centerScreen);
     const ray = viewer.camera.getPickRay(centerScreen);
