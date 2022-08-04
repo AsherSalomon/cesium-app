@@ -57,6 +57,7 @@ export function init() {
   // Click to shift the cross-hairs
   viewer.screenSpaceEventHandler.setInputAction(function (mouse) {
     viewer.scene.pick(mouse.position);
+    console.log(mouse.position);
     const ray = viewer.camera.getPickRay(mouse.position);
     const globe = viewer.scene.globe;
     const cartesian = globe.pick(ray, viewer.scene);
