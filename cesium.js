@@ -141,16 +141,15 @@ export function update() {
 
   adjustHeightForTerrain(viewer.scene.screenSpaceCameraController);
 
-  // // https://sandcastle.cesium.com/?src=Parallels%20and%20Meridians.html&label=All
-  // const centerScreen = new Cesium.Cartesian2(viewer.canvas.width / 2, viewer.canvas.height / 2);
-  // const ray = viewer.camera.getPickRay(centerScreen);
-  // const cartesian = viewer.scene.globe.pick(ray, viewer.scene);
-  // if (Cesium.defined(cartesian)) {
-  //   const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
-  //   console.log(cartographic);
-  // }
+  // https://sandcastle.cesium.com/?src=Parallels%20and%20Meridians.html&label=All
+  const centerScreen = new Cesium.Cartesian2(viewer.canvas.width / 2, viewer.canvas.height / 2);
+  const ray = viewer.camera.getPickRay(centerScreen);
+  const cartesian = viewer.scene.globe.pick(ray, viewer.scene);
+  if (Cesium.defined(cartesian)) {
+    const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
+    console.log(cartographic, viewer.camera.heading);
+  }
 
-  console.log(viewer.camera.heading);
 
 }
 
