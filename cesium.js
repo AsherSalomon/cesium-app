@@ -136,7 +136,7 @@ export function update() {
     Cesium.Cartesian3.cross(viewer.camera.directionWC, vehicleDirection, crossProduct);
     const dotProduct = Cesium.Cartesian3.dot(viewer.camera.upWC, crossProduct);
     viewer.camera.rotateRight(dotProduct * Math.PI / 256);
-
+    
   }
 
   adjustHeightForTerrain(viewer.scene.screenSpaceCameraController);
