@@ -53,6 +53,22 @@ export function init() {
   }
   // truckEntities.now = function() { return viewer.clock.currentTime; }
 
+  // https://sandcastle.cesium.com/?src=Parallels%20and%20Meridians.html&label=All
+  // Click to shift the cross-hairs
+  viewer.screenSpaceEventHandler.setInputAction(function (mouse) {
+    viewer.scene.pick(mouse.position);
+    const ray = viewer.camera.getPickRay(mouse.position);
+    const globe = viewer.scene.globe;
+    const cartesian = globe.pick(ray, viewer.scene);
+
+    if (!Cesium.defined(cartesian)) {
+      return;
+    }
+
+    const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
+    console.log(cartographic);
+  }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
 }
 
 let createTerrain;
@@ -130,6 +146,34 @@ document.addEventListener('mousemove', function(e) {
 window.addEventListener( 'keydown', function(){
   followTruck = true;
 });
+
+    // // Mouse over the globe to see the cartographic position
+    // handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
+    // handler.setInputAction(function (movement) {
+    //   const cartesian = viewer.camera.pickEllipsoid(
+    //     movement.endPosition,
+    //     scene.globe.ellipsoid
+    //   );
+    //   if (cartesian) {
+    //     const cartographic = Cesium.Cartographic.fromCartesian(
+    //       cartesian
+    //     );
+    //     const longitudeString = Cesium.Math.toDegrees(
+    //       cartographic.longitude
+    //     ).toFixed(2);
+    //     const latitudeString = Cesium.Math.toDegrees(
+    //       cartographic.latitude
+    //     ).toFixed(2);
+    //
+    //     entity.position = cartesian;
+    //     entity.label.show = true;
+    //     entity.label.text =
+    //       `Lon: ${`   ${longitudeString}`.slice(-7)}\u00B0` +
+    //       `\nLat: ${`   ${latitudeString}`.slice(-7)}\u00B0`;
+    //   } else {
+    //     entity.label.show = false;
+    //   }
+    // }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
 
 function adjustHeightForTerrain(controller) {
   controller._adjustedHeightForTerrain = true;
