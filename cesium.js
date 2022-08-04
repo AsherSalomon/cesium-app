@@ -53,25 +53,25 @@ export function init() {
   }
   // truckEntities.now = function() { return viewer.clock.currentTime; }
 
-  // https://sandcastle.cesium.com/?src=Parallels%20and%20Meridians.html&label=All
-  // Click to shift the cross-hairs
-  viewer.screenSpaceEventHandler.setInputAction(function (mouse) {
-    viewer.scene.pick(mouse.position);
-    // console.log(mouse.position);
-    const centerScreen = new Cesium.Cartesian2(viewer.canvas.width / 2, viewer.canvas.height / 2);
-    // const ray = viewer.camera.getPickRay(mouse.position);
-    // console.log(centerScreen);
-    const ray = viewer.camera.getPickRay(centerScreen);
-    const globe = viewer.scene.globe;
-    const cartesian = globe.pick(ray, viewer.scene);
-
-    if (!Cesium.defined(cartesian)) {
-      return;
-    }
-
-    const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
-    console.log(cartographic);
-  }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+  // // https://sandcastle.cesium.com/?src=Parallels%20and%20Meridians.html&label=All
+  // // Click to shift the cross-hairs
+  // viewer.screenSpaceEventHandler.setInputAction(function (mouse) {
+  //   viewer.scene.pick(mouse.position);
+  //   // console.log(mouse.position);
+  //   const centerScreen = new Cesium.Cartesian2(viewer.canvas.width / 2, viewer.canvas.height / 2);
+  //   // const ray = viewer.camera.getPickRay(mouse.position);
+  //   // console.log(centerScreen);
+  //   const ray = viewer.camera.getPickRay(centerScreen);
+  //   const globe = viewer.scene.globe;
+  //   const cartesian = globe.pick(ray, viewer.scene);
+  //
+  //   if (!Cesium.defined(cartesian)) {
+  //     return;
+  //   }
+  //
+  //   const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
+  //   console.log(cartographic);
+  // }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
 }
 
@@ -140,6 +140,15 @@ export function update() {
   }
 
   adjustHeightForTerrain(viewer.scene.screenSpaceCameraController);
+
+  // https://sandcastle.cesium.com/?src=Parallels%20and%20Meridians.html&label=All
+  const centerScreen = new Cesium.Cartesian2(viewer.canvas.width / 2, viewer.canvas.height / 2);
+  const ray = viewer.camera.getPickRay(centerScreen);
+  const cartesian = viewer.scene.globe.pick(ray, viewer.scene);
+  if (Cesium.defined(cartesian)) {
+    const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
+    console.log(cartographic);
+  }
 
 }
 
