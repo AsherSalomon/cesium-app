@@ -128,7 +128,7 @@ export function update() {
 
   if (viewer.trackedEntity == truckEntities[0] && followTruck) {
     const vehicleDirection = new Cesium.Cartesian3(0, 1, 0);
-    const quaternion = truckEntities[0].orientation.getValue(truckEntities.now());
+    const quaternion = truckEntities[0].orientation.getValue(viewer.clock.currentTime);
     const matrix3 = new Cesium.Matrix3();
     Cesium.Matrix3.fromQuaternion(quaternion, matrix3);
     Cesium.Matrix3.multiplyByVector(matrix3, vehicleDirection, vehicleDirection);
@@ -152,7 +152,7 @@ export function update() {
     const quaternion = new Cesium.Quaternion();
     Cesium.Quaternion.fromHeadingPitchRoll(headingPitchRoll, quaternion);
     Cesium.Cartographic.toCartesian(cartographic, viewer.camera.ellipsoid, truckEntities[0].position);
-    
+
   }
 
 }
