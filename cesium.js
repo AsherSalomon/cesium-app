@@ -149,27 +149,12 @@ export function update() {
     if (Cesium.defined(cartesian)) {
       const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
       cartographic.height += 1;
-      // const headingPitchRoll = new Cesium.HeadingPitchRoll(
-      //   viewer.camera.heading, viewer.camera.pitch, viewer.camera.roll);
-      // const quaternion = new Cesium.Quaternion();
-      // Cesium.Quaternion.fromHeadingPitchRoll(headingPitchRoll, quaternion);
       Cesium.Cartographic.toCartesian(
         cartographic, viewer.camera.ellipsoid, truckEntities[0].position._value);
-      // console.log(truckEntities[0].position);
-      // truckEntities[0].orientation._value = quaternion;
-
       const headingPitchRoll = new Cesium.HeadingPitchRoll(
-        // viewer.camera.heading, viewer.camera.pitch, viewer.camera.roll);
         viewer.camera.heading + Math.PI / 2, 0, 0);
       const fixedFrameTransform = Cesium.Transforms.localFrameToFixedFrameGenerator(
         "north", "west");
-      // Cesium.Transforms.headingPitchRollToFixedFrame(
-      //   truckEntities[0].position._value,
-      //   headingPitchRoll,
-      //   Cesium.Ellipsoid.WGS84,
-      //   fixedFrameTransform,
-      //   truckEntities[0].modelMatrix
-      // );
       Cesium.Transforms.headingPitchRollQuaternion(
         truckEntities[0].position._value,
         headingPitchRoll,
@@ -189,8 +174,11 @@ let followTruck = false;
 document.addEventListener('mousemove', function(e) {
   followTruck = false;
 });
-window.addEventListener( 'keydown', function() {
+window.addEventListener('keydown', function(e) {
   followTruck = true;
+  if (e.keyCode == 69) {
+    console.log('yup');
+  }
 });
 
     // // Mouse over the globe to see the cartographic position
