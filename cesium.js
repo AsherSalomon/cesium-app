@@ -160,7 +160,7 @@ export function update() {
 
       const headingPitchRoll = new Cesium.HeadingPitchRoll(
         // viewer.camera.heading, viewer.camera.pitch, viewer.camera.roll);
-        viewer.camera.heading, 0, 0);
+        viewer.camera.heading + Math.PI / 2, 0, 0);
       const fixedFrameTransform = Cesium.Transforms.localFrameToFixedFrameGenerator(
         "north", "west");
       // Cesium.Transforms.headingPitchRollToFixedFrame(
