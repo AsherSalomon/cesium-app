@@ -148,7 +148,7 @@ export function update() {
     const cartesian = viewer.scene.globe.pick(ray, viewer.scene);
     if (Cesium.defined(cartesian)) {
       const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
-      cartographic.height = 1;
+      cartographic.height += 1;
       const headingPitchRoll = new Cesium.HeadingPitchRoll(viewer.camera.heading, viewer.camera.pitch, viewer.camera.roll);
       const quaternion = new Cesium.Quaternion();
       Cesium.Quaternion.fromHeadingPitchRoll(headingPitchRoll, quaternion);
