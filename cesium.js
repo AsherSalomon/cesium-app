@@ -154,6 +154,7 @@ export function update() {
       Cesium.Quaternion.fromHeadingPitchRoll(headingPitchRoll, quaternion);
       Cesium.Cartographic.toCartesian(cartographic, viewer.camera.ellipsoid, truckEntities[0].position._value);
       // console.log(truckEntities[0].position);
+      truckEntities[0].orientation._value = quaternion;
     }
   }
   // truckEntities[0].position._value.x += 0.1;
