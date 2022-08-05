@@ -177,7 +177,11 @@ document.addEventListener('mousemove', function(e) {
 window.addEventListener('keydown', function(e) {
   followTruck = true;
   if (e.keyCode == 69) {
-    console.log('yup');
+    if (viewer.trackedEntity == truckEntities[0]) {
+      viewer.trackedEntity = Null;
+    } else if (viewer.trackedEntity != truckEntities[0]) {
+      viewer.trackedEntity = truckEntities[0];
+    }
   }
 });
 
