@@ -141,20 +141,20 @@ export function update() {
 
   adjustHeightForTerrain(viewer.scene.screenSpaceCameraController);
 
-  // // https://sandcastle.cesium.com/?src=Parallels%20and%20Meridians.html&label=All
-  // const centerScreen = new Cesium.Cartesian2(viewer.canvas.width / 2, viewer.canvas.height / 2);
-  // const ray = viewer.camera.getPickRay(centerScreen);
-  // const cartesian = viewer.scene.globe.pick(ray, viewer.scene);
-  // if (Cesium.defined(cartesian)) {
-  //   const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
-  //   const headingPitchRoll = new Cesium.HeadingPitchRoll(viewer.camera.heading, viewer.camera.pitch, viewer.camera.roll);
-  //   const quaternion = new Cesium.Quaternion();
-  //   Cesium.Quaternion.fromHeadingPitchRoll(headingPitchRoll, quaternion);
-  //   Cesium.Cartographic.toCartesian(cartographic, viewer.camera.ellipsoid, truckEntities[0].position);
-  //   console.log(truckEntities[0].position);
-  // }
-  truckEntities[0].position._value.x += 0.1;
-  console.log(truckEntities[0].position._value);
+  // https://sandcastle.cesium.com/?src=Parallels%20and%20Meridians.html&label=All
+  const centerScreen = new Cesium.Cartesian2(viewer.canvas.width / 2, viewer.canvas.height / 2);
+  const ray = viewer.camera.getPickRay(centerScreen);
+  const cartesian = viewer.scene.globe.pick(ray, viewer.scene);
+  if (Cesium.defined(cartesian)) {
+    const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
+    const headingPitchRoll = new Cesium.HeadingPitchRoll(viewer.camera.heading, viewer.camera.pitch, viewer.camera.roll);
+    const quaternion = new Cesium.Quaternion();
+    Cesium.Quaternion.fromHeadingPitchRoll(headingPitchRoll, quaternion);
+    Cesium.Cartographic.toCartesian(cartographic, viewer.camera.ellipsoid, truckEntities[0].position._value);
+    // console.log(truckEntities[0].position);
+  }
+  // truckEntities[0].position._value.x += 0.1;
+  // console.log(truckEntities[0].position._value);
 
 }
 
