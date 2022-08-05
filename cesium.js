@@ -149,15 +149,15 @@ export function update() {
     if (Cesium.defined(cartesian)) {
       const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
       cartographic.height += 1;
-      const headingPitchRoll = new Cesium.HeadingPitchRoll(
-        viewer.camera.heading, viewer.camera.pitch, viewer.camera.roll);
       const quaternion = new Cesium.Quaternion();
       Cesium.Quaternion.fromHeadingPitchRoll(headingPitchRoll, quaternion);
       Cesium.Cartographic.toCartesian(
         cartographic, viewer.camera.ellipsoid, truckEntities[0].position._value);
       // console.log(truckEntities[0].position);
-      truckEntities[0].orientation._value = quaternion;
+      // truckEntities[0].orientation._value = quaternion;
 
+      const headingPitchRoll = new Cesium.HeadingPitchRoll(
+        viewer.camera.heading, viewer.camera.pitch, viewer.camera.roll);
       const fixedFrameTransform = Cesium.Transforms.localFrameToFixedFrameGenerator(
         "north", "west");
       Cesium.Transforms.headingPitchRollToFixedFrame(
