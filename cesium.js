@@ -136,7 +136,7 @@ export function update() {
     Cesium.Cartesian3.cross(viewer.camera.directionWC, vehicleDirection, crossProduct);
     const dotProduct = Cesium.Cartesian3.dot(viewer.camera.upWC, crossProduct);
     viewer.camera.rotateRight(dotProduct * Math.PI / 256);
-    
+
   }
 
   adjustHeightForTerrain(viewer.scene.screenSpaceCameraController);
@@ -151,7 +151,9 @@ export function update() {
     const headingPitchRoll = new Cesium.HeadingPitchRoll(viewer.camera.heading, viewer.camera.pitch, viewer.camera.roll);
     const quaternion = new Cesium.Quaternion();
     Cesium.Quaternion.fromHeadingPitchRoll(headingPitchRoll, quaternion);
-    Cesium.Cartographic.toCartesian(cartographic, viewer.camera.ellipsoid, truckEntities[0].position);
+    const position = new Cesium.Cartesian3();
+    Cesium.Cartographic.toCartesian(cartographic, viewer.camera.ellipsoid, position);
+    truckEntities[0].position;
 
   }
 
