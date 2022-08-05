@@ -147,14 +147,11 @@ export function update() {
   const cartesian = viewer.scene.globe.pick(ray, viewer.scene);
   if (Cesium.defined(cartesian)) {
     const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
-    console.log(cartographic, viewer.camera.heading);
     const headingPitchRoll = new Cesium.HeadingPitchRoll(viewer.camera.heading, viewer.camera.pitch, viewer.camera.roll);
     const quaternion = new Cesium.Quaternion();
     Cesium.Quaternion.fromHeadingPitchRoll(headingPitchRoll, quaternion);
-    const position = new Cesium.Cartesian3();
-    Cesium.Cartographic.toCartesian(cartographic, viewer.camera.ellipsoid, position);
-    truckEntities[0].position;
-
+    Cesium.Cartographic.toCartesian(cartographic, viewer.camera.ellipsoid, truckEntities[0].position);
+    console.log(truckEntities[0].position);
   }
 
 }
