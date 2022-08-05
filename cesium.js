@@ -154,6 +154,7 @@ export function update() {
   //   console.log(truckEntities[0].position);
   // }
   truckEntities[0].position.x += 0.001;
+  console.log(truckEntities[0].position);
 
 }
 
