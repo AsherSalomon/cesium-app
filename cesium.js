@@ -180,6 +180,7 @@ window.addEventListener('keydown', function(e) {
     if (viewer.trackedEntity == truckEntities[0]) {
       viewer.trackedEntity = null;
     } else if (viewer.trackedEntity != truckEntities[0]) {
+      truckEntities[0].viewFrom = camera.position;
       viewer.trackedEntity = truckEntities[0];
     }
   }
@@ -307,7 +308,6 @@ function createModel(url) {
     },
   });
 
-  entity.viewFrom = null;
   viewer.trackedEntity = entity;
 
   return entity;
