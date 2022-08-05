@@ -306,6 +306,8 @@ function createModel(url) {
       uri: url, // Cesium.ModelGraphics
     },
   });
+
+  entity.viewFrom = null;
   viewer.trackedEntity = entity;
 
   return entity;
