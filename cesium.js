@@ -180,7 +180,7 @@ window.addEventListener('keydown', function(e) {
     if (viewer.trackedEntity == truckEntities[0]) {
       viewer.trackedEntity = null;
     } else if (viewer.trackedEntity != truckEntities[0]) {
-      truckEntities[0].viewFrom = scene.camera.position;
+      truckEntities[0].viewFrom = viewer.camera.position;
       viewer.trackedEntity = truckEntities[0];
     }
   }
