@@ -181,7 +181,7 @@ window.addEventListener('keydown', function(e) {
       viewer.trackedEntity = null;
     } else if (viewer.trackedEntity != truckEntities[0]) {
       const position = new Cesium.Cartesian3();
-      Cesium.Cartesian3.subtract(truckEntities[0].position._value, viewer.camera.position, position);
+      Cesium.Cartesian3.subtract(viewer.camera.position, truckEntities[0].position._value, position);
       truckEntities[0].viewFrom = position;
       viewer.trackedEntity = truckEntities[0];
     }
