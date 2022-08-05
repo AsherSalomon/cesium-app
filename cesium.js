@@ -178,7 +178,7 @@ window.addEventListener('keydown', function(e) {
   followTruck = true;
   if (e.keyCode == 69) {
     if (viewer.trackedEntity == truckEntities[0]) {
-      viewer.trackedEntity = Null;
+      viewer.trackedEntity = null;
     } else if (viewer.trackedEntity != truckEntities[0]) {
       viewer.trackedEntity = truckEntities[0];
     }
