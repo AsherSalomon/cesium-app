@@ -163,12 +163,19 @@ export function update() {
         0, 0, 0);
       const fixedFrameTransform = Cesium.Transforms.localFrameToFixedFrameGenerator(
         "north", "west");
-      Cesium.Transforms.headingPitchRollToFixedFrame(
+      // Cesium.Transforms.headingPitchRollToFixedFrame(
+      //   truckEntities[0].position._value,
+      //   headingPitchRoll,
+      //   Cesium.Ellipsoid.WGS84,
+      //   fixedFrameTransform,
+      //   truckEntities[0].modelMatrix
+      // );
+      Cesium.Transforms.headingPitchRollQuaternion(
         truckEntities[0].position._value,
         headingPitchRoll,
         Cesium.Ellipsoid.WGS84,
         fixedFrameTransform,
-        truckEntities[0].modelMatrix
+        truckEntities[0].orientation._value
       );
     }
   }
