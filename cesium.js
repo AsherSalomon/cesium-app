@@ -159,7 +159,8 @@ export function update() {
       // truckEntities[0].orientation._value = quaternion;
 
       const headingPitchRoll = new Cesium.HeadingPitchRoll(
-        viewer.camera.heading, viewer.camera.pitch, viewer.camera.roll);
+        // viewer.camera.heading, viewer.camera.pitch, viewer.camera.roll);
+        0, 0, 0);
       const fixedFrameTransform = Cesium.Transforms.localFrameToFixedFrameGenerator(
         "north", "west");
       Cesium.Transforms.headingPitchRollToFixedFrame(
