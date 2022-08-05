@@ -153,7 +153,7 @@ export function update() {
   //   Cesium.Cartographic.toCartesian(cartographic, viewer.camera.ellipsoid, truckEntities[0].position);
   //   console.log(truckEntities[0].position);
   // }
-  // truckEntities[0].position.x += 0.001;
+  truckEntities[0].position._value.x += 0.001;
   console.log(truckEntities[0].position._value);
 
 }
