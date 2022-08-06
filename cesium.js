@@ -192,7 +192,8 @@ window.addEventListener('keydown', function(e) {
       const matrix4 = new Cesium.Matrix4();
       Cesium.Transforms.eastNorthUpToFixedFrame(truckEntities[0].position._value, Cesium.Ellipsoid.WGS84, matrix4);
       const position = new Cesium.Cartesian3();
-      Cesium.Matrix4.multiplyByPoint(matrix4, truckEntities[0].position._value, position);
+      Cesium.Cartesian3.subtract(viewer.camera.position, truckEntities[0].position._value, position);
+      Cesium.Matrix4.multiplyByPoint(matrix4, position, position);
       truckEntities[0].viewFrom = position;
 
       viewer.trackedEntity = truckEntities[0];
