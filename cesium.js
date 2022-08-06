@@ -190,7 +190,7 @@ window.addEventListener('keydown', function(e) {
       // truckEntities[0].viewFrom = cartesian3;
 
       const matrix4 = new Cesium.Matrix4();
-      Cesium.Transforms.eastNorthUpToFixedFrame(truckEntities[0].position._value, Cesium.Ellipsoid.WGS84, position);
+      Cesium.Transforms.eastNorthUpToFixedFrame(truckEntities[0].position._value, Cesium.Ellipsoid.WGS84, matrix4);
       const position = new Cesium.Cartesian3();
       Cesium.Matrix4.multiplyByPoint(matrix4, truckEntities[0].position._value, position);
       truckEntities[0].viewFrom = position;
