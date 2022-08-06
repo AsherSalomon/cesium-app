@@ -184,6 +184,7 @@ window.addEventListener('keydown', function(e) {
       Cesium.Cartesian3.subtract(viewer.camera.position, truckEntities[0].position._value, position);
       const matrix3 = new Cesium.Matrix3();
       Cesium.Matrix3.fromQuaternion(truckEntities[0].orientation._value, matrix3);
+      Cesium.Matrix3.inverse(matrix3, matrix3);
       const cartesian3 = new Cesium.Cartesian3();
       Cesium.Matrix3.multiplyByVector(matrix3, position, cartesian3);
       truckEntities[0].viewFrom = cartesian3;
