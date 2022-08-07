@@ -180,22 +180,12 @@ window.addEventListener('keydown', function(e) {
     if (viewer.trackedEntity == truckEntities[0]) {
       viewer.trackedEntity = null;
     } else if (viewer.trackedEntity != truckEntities[0]) {
-      // const position = new Cesium.Cartesian3();
-      // Cesium.Cartesian3.subtract(viewer.camera.position, truckEntities[0].position._value, position);
-      // const matrix3 = new Cesium.Matrix3();
-      // Cesium.Matrix3.fromQuaternion(truckEntities[0].orientation._value, matrix3);
-      // Cesium.Matrix3.inverse(matrix3, matrix3);
-      // const cartesian3 = new Cesium.Cartesian3();
-      // Cesium.Matrix3.multiplyByVector(matrix3, position, cartesian3);
-      // truckEntities[0].viewFrom = cartesian3;
-
       const matrix4 = new Cesium.Matrix4();
       Cesium.Transforms.eastNorthUpToFixedFrame(truckEntities[0].position._value, Cesium.Ellipsoid.WGS84, matrix4);
       Cesium.Matrix4.inverse(matrix4, matrix4);
       const position = new Cesium.Cartesian3();
       Cesium.Matrix4.multiplyByPoint(matrix4, viewer.camera.position, position);
       truckEntities[0].viewFrom = position;
-
       viewer.trackedEntity = truckEntities[0];
     }
   }
