@@ -143,7 +143,8 @@ export function update() {
 
   if (viewer.trackedEntity != truckEntities[0]) {
     // https://sandcastle.cesium.com/?src=Parallels%20and%20Meridians.html&label=All
-    const centerScreen = new Cesium.Cartesian2(viewer.canvas.width / 2, viewer.canvas.height / 2);
+    const centerScreen = new Cesium.Cartesian2(
+      viewer.canvas.width / 2, viewer.canvas.height / 2);
     const ray = viewer.camera.getPickRay(centerScreen);
     const cartesian = viewer.scene.globe.pick(ray, viewer.scene);
     if (Cesium.defined(cartesian)) {
@@ -181,7 +182,8 @@ window.addEventListener('keydown', function(e) {
       viewer.trackedEntity = null;
     } else if (viewer.trackedEntity != truckEntities[0]) {
       const matrix4 = new Cesium.Matrix4();
-      Cesium.Transforms.eastNorthUpToFixedFrame(truckEntities[0].position._value, Cesium.Ellipsoid.WGS84, matrix4);
+      Cesium.Transforms.eastNorthUpToFixedFrame(
+        truckEntities[0].position._value, Cesium.Ellipsoid.WGS84, matrix4);
       Cesium.Matrix4.inverse(matrix4, matrix4);
       const position = new Cesium.Cartesian3();
       Cesium.Matrix4.multiplyByPoint(matrix4, viewer.camera.position, position);
@@ -190,34 +192,7 @@ window.addEventListener('keydown', function(e) {
     }
   }
 });
-
-    // // Mouse over the globe to see the cartographic position
-    // handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
-    // handler.setInputAction(function (movement) {
-    //   const cartesian = viewer.camera.pickEllipsoid(
-    //     movement.endPosition,
-    //     scene.globe.ellipsoid
-    //   );
-    //   if (cartesian) {
-    //     const cartographic = Cesium.Cartographic.fromCartesian(
-    //       cartesian
-    //     );
-    //     const longitudeString = Cesium.Math.toDegrees(
-    //       cartographic.longitude
-    //     ).toFixed(2);
-    //     const latitudeString = Cesium.Math.toDegrees(
-    //       cartographic.latitude
-    //     ).toFixed(2);
-    //
-    //     entity.position = cartesian;
-    //     entity.label.show = true;
-    //     entity.label.text =
-    //       `Lon: ${`   ${longitudeString}`.slice(-7)}\u00B0` +
-    //       `\nLat: ${`   ${latitudeString}`.slice(-7)}\u00B0`;
-    //   } else {
-    //     entity.label.show = false;
-    //   }
-    // }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+// ScreenSpaceEventHandler
 
 function adjustHeightForTerrain(controller) {
   controller._adjustedHeightForTerrain = true;
