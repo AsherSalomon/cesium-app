@@ -132,6 +132,7 @@ export function update() {
     const ray = viewer.camera.getPickRay(centerScreen);
     const cartesian = viewer.scene.globe.pick(ray, viewer.scene);
     if (Cesium.defined(cartesian)) {
+      console.log('ok');
       const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
       cartographic.height += 1;
       Cesium.Cartographic.toCartesian(
