@@ -51,10 +51,10 @@ export function init() {
   for (let i = 1; i <= 4; i++) {
     truckEntities[i] = viewer.entities.add({model: {uri: '1984_Ford_F350_wheel.glb'}});
   }
-  truckEntities[5] = viewer.entities.add({model: {
-    uri: '1984_Ford_F350_hull.glb',
-    color: Cesium.Color.FUCHSIA
-  }});
+  // truckEntities[5] = viewer.entities.add({model: {
+  //   uri: '1984_Ford_F350_hull.glb',
+  //   color: Cesium.Color.FUCHSIA
+  // }});
   truckEntities.now = function() { return viewer.clock.currentTime; }
 
 }
