@@ -51,27 +51,11 @@ export function init() {
   for (let i = 1; i <= 4; i++) {
     truckEntities[i] = viewer.entities.add({model: {uri: '1984_Ford_F350_wheel.glb'}});
   }
-  // truckEntities.now = function() { return viewer.clock.currentTime; }
-
-  // // https://sandcastle.cesium.com/?src=Parallels%20and%20Meridians.html&label=All
-  // // Click to shift the cross-hairs
-  // viewer.screenSpaceEventHandler.setInputAction(function (mouse) {
-  //   viewer.scene.pick(mouse.position);
-  //   // console.log(mouse.position);
-  //   const centerScreen = new Cesium.Cartesian2(viewer.canvas.width / 2, viewer.canvas.height / 2);
-  //   // const ray = viewer.camera.getPickRay(mouse.position);
-  //   // console.log(centerScreen);
-  //   const ray = viewer.camera.getPickRay(centerScreen);
-  //   const globe = viewer.scene.globe;
-  //   const cartesian = globe.pick(ray, viewer.scene);
-  //
-  //   if (!Cesium.defined(cartesian)) {
-  //     return;
-  //   }
-  //
-  //   const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
-  //   console.log(cartographic);
-  // }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+  truckEntities[5] = viewer.entities.add({model: {
+    uri: '1984_Ford_F350_hull.glb',
+    color: Cesium.Color.FUCHSIA
+  }});
+  truckEntities.now = function() { return viewer.clock.currentTime; }
 
 }
 
@@ -101,7 +85,7 @@ function positionToTileXYFraction(tilingScheme, position, level) {
 export function update() {
   const provider = viewer.scene.globe.terrainProvider;
   if (provider.ready) {
-    const position = truckEntities[0].position.getValue(viewer.clock.currentTime);
+    const position = truckEntities[0].position.getValue(truckEntities.now());
     const ellipsoid = provider.tilingScheme.projection.ellipsoid;
     const cartographic = ellipsoid.cartesianToCartographic(position);
     const level = provider.availability.computeMaximumLevelAtPosition(cartographic);
@@ -128,7 +112,7 @@ export function update() {
 
   if (viewer.trackedEntity == truckEntities[0] && followTruck) {
     const vehicleDirection = new Cesium.Cartesian3(0, 1, 0);
-    const quaternion = truckEntities[0].orientation.getValue(viewer.clock.currentTime);
+    const quaternion = truckEntities[0].orientation.getValue(truckEntities.now());
     const matrix3 = new Cesium.Matrix3();
     Cesium.Matrix3.fromQuaternion(quaternion, matrix3);
     Cesium.Matrix3.multiplyByVector(matrix3, vehicleDirection, vehicleDirection);
@@ -141,58 +125,15 @@ export function update() {
 
   adjustHeightForTerrain(viewer.scene.screenSpaceCameraController);
 
-  if (viewer.trackedEntity != truckEntities[0]) {
-    // https://sandcastle.cesium.com/?src=Parallels%20and%20Meridians.html&label=All
-    const centerScreen = new Cesium.Cartesian2(
-      viewer.canvas.width / 2, viewer.canvas.height / 2);
-    const ray = viewer.camera.getPickRay(centerScreen);
-    const cartesian = viewer.scene.globe.pick(ray, viewer.scene);
-    if (Cesium.defined(cartesian)) {
-      const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
-      cartographic.height += 1;
-      Cesium.Cartographic.toCartesian(
-        cartographic, viewer.camera.ellipsoid, truckEntities[0].position._value);
-      const headingPitchRoll = new Cesium.HeadingPitchRoll(
-        viewer.camera.heading + Math.PI / 2, 0, 0);
-      const fixedFrameTransform = Cesium.Transforms.localFrameToFixedFrameGenerator(
-        "north", "west");
-      Cesium.Transforms.headingPitchRollQuaternion(
-        truckEntities[0].position._value,
-        headingPitchRoll,
-        Cesium.Ellipsoid.WGS84,
-        fixedFrameTransform,
-        truckEntities[0].orientation._value
-      );
-    }
-  }
-  // truckEntities[0].position._value.x += 0.1;
-  // console.log(truckEntities[0].position._value);
-
-
 }
 
 let followTruck = false;
 document.addEventListener('mousemove', function(e) {
   followTruck = false;
 });
-window.addEventListener('keydown', function(e) {
+window.addEventListener( 'keydown', function(){
   followTruck = true;
-  if (e.keyCode == 69) {
-    if (viewer.trackedEntity == truckEntities[0]) {
-      viewer.trackedEntity = null;
-    } else if (viewer.trackedEntity != truckEntities[0]) {
-      const matrix4 = new Cesium.Matrix4();
-      Cesium.Transforms.eastNorthUpToFixedFrame(
-        truckEntities[0].position._value, Cesium.Ellipsoid.WGS84, matrix4);
-      Cesium.Matrix4.inverse(matrix4, matrix4);
-      const position = new Cesium.Cartesian3();
-      Cesium.Matrix4.multiplyByPoint(matrix4, viewer.camera.position, position);
-      truckEntities[0].viewFrom = position;
-      viewer.trackedEntity = truckEntities[0];
-    }
-  }
 });
-// ScreenSpaceEventHandler
 
 function adjustHeightForTerrain(controller) {
   controller._adjustedHeightForTerrain = true;
@@ -287,7 +228,6 @@ function createModel(url) {
       uri: url, // Cesium.ModelGraphics
     },
   });
-
   viewer.trackedEntity = entity;
 
   return entity;
@@ -367,7 +307,7 @@ function addTile(quadtreeTile){
       }
       const skirtHeight = provider.getLevelMaximumGeometricError(quadtreeTile._level) * 5.0;
       const tileName = quadtreeTile._x +'_'+ quadtreeTile._y +'_'+ quadtreeTile._level;
-      // createTerrain(positions, indices, skirtHeight, tileName); // to do
+      createTerrain(positions, indices, skirtHeight, tileName);
 
     }
   }
@@ -382,7 +322,7 @@ function removeTile(quadtreeTile){
     // console.log('remove polygons');
     quadtreeTile.entities = undefined;
     const tileName = quadtreeTile._x +'_'+ quadtreeTile._y +'_'+ quadtreeTile._level;
-    // removeTerrain(tileName); // to do
+    removeTerrain(tileName);
   }
 
 }
@@ -406,5 +346,30 @@ function getPosition(encoding, mode, projection, vertices, index, result) {
   // }
 
   return position;
+
+}
+
+function addPoint(cartesian3) {
+  return viewer.entities.add({
+    position: cartesian3,
+    point: {
+      pixelSize: 1,
+      color: Cesium.Color.WHITE,
+    },
+  });
+
+}
+
+function addPolygon( v0, v1, v2 ) {
+  return viewer.entities.add({
+    // name: "Cyan vertical polygon with per-position heights and outline",
+    polygon: {
+      hierarchy: [v0, v1, v2],
+      // perPositionHeight: true,
+      material: Cesium.Color.GREEN.withAlpha(0.5),
+      // outline: true,
+      // outlineColor: Cesium.Color.BLACK,
+    },
+  });
 
 }
