@@ -58,20 +58,22 @@ export function init(newTruck, newViewer) {
 
 let frameCount = 0;
 export function update(delta) {
-  if (gravityOn) {
-    const position = truckEntities[0].position.getValue(truckEntities.now());
-    const normal = new Ammo.btVector3(position.x, position.y, position.z);
-    normal.normalize();
-    normal.op_mul(-gravity);
-    physicsWorld.setGravity( normal );
-  } else {
-  	physicsWorld.setGravity( new Ammo.btVector3(0, 0, 0) );
-  }
+  if (viewer.trackedEntity == truckEntities[0]) {
+    if (gravityOn) {
+      const position = truckEntities[0].position.getValue(truckEntities.now());
+      const normal = new Ammo.btVector3(position.x, position.y, position.z);
+      normal.normalize();
+      normal.op_mul(-gravity);
+      physicsWorld.setGravity( normal );
+    } else {
+    	physicsWorld.setGravity( new Ammo.btVector3(0, 0, 0) );
+    }
 
-  frameCount++;
-  if (frameCount % 1 == 0) {
-  	for (let i = 0; i < syncList.length; i++) { syncList[i](delta); }
-  	physicsWorld.stepSimulation(delta, 10);
+    frameCount++;
+    if (frameCount % 1 == 0) {
+    	for (let i = 0; i < syncList.length; i++) { syncList[i](delta); }
+    	physicsWorld.stepSimulation(delta, 10);
+    }
   }
 
 }
