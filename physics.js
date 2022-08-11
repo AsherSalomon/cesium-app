@@ -8,6 +8,8 @@ let truckEntities;
 const terrainBodies = {};
 let originOffset;
 
+let vehicle;
+
 // - Global variables -
 const DISABLE_DEACTIVATION = 4;
 
@@ -60,7 +62,7 @@ let frameCount = 0;
 let previousTruckSelected = false;
 export function update(delta) {
   const truckSelected = viewer.trackedEntity == truckEntities[0];
-  if (truckSelected != previousTruckSelected && vehicle != undefined) {
+  if (truckSelected != previousTruckSelected) {
     const position = truckEntities[0].position._value;
     const btPosition = new Ammo.btVector3(position.x, position.y, position.z);
 		const tm = vehicle.getChassisWorldTransform();
@@ -210,7 +212,7 @@ function createVehicle(pos, quat) {
 	let breakingForce = 0;
 	const tuning = new Ammo.btVehicleTuning();
 	const rayCaster = new Ammo.btDefaultVehicleRaycaster(physicsWorld);
-	const vehicle = new Ammo.btRaycastVehicle(tuning, body, rayCaster);
+	vehicle = new Ammo.btRaycastVehicle(tuning, body, rayCaster);
 	vehicle.setCoordinateSystem(0, 1, 2);
 	physicsWorld.addAction(vehicle);
 
