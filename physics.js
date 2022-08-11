@@ -60,7 +60,7 @@ let frameCount = 0;
 let previousTruckSelected = false;
 export function update(delta) {
   const truckSelected = viewer.trackedEntity == truckEntities[0];
-  if (truckSelected != previousTruckSelected) {
+  if (truckSelected != previousTruckSelected && vehicle != undefined) {
     const position = truckEntities[0].position._value;
     const btPosition = new Ammo.btVector3(position.x, position.y, position.z);
 		const tm = vehicle.getChassisWorldTransform();
