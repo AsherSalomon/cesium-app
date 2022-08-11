@@ -69,7 +69,14 @@ export function update(delta) {
     const btPosition = new Ammo.btVector3(offset.x, offset.y, offset.z);
 		const tm = vehicle.getChassisWorldTransform();
 		tm.setOrigin(btPosition);
-		// tm.setRotation(truckEntities[0].orientation._value);
+
+    const orient = truckEntities[0].orientation._value.clone();
+    const quatB = new Cesium.Quaternion(0, 0, 0, 1);
+    Cesium.Quaternion.fromAxisAngle(Cesium.Cartesian3.UNIT_X, Math.PI / 2, quatB);
+    Cesium.Quaternion.multiply(orient, quatB, orient);
+    Cesium.Quaternion.fromAxisAngle(Cesium.Cartesian3.UNIT_Y, Math.PI, quatB);
+    Cesium.Quaternion.multiply(orient, quatB, orient);
+  	tm.setRotation(new Ammo.btQuaternion(orient.x, orient.y, orient.z, orient.w));
   }
   if (truckSelected) {
     if (gravityOn) {
