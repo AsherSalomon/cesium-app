@@ -120,7 +120,6 @@ export function update() {
     Cesium.Cartesian3.cross(viewer.camera.directionWC, vehicleDirection, crossProduct);
     const dotProduct = Cesium.Cartesian3.dot(viewer.camera.upWC, crossProduct);
     viewer.camera.rotateRight(dotProduct * Math.PI / 256);
-
   }
 
   adjustHeightForTerrain(viewer.scene.screenSpaceCameraController);
@@ -132,7 +131,6 @@ export function update() {
     const ray = viewer.camera.getPickRay(centerScreen);
     const cartesian = viewer.scene.globe.pick(ray, viewer.scene);
     if (Cesium.defined(cartesian)) {
-      console.log('ok');
       const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
       cartographic.height += 1;
       Cesium.Cartographic.toCartesian(
