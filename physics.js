@@ -57,8 +57,17 @@ export function init(newTruck, newViewer) {
 }
 
 let frameCount = 0;
+let previousTruckSelected = false;
 export function update(delta) {
-  if (viewer.trackedEntity == truckEntities[0]) {
+  truckSelected = viewer.trackedEntity == truckEntities[0];
+  if (truckSelected != previousTruckSelected) {
+    const position = truckEntities[0].position._value;
+    const btPosition = new Ammo.btVector3(position.x, position.y, position.z);
+		const tm = vehicle.getChassisWorldTransform();
+		tm.setOrigin(btPosition);
+		// tm.setRotation(truckEntities[0].orientation._value);
+  }
+  if (truckSelected) {
     if (gravityOn) {
       const position = truckEntities[0].position.getValue(truckEntities.now());
       const normal = new Ammo.btVector3(position.x, position.y, position.z);
@@ -75,7 +84,7 @@ export function update(delta) {
     	physicsWorld.stepSimulation(delta, 10);
     }
   }
-
+  previousTruckSelected = truckSelected;
 }
 
 function keyup(e) {
